@@ -1,0 +1,4 @@
+web_meta_common:
+    resource: "@WebMetaCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+

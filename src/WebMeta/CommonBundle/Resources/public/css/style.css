@@ -1,0 +1,52 @@
+.h1-header {
+    padding: 0px 0px 0px 10px;
+    margin: 0px;
+    line-height: 100px;
+}
+
+#warbot {
+    float:left;
+    text-align: center;
+    min-height: 400px;
+}
+
+#metaciv {
+    float:left;
+    text-align: center;
+    min-height: 400px;
+}
+
+.img-presentation img {
+    width: 300px;
+}
+
+.img-presentation {
+    float:left;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: left;
+}
+
+.txt-presentation {
+    float:left;
+    padding-left: 10px;
+    padding-right: 0px;
+    text-align: left;
+}
+
+#liste-game {
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+hr
+{
+  border-color: lightgrey;
+}
+
+.form-connexion {
+    text-align: right;
+}

@@ -1,0 +1,52 @@
+body {
+
+}
+
+#header {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background-color: #a3ceff;
+    margin-top: 0px;
+}
+
+#menu_h {
+    height: 30px;
+    line-height: 30px;
+    background-color: lightgray;
+}
+
+#menu_h ul {
+    
+}
+
+#menu_h ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#menu_h ul li a {
+    display: inline-block;
+
+    text-decoration: none;
+}
+
+#content {
+    background-color: #fff;
+    padding: 0px;
+}
+
+#page {
+    background-color: #fff;
+    padding: 10px;
+}
+
+#sidebar {
+    background-color: lightgrey;
+    min-height: 500px;
+}
+
+#footer {
+    height: 75px;
+    background-color: #a3ceff;
+}

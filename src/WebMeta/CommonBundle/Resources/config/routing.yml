@@ -1,0 +1,3 @@
+web_meta_common_homepage:
+    pattern:  /
+    defaults: { _controller: WebMetaCommonBundle:Default:index }

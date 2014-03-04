@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/reset.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/bootstrap/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/general.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/style.css') }}" />
+        <title>{% block title %} WebMeta {% endblock %}</title>
+    </head>
+
+    <body>
+        {% block header %} 
+            <header id="header">
+                <h1 class="h1-header">WebMeta</h1>
+            </header> 
+        {% endblock %}
+        
+        {% block menu_h %} 
+        <section id="menu_h" class="col-md-12">
+            <div class="liste-lien col-md-6">
+            <ul>
+                <li><a href="#" title="">Accueil</a></li>
+                <li><a href="#" title="">Warbot</a></li>
+                <li><a href="#" title="">MetaCiv</a></li>
+                <li><a href="#" title="">Documentations</a></li>
+                <li><a href="#" title="">Tutoriels</a></li>
+                <li><a href="#" title="">FAQ</a></li>
+                <li><a href="#" title="">Contact</a></li>
+            </ul>
+                </div>
+            <div class="form-connexion col-md-6">
+                <form method="post" action="#">
+                    <label for="pseudo">Login</label> : <input type="text" name="login" id="pseudo" size="8"/>
+                    <label for="pseudo">Mdp</label> : <input type="text" name="mdp" id="mdp" size="8" />
+                    <input type="submit" value="Connexion" />
+                </form>
+                
+            </div>
+        </section>    
+        {% endblock %}
+            
+    <div >
+
+    </div>
+        
+        {% block content_center %}
+        <div id="page">
+            <div class="main">
+                    {% block content %} 
+                        <section id="content" class="col-md-10"></section>    
+                    {% endblock %}
+
+                    {% block sidebar %} 
+                        <section id="sidebar" class="col-md-2">
+                            <article>
+                                <header>
+                                    <h1>Menu</h1>
+                                </header>
+                                <ul>
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 5</li>
+                                </ul>
+                            </article>
+                            <article>
+                                <header>
+                                    <h1>Liens</h1>
+                                </header>
+                                <ul>
+                                    <li>Lien 1</li>
+                                    <li>Lien 2</li>
+                                    <li>Lien 3</li>
+                                    <li>Lien 4</li>
+                                    <li>Lien 5</li>
+                                </ul>
+                            </article>
+                        </section>
+                    {% endblock %}
+            <div class="clear"></div>
+            </div>   
+        </div> 
+        {% endblock %}
+            
+    {% block footer %}
+        <footer id="footer">
+            <div class="container">
+         
+            </div>
+        </footer> 
+    {% endblock %}
+        
+        <script src="{{ asset('bundles/webmetacommon/js/jquery-1.11.0.js') }}"></script>
+        <script src="{{ asset('bundles/webmetacommon/js/bootstrap.min.js') }}"></script>
+    </body>
+</html>
