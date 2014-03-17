@@ -1,54 +1,19 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
-{% block title %} WebMeta - Accueil {% endblock %}
+{% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
     <section id="content" class="col-md-12">
-        <div id="liste-game">
-            
-            {# Bloc Warbot #}
-            <div id="warbot" class="col-md-6">
-                <h2>Warbot</h2>
-                <hr />
-                <div class="img-presentation col-md-6">
-                    <a href="#" title="Accès Warbot">
-                        <img src="{{ asset('bundles/webmetacommon/images/warbot.png') }}" alt="warbot-pres" />
-                    </a>
-                </div>
-                <div class="txt-presentation col-md-6">
-                    <p>
-                        Warbot est à la fois un jeu et une plate-forme d'évaluation et d'analyse de techniques de coordination entre agents, dans une situation de compétition où deux équipes de "robots" s'affrontent pour tuer la base de l'adversaire.
-                        Dans ce projet, les joueurs sont en fait les développeurs des agents. 
-                        Mais ils ne doivent faire qu'une seul chose: développer les "cerveaux" (brain) de ces robots sachant que les "corps" (body) sont définis une fois pour toutes par les règles du jeu. 
-                        De ce fait, la compétition réside dans la qualité de la programmation de ces cerveaux, et dans les stratégies de coordination proposées...
-                    </p>
-                </div>
-                <div class="clear"></div>
-            </div>
-            
-            {# Bloc Metaciv #}
-            <div id="metaciv" class="col-md-6">
-                <h2>MetaCiv</h2>
-                <hr />
-                <div class="img-presentation col-md-6">
-                    <a href="#" title="Accès MetaCiv">
-                        <img src="{{ asset('bundles/webmetacommon/images/metaciv.png') }}" alt="metaciv-pres"/>
-                    </a>
-                </div>
-                <div class="txt-presentation col-md-6">
-                    <p>
-                        MetaCiv est framework de modélisation de sociétés humaines (ou virtuelles) utilisant la technique des SMA dans lesquelles l’espace, la culture et la structure sociale jouent un rôle important. 
-                        Il peut être utilisé aussi bien en modélisation (modélisation de l'évolution historique d'un pays par exemple) que pour créer des jeux (exemple: populous, civilization, Spores). 
-                        La particularité de MetaCiv est de se situer entre les plate-formes génériques de modélisation multi-agent (NetLog, Turtlekit, Cormas, Repast, etc.) et les systèmes ad-hoc réalisés sur ces plate-formes, en proposant une couche intermédiaire implémentant un framework de société virtuelle.
-                    </p>
-                </div>
-                <div class="clear"></div>
-                
-            </div>
-            <div class="clear"></div>
+        <div id="page-faq" class="col-md-10">
+            <h2>TODO : </h2>
+            <ul>
+                <li>- Demander liste des questions fréquemment posées</li>
+                <li>- les intégrer en BDD les affichées</li>
+                <li>- IUD FAQ</li>
+            </ul>
         </div>
     </section>    
  {% endblock %}
 
+{# Sidebar vide #}
 {% block sidebar %} {% endblock %}
-

@@ -135,13 +135,43 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // web_meta_common_homepage
+        // common_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'web_meta_common_homepage');
+                return $this->redirect($pathinfo.'/', 'common_homepage');
             }
 
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::indexAction',  '_route' => 'web_meta_common_homepage',);
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::indexAction',  '_route' => 'common_homepage',);
+        }
+
+        // common_documentation
+        if ($pathinfo === '/documentation') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::documentationAction',  '_route' => 'common_documentation',);
+        }
+
+        // common_tutoriels
+        if ($pathinfo === '/tutoriels') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::tutorielsAction',  '_route' => 'common_tutoriels',);
+        }
+
+        // common_faq
+        if ($pathinfo === '/faq') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::faqAction',  '_route' => 'common_faq',);
+        }
+
+        // common_contact
+        if ($pathinfo === '/contact') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::contactAction',  '_route' => 'common_contact',);
+        }
+
+        // warbot_homepage
+        if ($pathinfo === '/warbot') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::indexAction',  '_route' => 'warbot_homepage',);
+        }
+
+        // metaciv_homepage
+        if ($pathinfo === '/metaciv') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MetacivController::indexAction',  '_route' => 'metaciv_homepage',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

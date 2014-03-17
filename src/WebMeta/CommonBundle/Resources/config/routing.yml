@@ -1,3 +1,34 @@
-web_meta_common_homepage:
+# Page d'accueil du site
+common_homepage:
     pattern:  /
     defaults: { _controller: WebMetaCommonBundle:Default:index }
+    
+# Page de documentation
+common_documentation:
+    pattern:  /documentation
+    defaults: { _controller: WebMetaCommonBundle:Default:documentation }
+    
+# Page de tutoriels
+common_tutoriels:
+    pattern:  /tutoriels
+    defaults: { _controller: WebMetaCommonBundle:Default:tutoriels }
+
+# Page de FAQ (Frequently Asked Questions)
+common_faq:
+    pattern:  /faq
+    defaults: { _controller: WebMetaCommonBundle:Default:faq }
+ 
+# Page de contact (formulaire)    
+common_contact:
+    pattern:  /contact
+    defaults: { _controller: WebMetaCommonBundle:Default:contact }
+    
+# Page d'accueil de Warbot    
+warbot_homepage:
+    pattern:  /warbot
+    defaults: { _controller: WebMetaCommonBundle:Warbot:index }
+
+# Page d'accueil de Metaciv
+metaciv_homepage:
+    pattern:  /metaciv
+    defaults: { _controller: WebMetaCommonBundle:Metaciv:index }

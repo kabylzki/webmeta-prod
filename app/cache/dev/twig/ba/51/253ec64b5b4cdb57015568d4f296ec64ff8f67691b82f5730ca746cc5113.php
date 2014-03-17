@@ -51,35 +51,40 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
 
     <body>
         ";
-        // line 13
+        // line 14
+        echo "        ";
         $this->displayBlock('header', $context, $blocks);
-        // line 18
-        echo "        
-        ";
         // line 19
-        $this->displayBlock('menu_h', $context, $blocks);
-        // line 42
-        echo "            
-    <div >
-
-    </div>
-        
-        ";
-        // line 47
-        $this->displayBlock('content_center', $context, $blocks);
-        // line 86
-        echo "            
-    ";
-        // line 87
-        $this->displayBlock('footer', $context, $blocks);
-        // line 94
         echo "        
+        ";
+        // line 21
+        echo "        ";
+        $this->displayBlock('menu_h', $context, $blocks);
+        // line 44
+        echo "        
+        ";
+        // line 46
+        echo "        ";
+        $this->displayBlock('content_center', $context, $blocks);
+        // line 74
+        echo "            
+        ";
+        // line 75
+        echo "  
+        ";
+        // line 76
+        $this->displayBlock('footer', $context, $blocks);
+        // line 83
+        echo "        
+        ";
+        // line 84
+        echo "  
         <script src=\"";
-        // line 95
+        // line 85
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 96
+        // line 86
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
     </body>
@@ -92,7 +97,7 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
         echo " WebMeta ";
     }
 
-    // line 13
+    // line 14
     public function block_header($context, array $blocks = array())
     {
         echo " 
@@ -102,20 +107,41 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
         ";
     }
 
-    // line 19
+    // line 21
     public function block_menu_h($context, array $blocks = array())
     {
         echo " 
         <section id=\"menu_h\" class=\"col-md-12\">
             <div class=\"liste-lien col-md-6\">
             <ul>
-                <li><a href=\"#\" title=\"\">Accueil</a></li>
-                <li><a href=\"#\" title=\"\">Warbot</a></li>
-                <li><a href=\"#\" title=\"\">MetaCiv</a></li>
-                <li><a href=\"#\" title=\"\">Documentations</a></li>
-                <li><a href=\"#\" title=\"\">Tutoriels</a></li>
-                <li><a href=\"#\" title=\"\">FAQ</a></li>
-                <li><a href=\"#\" title=\"\">Contact</a></li>
+                <li><a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getPath("common_homepage");
+        echo "\" title=\"Accueil du site\">Accueil</a></li>
+                <li><a href=\"";
+        // line 26
+        echo $this->env->getExtension('routing')->getPath("warbot_homepage");
+        echo "\" title=\"Accès Warbot\">Warbot</a></li>
+                <li><a href=\"";
+        // line 27
+        echo $this->env->getExtension('routing')->getPath("metaciv_homepage");
+        echo "\" title=\"Accès Metaciv\">MetaCiv</a></li>
+                <li><a href=\"";
+        // line 28
+        echo $this->env->getExtension('routing')->getPath("common_documentation");
+        echo "\" title=\"Documentation\">Documentation</a></li>
+                <li><a href=\"";
+        // line 29
+        echo $this->env->getExtension('routing')->getPath("common_tutoriels");
+        echo "\" title=\"Tutoriels\">Tutoriels</a></li>
+                <li><a href=\"";
+        // line 30
+        echo $this->env->getExtension('routing')->getPath("common_faq");
+        echo "\" title=\"Questions\">FAQ</a></li>
+                <li><a href=\"";
+        // line 31
+        echo $this->env->getExtension('routing')->getPath("common_contact");
+        echo "\" title=\"Formulaire de contact\">Contact</a></li>
             </ul>
                 </div>
             <div class=\"form-connexion col-md-6\">
@@ -130,28 +156,31 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
         ";
     }
 
-    // line 47
+    // line 46
     public function block_content_center($context, array $blocks = array())
     {
-        // line 48
+        // line 47
         echo "        <div id=\"page\">
             <div class=\"main\">
                     ";
-        // line 50
+        // line 49
         $this->displayBlock('content', $context, $blocks);
+        // line 52
+        echo "                        
+                    ";
         // line 53
-        echo "
+        echo "    
                     ";
         // line 54
         $this->displayBlock('sidebar', $context, $blocks);
-        // line 82
+        // line 70
         echo "            <div class=\"clear\"></div>
             </div>   
         </div> 
         ";
     }
 
-    // line 50
+    // line 49
     public function block_content($context, array $blocks = array())
     {
         echo " 
@@ -176,32 +205,20 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
                                     <li>Item 5</li>
                                 </ul>
                             </article>
-                            <article>
-                                <header>
-                                    <h1>Liens</h1>
-                                </header>
-                                <ul>
-                                    <li>Lien 1</li>
-                                    <li>Lien 2</li>
-                                    <li>Lien 3</li>
-                                    <li>Lien 4</li>
-                                    <li>Lien 5</li>
-                                </ul>
-                            </article>
                         </section>
                     ";
     }
 
-    // line 87
+    // line 76
     public function block_footer($context, array $blocks = array())
     {
-        // line 88
-        echo "        <footer id=\"footer\">
-            <div class=\"container\">
-         
-            </div>
-        </footer> 
-    ";
+        // line 77
+        echo "            <footer id=\"footer\">
+                <div class=\"container\">
+
+                </div>
+            </footer> 
+        ";
     }
 
     public function getTemplateName()
@@ -216,6 +233,6 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
 
     public function getDebugInfo()
     {
-        return array (  199 => 88,  196 => 87,  163 => 54,  155 => 50,  148 => 82,  146 => 54,  143 => 53,  141 => 50,  137 => 48,  134 => 47,  106 => 19,  90 => 9,  83 => 96,  79 => 95,  76 => 94,  74 => 87,  71 => 86,  69 => 47,  62 => 42,  60 => 19,  57 => 18,  55 => 13,  48 => 9,  40 => 7,  32 => 5,  26 => 1,  96 => 13,  75 => 35,  68 => 30,  51 => 15,  44 => 8,  36 => 6,  30 => 3,);
+        return array (  216 => 77,  213 => 76,  192 => 54,  184 => 49,  177 => 70,  175 => 54,  172 => 53,  169 => 52,  167 => 49,  163 => 47,  160 => 46,  143 => 31,  139 => 30,  135 => 29,  131 => 28,  127 => 27,  123 => 26,  119 => 25,  111 => 21,  101 => 14,  95 => 9,  88 => 86,  84 => 85,  81 => 84,  78 => 83,  76 => 76,  73 => 75,  70 => 74,  67 => 46,  64 => 44,  61 => 21,  58 => 19,  55 => 14,  48 => 9,  44 => 8,  40 => 7,  36 => 6,  32 => 5,  26 => 1,);
     }
 }

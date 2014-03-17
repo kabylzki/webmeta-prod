@@ -45,7 +45,10 @@ class __TwigTemplate_837d5d5fa8df58c06881121452d0b2d80fea71e5603a28e94e265916ce9
                 <h2>Warbot</h2>
                 <hr />
                 <div class=\"img-presentation col-md-6\">
-                    <a href=\"#\" title=\"Accès Warbot\">
+                    <a href=\"";
+        // line 14
+        echo $this->env->getExtension('routing')->getPath("warbot_homepage");
+        echo "\" title=\"Accès Warbot\">
                         <img src=\"";
         // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/warbot.png"), "html", null, true);
@@ -69,7 +72,10 @@ class __TwigTemplate_837d5d5fa8df58c06881121452d0b2d80fea71e5603a28e94e265916ce9
                 <h2>MetaCiv</h2>
                 <hr />
                 <div class=\"img-presentation col-md-6\">
-                    <a href=\"#\" title=\"Accès MetaCiv\">
+                    <a href=\"";
+        // line 34
+        echo $this->env->getExtension('routing')->getPath("metaciv_homepage");
+        echo "\" title=\"Accès MetaCiv\">
                         <img src=\"";
         // line 35
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/metaciv.png"), "html", null, true);
@@ -84,7 +90,6 @@ class __TwigTemplate_837d5d5fa8df58c06881121452d0b2d80fea71e5603a28e94e265916ce9
                     </p>
                 </div>
                 <div class=\"clear\"></div>
-                
             </div>
             <div class=\"clear\"></div>
         </div>
@@ -92,10 +97,12 @@ class __TwigTemplate_837d5d5fa8df58c06881121452d0b2d80fea71e5603a28e94e265916ce9
  ";
     }
 
-    // line 53
+    // line 52
     public function block_sidebar($context, array $blocks = array())
     {
-        echo " ";
+        echo " 
+
+";
     }
 
     public function getTemplateName()
@@ -110,6 +117,6 @@ class __TwigTemplate_837d5d5fa8df58c06881121452d0b2d80fea71e5603a28e94e265916ce9
 
     public function getDebugInfo()
     {
-        return array (  96 => 53,  75 => 35,  68 => 30,  51 => 15,  44 => 10,  36 => 5,  30 => 3,);
+        return array (  101 => 52,  81 => 35,  77 => 34,  71 => 30,  54 => 15,  50 => 14,  44 => 10,  36 => 5,  30 => 3,);
     }
 }

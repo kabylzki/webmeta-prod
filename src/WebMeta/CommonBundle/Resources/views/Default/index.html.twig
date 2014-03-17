@@ -11,7 +11,7 @@
                 <h2>Warbot</h2>
                 <hr />
                 <div class="img-presentation col-md-6">
-                    <a href="#" title="Accès Warbot">
+                    <a href="{{ path('warbot_homepage') }}" title="Accès Warbot">
                         <img src="{{ asset('bundles/webmetacommon/images/warbot.png') }}" alt="warbot-pres" />
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                 <h2>MetaCiv</h2>
                 <hr />
                 <div class="img-presentation col-md-6">
-                    <a href="#" title="Accès MetaCiv">
+                    <a href="{{ path('metaciv_homepage') }}" title="Accès MetaCiv">
                         <img src="{{ asset('bundles/webmetacommon/images/metaciv.png') }}" alt="metaciv-pres"/>
                     </a>
                 </div>
@@ -43,12 +43,13 @@
                     </p>
                 </div>
                 <div class="clear"></div>
-                
             </div>
             <div class="clear"></div>
         </div>
     </section>    
  {% endblock %}
 
-{% block sidebar %} {% endblock %}
+{% block sidebar %} 
+
+{% endblock %}
 
