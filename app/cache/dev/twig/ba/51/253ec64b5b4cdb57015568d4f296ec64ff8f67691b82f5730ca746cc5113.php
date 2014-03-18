@@ -60,31 +60,31 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
         // line 21
         echo "        ";
         $this->displayBlock('menu_h', $context, $blocks);
-        // line 44
+        // line 49
         echo "        
         ";
-        // line 46
+        // line 51
         echo "        ";
         $this->displayBlock('content_center', $context, $blocks);
-        // line 74
+        // line 79
         echo "            
         ";
-        // line 75
+        // line 80
         echo "  
         ";
-        // line 76
+        // line 81
         $this->displayBlock('footer', $context, $blocks);
-        // line 83
+        // line 88
         echo "        
         ";
-        // line 84
+        // line 89
         echo "  
         <script src=\"";
-        // line 85
+        // line 90
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 86
+        // line 91
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
     </body>
@@ -144,43 +144,51 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
         echo "\" title=\"Formulaire de contact\">Contact</a></li>
             </ul>
                 </div>
-            <div class=\"form-connexion col-md-6\">
+            <div class=\"form-connexion col-md-5\">
                 <form method=\"post\" action=\"#\">
                     <label for=\"pseudo\">Login</label> : <input type=\"text\" name=\"login\" id=\"pseudo\" size=\"8\"/>
                     <label for=\"pseudo\">Mdp</label> : <input type=\"text\" name=\"mdp\" id=\"mdp\" size=\"8\" />
                     <input type=\"submit\" value=\"Connexion\" />
                 </form>
-                
             </div>
+            
+            <div class=\"col-md-1\">
+                <a href=\"";
+        // line 43
+        echo $this->env->getExtension('routing')->getPath("compte_creation");
+        echo "\" title=\"Accueil du site\">S'inscrire</a>
+            </div>
+
+                
         </section>    
         ";
     }
 
-    // line 46
+    // line 51
     public function block_content_center($context, array $blocks = array())
     {
-        // line 47
+        // line 52
         echo "        <div id=\"page\">
             <div class=\"main\">
                     ";
-        // line 49
+        // line 54
         $this->displayBlock('content', $context, $blocks);
-        // line 52
+        // line 57
         echo "                        
                     ";
-        // line 53
+        // line 58
         echo "    
                     ";
-        // line 54
+        // line 59
         $this->displayBlock('sidebar', $context, $blocks);
-        // line 70
+        // line 75
         echo "            <div class=\"clear\"></div>
             </div>   
         </div> 
         ";
     }
 
-    // line 49
+    // line 54
     public function block_content($context, array $blocks = array())
     {
         echo " 
@@ -188,7 +196,7 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
                     ";
     }
 
-    // line 54
+    // line 59
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
@@ -209,10 +217,10 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
                     ";
     }
 
-    // line 76
+    // line 81
     public function block_footer($context, array $blocks = array())
     {
-        // line 77
+        // line 82
         echo "            <footer id=\"footer\">
                 <div class=\"container\">
 
@@ -233,6 +241,6 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
 
     public function getDebugInfo()
     {
-        return array (  216 => 77,  213 => 76,  192 => 54,  184 => 49,  177 => 70,  175 => 54,  172 => 53,  169 => 52,  167 => 49,  163 => 47,  160 => 46,  143 => 31,  139 => 30,  135 => 29,  131 => 28,  127 => 27,  123 => 26,  119 => 25,  111 => 21,  101 => 14,  95 => 9,  88 => 86,  84 => 85,  81 => 84,  78 => 83,  76 => 76,  73 => 75,  70 => 74,  67 => 46,  64 => 44,  61 => 21,  58 => 19,  55 => 14,  48 => 9,  44 => 8,  40 => 7,  36 => 6,  32 => 5,  26 => 1,);
+        return array (  224 => 82,  221 => 81,  200 => 59,  192 => 54,  185 => 75,  183 => 59,  180 => 58,  177 => 57,  175 => 54,  171 => 52,  168 => 51,  158 => 43,  143 => 31,  139 => 30,  135 => 29,  131 => 28,  127 => 27,  123 => 26,  119 => 25,  111 => 21,  101 => 14,  95 => 9,  88 => 91,  84 => 90,  81 => 89,  78 => 88,  76 => 81,  73 => 80,  70 => 79,  67 => 51,  64 => 49,  61 => 21,  58 => 19,  55 => 14,  48 => 9,  44 => 8,  40 => 7,  36 => 6,  32 => 5,  26 => 1,);
     }
 }

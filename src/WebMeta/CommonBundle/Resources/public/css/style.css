@@ -1,18 +1,14 @@
+
+
 .h1-header {
     padding: 0px 0px 0px 10px;
     margin: 0px;
     line-height: 100px;
 }
 
-#warbot {
+#metaciv, #warbot {
     float:left;
-    text-align: center;
-    min-height: 400px;
-}
-
-#metaciv {
-    float:left;
-    text-align: center;
+    text-align: left;
     min-height: 400px;
 }
 
@@ -45,6 +41,7 @@
 hr
 {
   border-color: lightgrey;
+  margin: 3px 0px 10px 0px;
 }
 
 .form-connexion {

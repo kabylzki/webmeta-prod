@@ -26,9 +26,9 @@
     <parameter key="database_driver">pdo_mysql</parameter>
     <parameter key="database_host">127.0.0.1</parameter>
     <parameter key="database_port">null</parameter>
-    <parameter key="database_name">symfony</parameter>
+    <parameter key="database_name">webmeta</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">null</parameter>
+    <parameter key="database_password">201182140389</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -2235,9 +2235,9 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">127.0.0.1</argument>
         <argument key="port">null</argument>
-        <argument key="dbname">symfony</argument>
+        <argument key="dbname">webmeta</argument>
         <argument key="user">root</argument>
-        <argument key="password">null</argument>
+        <argument key="password">201182140389</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
       </argument>
@@ -2295,7 +2295,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="WebMetaCommonBundle">WebMeta\CommonBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service">
@@ -2326,7 +2328,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false"/>
+              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/home/mikael/workspace/WebMeta/src/WebMeta/CommonBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>WebMeta\CommonBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">

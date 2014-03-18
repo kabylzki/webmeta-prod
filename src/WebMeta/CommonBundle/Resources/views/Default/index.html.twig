@@ -6,6 +6,12 @@
     <section id="content" class="col-md-12">
         <div id="liste-game">
             
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
             {# Bloc Warbot #}
             <div id="warbot" class="col-md-6">
                 <h2>Warbot</h2>
@@ -49,7 +55,5 @@
     </section>    
  {% endblock %}
 
-{% block sidebar %} 
-
-{% endblock %}
-
+{# Sidebar vide #}
+{% block sidebar %} {% endblock %}

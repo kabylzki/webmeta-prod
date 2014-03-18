@@ -31,14 +31,19 @@
                 <li><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
             </ul>
                 </div>
-            <div class="form-connexion col-md-6">
+            <div class="form-connexion col-md-5">
                 <form method="post" action="#">
                     <label for="pseudo">Login</label> : <input type="text" name="login" id="pseudo" size="8"/>
                     <label for="pseudo">Mdp</label> : <input type="text" name="mdp" id="mdp" size="8" />
                     <input type="submit" value="Connexion" />
                 </form>
-                
             </div>
+            
+            <div class="col-md-1">
+                <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
+            </div>
+
+                
         </section>    
         {% endblock %}
         

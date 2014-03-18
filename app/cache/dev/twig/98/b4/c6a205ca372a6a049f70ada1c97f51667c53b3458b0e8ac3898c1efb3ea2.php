@@ -12,7 +12,6 @@ class __TwigTemplate_98b4c6a205ca372a6a049f70ada1c97f51667c53b3458b0e8ac3898c1ef
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
-            'sidebar_game' => array($this, 'block_sidebar_game'),
         );
     }
 
@@ -49,14 +48,6 @@ class __TwigTemplate_98b4c6a205ca372a6a049f70ada1c97f51667c53b3458b0e8ac3898c1ef
  ";
     }
 
-    // line 19
-    public function block_sidebar_game($context, array $blocks = array())
-    {
-        echo " 
-
-";
-    }
-
     public function getTemplateName()
     {
         return "WebMetaCommonBundle:Metaciv:index_metaciv.html.twig";
@@ -69,6 +60,6 @@ class __TwigTemplate_98b4c6a205ca372a6a049f70ada1c97f51667c53b3458b0e8ac3898c1ef
 
     public function getDebugInfo()
     {
-        return array (  53 => 19,  36 => 5,  30 => 3,);
+        return array (  35 => 5,  29 => 3,);
     }
 }

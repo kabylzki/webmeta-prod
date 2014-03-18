@@ -23,6 +23,22 @@ common_contact:
     pattern:  /contact
     defaults: { _controller: WebMetaCommonBundle:Default:contact }
     
+##### Compte #####
+# Page de création de compte (formulaire)    
+compte_creation:
+    pattern:  /creation-compte
+    defaults: { _controller: WebMetaCommonBundle:Compte:creation }
+    
+# Affiche la page du compte
+compte_creation_validation:
+    pattern:  /creation-compte-validation
+    defaults: { _controller: WebMetaCommonBundle:Compte:validation }
+    
+# Affiche la page du compte
+compte_view:
+    pattern:  /mon-compte
+    defaults: { _controller: WebMetaCommonBundle:Compte:index }
+    
 # Page d'accueil de Warbot    
 warbot_homepage:
     pattern:  /warbot

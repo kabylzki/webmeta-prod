@@ -159,9 +159,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::faqAction',  '_route' => 'common_faq',);
         }
 
-        // common_contact
-        if ($pathinfo === '/contact') {
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::contactAction',  '_route' => 'common_contact',);
+        if (0 === strpos($pathinfo, '/c')) {
+            // common_contact
+            if ($pathinfo === '/contact') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\DefaultController::contactAction',  '_route' => 'common_contact',);
+            }
+
+            if (0 === strpos($pathinfo, '/creation-compte')) {
+                // compte_creation
+                if ($pathinfo === '/creation-compte') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::creationAction',  '_route' => 'compte_creation',);
+                }
+
+                // compte_creation_validation
+                if ($pathinfo === '/creation-compte-validation') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::validationAction',  '_route' => 'compte_creation_validation',);
+                }
+
+            }
+
+        }
+
+        // compte_view
+        if ($pathinfo === '/mon-compte') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',  '_route' => 'compte_view',);
         }
 
         // warbot_homepage
