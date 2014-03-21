@@ -7,8 +7,9 @@
         <div id="page-documentation" class="col-md-10">
             <h2>TODO : </h2>
             <ul>
-                <li>- Affichage de la doc tirée de la BDD</li>
-                <li>- IUD Documentation</li>
+            {% for page in liste_page %}
+                <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+            {% endfor %}
             </ul>
         </div>
     </section>    

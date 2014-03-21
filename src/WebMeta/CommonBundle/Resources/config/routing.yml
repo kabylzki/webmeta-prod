@@ -1,3 +1,4 @@
+################ Common ################
 # Page d'accueil du site
 common_homepage:
     pattern:  /
@@ -23,13 +24,13 @@ common_contact:
     pattern:  /contact
     defaults: { _controller: WebMetaCommonBundle:Default:contact }
     
-##### Compte #####
+################ Compte ################
 # Page de création de compte (formulaire)    
 compte_creation:
     pattern:  /creation-compte
     defaults: { _controller: WebMetaCommonBundle:Compte:creation }
     
-# Affiche la page du compte
+# Page de validation du compte
 compte_creation_validation:
     pattern:  /creation-compte-validation
     defaults: { _controller: WebMetaCommonBundle:Compte:validation }
@@ -39,11 +40,29 @@ compte_view:
     pattern:  /mon-compte
     defaults: { _controller: WebMetaCommonBundle:Compte:index }
     
+################ Page ################
+# Affiche une page créée et son contenu
+page_view:
+    pattern:  /page/{id}-{url_alias}
+    defaults: { _controller: WebMetaCommonBundle:Page:view }
+    
+# Page de création d'une page
+page_creation:
+    pattern:  /creation-page
+    defaults: { _controller: WebMetaCommonBundle:Page:creation }
+
+# Page de validation de la page
+page_creation_validation:
+    pattern:  /creation-page-validation
+    defaults: { _controller: WebMetaCommonBundle:Page:validation }
+    
+################ Warbot ################
 # Page d'accueil de Warbot    
 warbot_homepage:
     pattern:  /warbot
     defaults: { _controller: WebMetaCommonBundle:Warbot:index }
 
+################ Metaciv ################   
 # Page d'accueil de Metaciv
 metaciv_homepage:
     pattern:  /metaciv

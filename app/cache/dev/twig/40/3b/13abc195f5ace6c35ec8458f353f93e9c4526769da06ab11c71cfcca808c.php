@@ -40,15 +40,32 @@ class __TwigTemplate_403b13abc195f5ace6c35ec8458f353f93e9c4526769da06ab11c71cfcc
         <div id=\"page-documentation\" class=\"col-md-10\">
             <h2>TODO : </h2>
             <ul>
-                <li>- Affichage de la doc tirée de la BDD</li>
-                <li>- IUD Documentation</li>
-            </ul>
+            ";
+        // line 10
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_page"]) ? $context["liste_page"] : $this->getContext($context, "liste_page")));
+        foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
+            // line 11
+            echo "                <li> <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"))), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "\"/>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "</a></li>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 13
+        echo "            </ul>
         </div>
     </section>    
  ";
     }
 
-    // line 18
+    // line 19
     public function block_sidebar($context, array $blocks = array())
     {
         echo " ";
@@ -66,6 +83,6 @@ class __TwigTemplate_403b13abc195f5ace6c35ec8458f353f93e9c4526769da06ab11c71cfcc
 
     public function getDebugInfo()
     {
-        return array (  52 => 18,  36 => 5,  30 => 3,);
+        return array (  69 => 19,  62 => 13,  49 => 11,  45 => 10,  36 => 5,  30 => 3,);
     }
 }

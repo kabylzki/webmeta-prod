@@ -185,6 +185,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',  '_route' => 'compte_view',);
         }
 
+        // page_view
+        if (0 === strpos($pathinfo, '/page') && preg_match('#^/page/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::viewAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/creation-page')) {
+            // page_creation
+            if ($pathinfo === '/creation-page') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::creationAction',  '_route' => 'page_creation',);
+            }
+
+            // page_creation_validation
+            if ($pathinfo === '/creation-page-validation') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::validationAction',  '_route' => 'page_creation_validation',);
+            }
+
+        }
+
         // warbot_homepage
         if ($pathinfo === '/warbot') {
             return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::indexAction',  '_route' => 'warbot_homepage',);

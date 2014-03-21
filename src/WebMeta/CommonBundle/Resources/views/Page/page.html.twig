@@ -1,0 +1,11 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - {{page.getTitre}} {% endblock %}
+
+{% block content %} 
+    <section id="content" class="col-md-10">
+        <div id="page-metaciv-home" class="col-md-10">
+            {{page.getContenu | raw}}
+        </div>
+    </section>    
+ {% endblock %}

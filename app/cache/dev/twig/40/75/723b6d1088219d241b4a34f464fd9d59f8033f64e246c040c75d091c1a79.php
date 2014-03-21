@@ -29,7 +29,7 @@ class __TwigTemplate_4075723b6d1088219d241b4a34f464fd9d59f8033f64e246c040c75d091
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Metaciv ";
+        echo " WebMeta - Formulaire de création d'un compte ";
     }
 
     // line 5

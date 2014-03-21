@@ -4,90 +4,89 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/reset.css') }}" />
         <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/bootstrap/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/reset_bootstrap.css') }}" />
         <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/general.css') }}" />
         <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/style.css') }}" />
+        <script src="{{ asset('bundles/webmetacommon/vendor/tinymce/tinymce.min.js') }}"></script>
         <title>{% block title %} WebMeta {% endblock %}</title>
     </head>
 
     <body>
         {# Header #}
         {% block header %} 
-            <header id="header">
-                <h1 class="h1-header">WebMeta</h1>
-            </header> 
+        <header id="header">
+            <h1 class="h1-header">WebMeta</h1>
+        </header> 
         {% endblock %}
-        
+
         {# Menu Horizontal du site #}
         {% block menu_h %} 
         <section id="menu_h" class="col-md-12">
             <div class="liste-lien col-md-6">
-            <ul>
-                <li><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
-                <li><a href="{{ path('warbot_homepage') }}" title="Accès Warbot">Warbot</a></li>
-                <li><a href="{{ path('metaciv_homepage') }}" title="Accès Metaciv">MetaCiv</a></li>
-                <li><a href="{{ path('common_documentation') }}" title="Documentation">Documentation</a></li>
-                <li><a href="{{ path('common_tutoriels') }}" title="Tutoriels">Tutoriels</a></li>
-                <li><a href="{{ path('common_faq') }}" title="Questions">FAQ</a></li>
-                <li><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
-            </ul>
-                </div>
-            <div class="form-connexion col-md-5">
-                <form method="post" action="#">
-                    <label for="pseudo">Login</label> : <input type="text" name="login" id="pseudo" size="8"/>
-                    <label for="pseudo">Mdp</label> : <input type="text" name="mdp" id="mdp" size="8" />
-                    <input type="submit" value="Connexion" />
-                </form>
+                <ul class="nav nav-pills">
+                    <li class="{% if app.request.attributes.get('_route') == 'common_homepage' %}actif{% endif %}"><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'common_documentation' %}actif{% endif %}"><a href="{{ path('common_documentation') }}" title="Documentation">Documentation</a></li>    
+                    <li class="{% if app.request.attributes.get('_route') == 'common_tutoriels' %}actif{% endif %}"><a href="{{ path('common_tutoriels') }}" title="Tutoriels">Tutoriels</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'common_faq' %}actif{% endif %}"><a href="{{ path('common_faq') }}" title="Questions">FAQ</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'common_contact' %}actif{% endif %}"><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'common_creation' %}actif{% endif %}"><a href="{{ path('page_creation') }}" title="Formulaire de création d'une page">Créer une page</a></li>
+                </ul>
             </div>
-            
+            <div class="form-connexion col-md-5">
+                Form login TODO
+            </div>
+
             <div class="col-md-1">
                 <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
             </div>
 
-                
+
         </section>    
         {% endblock %}
-        
+
         {# Contenu central de la page #}
         {% block content_center %}
         <div id="page">
             <div class="main">
                     {% block content %} 
-                        <section id="content" class="col-md-10"></section>    
+                <section id="content" class="col-md-10"></section>    
                     {% endblock %}
-                        
+
                     {# Menu de droite #}    
                     {% block sidebar %} 
-                        <section id="sidebar" class="col-md-2">
-                            <article>
-                                <header>
-                                    <h1>Menu</h1>
-                                </header>
-                                <ul>
-                                    <li>Item 1</li>
-                                    <li>Item 2</li>
-                                    <li>Item 3</li>
-                                    <li>Item 4</li>
-                                    <li>Item 5</li>
-                                </ul>
-                            </article>
-                        </section>
+                <section id="sidebar" class="col-md-2">
+                    <article>
+                        <header>
+                            <h1>Menu</h1>
+                        </header>
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 5</li>
+                        </ul>
+                    </article>
+                </section>
                     {% endblock %}
-            <div class="clear"></div>
+                <div class="clear"></div>
             </div>   
         </div> 
         {% endblock %}
-            
+
         {# Footer #}  
         {% block footer %}
-            <footer id="footer">
-                <div class="container">
+        <footer id="footer">
+            <div class="container">
 
-                </div>
-            </footer> 
+            </div>
+        </footer> 
         {% endblock %}
-        
+
         {# Inclusion des scripts (js) #}  
+        {% block scripts %}
         <script src="{{ asset('bundles/webmetacommon/js/jquery-1.11.0.js') }}"></script>
         <script src="{{ asset('bundles/webmetacommon/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
