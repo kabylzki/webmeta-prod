@@ -213,7 +213,7 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
     public function block_content($context, array $blocks = array())
     {
         echo " 
-                <section id=\"content\" class=\"col-md-10\"></section>    
+                        <section id=\"content\" class=\"col-md-10\"></section>    
                     ";
     }
 
@@ -221,20 +221,20 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
-                <section id=\"sidebar\" class=\"col-md-2\">
-                    <article>
-                        <header>
-                            <h1>Menu</h1>
-                        </header>
-                        <ul>
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 5</li>
-                        </ul>
-                    </article>
-                </section>
+                        <section id=\"sidebar\" class=\"col-md-2\">
+                            <article>
+                                <header>
+                                    <h1>Menu</h1>
+                                </header>
+                                <ul>
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 5</li>
+                                </ul>
+                            </article>
+                        </section>
                     ";
     }
 
@@ -276,6 +276,6 @@ class __TwigTemplate_ba51253ec64b5b4cdb57015568d4f296ec64ff8f67691b82f5730ca746c
 
     public function getDebugInfo()
     {
-        return array (  262 => 89,  257 => 88,  254 => 87,  245 => 79,  242 => 78,  221 => 56,  213 => 51,  206 => 72,  204 => 56,  201 => 55,  198 => 54,  196 => 51,  192 => 49,  189 => 48,  179 => 40,  164 => 32,  156 => 31,  148 => 30,  140 => 29,  132 => 28,  124 => 27,  116 => 23,  106 => 16,  100 => 11,  95 => 91,  93 => 87,  90 => 86,  87 => 85,  85 => 78,  82 => 77,  79 => 76,  76 => 48,  73 => 46,  70 => 23,  67 => 21,  64 => 16,  57 => 11,  53 => 10,  49 => 9,  45 => 8,  41 => 7,  37 => 6,  33 => 5,  27 => 1,);
+        return array (  262 => 89,  257 => 88,  254 => 87,  245 => 79,  242 => 78,  221 => 56,  213 => 51,  206 => 72,  204 => 56,  201 => 55,  198 => 54,  196 => 51,  192 => 49,  189 => 48,  179 => 40,  164 => 32,  156 => 31,  148 => 30,  140 => 29,  132 => 28,  124 => 27,  116 => 23,  106 => 16,  100 => 11,  95 => 91,  93 => 87,  90 => 86,  87 => 85,  85 => 78,  82 => 77,  79 => 76,  76 => 48,  73 => 46,  70 => 23,  67 => 21,  57 => 11,  49 => 9,  45 => 8,  41 => 7,  37 => 6,  33 => 5,  27 => 1,  81 => 28,  68 => 26,  64 => 16,  53 => 10,  36 => 5,  30 => 3,);
     }
 }

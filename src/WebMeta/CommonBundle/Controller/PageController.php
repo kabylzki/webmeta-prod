@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller {
 
-    // Affiche le formulaire d'ajout de page
+    // Affiche la page voulue
     public function viewAction($id) {
         $page = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Page')->find($id);
         
@@ -31,9 +31,12 @@ class PageController extends Controller {
         $form = $this->createForm(new PageType(), $page);
         $form->handleRequest($request);
 
-        // Transforme l'objet "IdCategorie" (id,nom) en int (id) avant l'insertion en BDD
-        $page->setIdCategorie($page->getIdCategorie()->getId());
+        // Transforme l'objet "NomCategorie" (id,nom) en string (nom) avant l'insertion en BDD
+        $page->setNomCategorie($page->getNomCategorie()->getNom());
+        // Récupère et Set la date courante dans "DatePublication"
+        $page->setDatePublication(new \DateTime());
 
+        // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);

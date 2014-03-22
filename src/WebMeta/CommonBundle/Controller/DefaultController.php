@@ -16,23 +16,27 @@ class DefaultController extends Controller {
     public function documentationAction() {
         $em = $this->getDoctrine()->getManager();
         $liste_page = $em->getRepository('WebMetaCommonBundle:Page')
-                ->findAllPageByCategorie();
+                ->findAllPageByNomCategorie("Documentation");
 
         return $this->render('WebMetaCommonBundle:Default:documentation.html.twig', array ("liste_page" => $liste_page));
     }
 
     // Affiche la liste des pages de tutoriels
     public function tutorielsAction() {
+        $em = $this->getDoctrine()->getManager();
+        $liste_page = $em->getRepository('WebMetaCommonBundle:Page')
+                ->findAllPageByNomCategorie("Tutoriels");
         
-        // TODO liste des pages des pages tuto
-        return $this->render('WebMetaCommonBundle:Default:tutoriels.html.twig');
+        return $this->render('WebMetaCommonBundle:Default:tutoriels.html.twig', array ("liste_page" => $liste_page));
     }
 
     // Affiche la liste des pages de FAQ
     public function faqAction() {
-        
-        // TODO liste des pages faq
-        return $this->render('WebMetaCommonBundle:Default:faq.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $liste_page = $em->getRepository('WebMetaCommonBundle:Page')
+                ->findAllPageByNomCategorie("Faq");
+
+        return $this->render('WebMetaCommonBundle:Default:faq.html.twig', array ("liste_page" => $liste_page));
     }
 
     // Affiche le formulaire de contact

@@ -12,6 +12,7 @@ class __TwigTemplate_4384199a3c75975cfc9c894e6f026f122b3647bd22130328844e4f772d5
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
+            'sidebar' => array($this, 'block_sidebar'),
         );
     }
 
@@ -48,6 +49,41 @@ class __TwigTemplate_4384199a3c75975cfc9c894e6f026f122b3647bd22130328844e4f772d5
  ";
     }
 
+    // line 18
+    public function block_sidebar($context, array $blocks = array())
+    {
+        echo " 
+<section id=\"sidebar\" class=\"col-md-2\">
+    <article>
+        <header>
+            <h1>Menu</h1>
+        </header>
+        <ul>
+        ";
+        // line 25
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_page"]) ? $context["liste_page"] : $this->getContext($context, "liste_page")));
+        foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
+            // line 26
+            echo "            <li> <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"), "nom_categorie" => strtr(twig_lower_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomCategorie")), array(" " => "")))), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "\"/>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "</a></li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 28
+        echo "        </ul>
+    </article>
+</section>
+";
+    }
+
     public function getTemplateName()
     {
         return "WebMetaCommonBundle:Warbot:index_warbot.html.twig";
@@ -60,6 +96,6 @@ class __TwigTemplate_4384199a3c75975cfc9c894e6f026f122b3647bd22130328844e4f772d5
 
     public function getDebugInfo()
     {
-        return array (  35 => 5,  29 => 3,);
+        return array (  81 => 28,  68 => 26,  64 => 25,  53 => 18,  36 => 5,  30 => 3,);
     }
 }

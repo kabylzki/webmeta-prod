@@ -15,27 +15,11 @@ body {
     line-height: 30px;
     background-color: lightgray;
 }
-/*
-#menu_h ul {
-    
-}
-
-#menu_h ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-#menu_h ul li a {
-    display: inline-block;
-
-    text-decoration: none;
-}
-
-*/
 
 #content {
     background-color: #fff;
     padding: 0px;
+    min-height: 300px;
 }
 
 #page {

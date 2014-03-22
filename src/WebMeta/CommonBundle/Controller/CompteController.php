@@ -27,6 +27,10 @@ class CompteController extends Controller
 
         $form->handleRequest($request);
 
+        // Récupère et Set la date courante dans "DateInscription"
+        $compte->setDateInscription(new \DateTime());
+        
+        // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($compte);

@@ -23,7 +23,8 @@ class CompteType extends AbstractType
             ->add('email', 'email')
             ->add('nom')
             ->add('prenom')
-            ->add('date_naissance')
+            ->add('date_naissance', 'birthday', array(
+                'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour')))
             ->add('avatar', 'file', array('required' => false))
             ->add('valider', 'submit')
         ;

@@ -43,7 +43,7 @@ compte_view:
 ################ Page ################
 # Affiche une page créée et son contenu
 page_view:
-    pattern:  /page/{id}-{url_alias}
+    pattern:  /page/{nom_categorie}/{id}-{url_alias}
     defaults: { _controller: WebMetaCommonBundle:Page:view }
     
 # Page de création d'une page

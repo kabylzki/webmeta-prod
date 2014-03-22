@@ -186,7 +186,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // page_view
-        if (0 === strpos($pathinfo, '/page') && preg_match('#^/page/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/page') && preg_match('#^/page/(?P<nom_categorie>[^/]++)/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::viewAction',));
         }
 

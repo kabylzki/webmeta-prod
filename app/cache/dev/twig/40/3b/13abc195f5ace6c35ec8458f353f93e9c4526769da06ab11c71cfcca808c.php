@@ -38,7 +38,7 @@ class __TwigTemplate_403b13abc195f5ace6c35ec8458f353f93e9c4526769da06ab11c71cfcc
         echo " 
     <section id=\"content\" class=\"col-md-12\">
         <div id=\"page-documentation\" class=\"col-md-10\">
-            <h2>TODO : </h2>
+            <h1>Documentation</h1>
             <ul>
             ";
         // line 10
@@ -47,7 +47,7 @@ class __TwigTemplate_403b13abc195f5ace6c35ec8458f353f93e9c4526769da06ab11c71cfcc
         foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
             // line 11
             echo "                <li> <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"), "nom_categorie" => strtr(twig_lower_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomCategorie")), array(" " => "")))), "html", null, true);
             echo "\" title=\"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
             echo "\"/>";
@@ -68,7 +68,8 @@ class __TwigTemplate_403b13abc195f5ace6c35ec8458f353f93e9c4526769da06ab11c71cfcc
     // line 19
     public function block_sidebar($context, array $blocks = array())
     {
-        echo " ";
+        echo " 
+";
     }
 
     public function getTemplateName()

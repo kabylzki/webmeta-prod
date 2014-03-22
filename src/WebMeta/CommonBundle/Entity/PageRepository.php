@@ -13,18 +13,18 @@ use Doctrine\ORM\EntityRepository;
 class PageRepository extends EntityRepository {
     
     /**
-     * Récupère une liste de page selon une catégorie
-     * @param int $unIdCategorie
+     * Récupère une liste de page selon un nom de catégorie
+     * @param string $unNomCategorie
      * @return array
      */
-    public function findAllPageByCategorie($unIdCategorie = null) {
+    public function findAllPageByNomCategorie($unNomCategorie = null) {
         
-        if ($unIdCategorie != null) {
+        if ($unNomCategorie != null) {
             return $this->getEntityManager()
                             ->createQuery(
                 'SELECT p
                 FROM WebMetaCommonBundle:Page p
-                WHERE p.id_categorie = :id_cat')->setParameter('id_cat', $unIdCategorie)->getResult();
+                WHERE p.nom_categorie = :nomCat')->setParameter('nomCat', $unNomCategorie)->getResult();
         } else {
             return $this->getEntityManager()
                             ->createQuery(

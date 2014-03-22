@@ -14,15 +14,18 @@ class PageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // id_categorie = Liste des champs de la table catégorie nécessité d'utiliser un querybuilder
         $builder
-            ->add('titre')
-            ->add('url_alias')
-            ->add('nom_lien')    
-            ->add('id_categorie', 'entity', array(
+            ->add('titre', 'text', array('label' => 'Titre de la page'))
+            ->add('url_alias', 'text', array('label' => 'Url du lien'))
+            ->add('nom_lien', 'text', array('label' => 'Nom du lien affiché'))    
+            ->add('nom_categorie', 'entity', array(
             'class' => 'WebMetaCommonBundle:Categorie',
-            'query_builder' => function($repository) { return $repository->createQueryBuilder('p')->orderBy('p.id', 'ASC'); },
-            'property' => 'nom'))
-            ->add('contenu', 'textarea', array('required' => false))
+            'query_builder' => function($repository) { return $repository->createQueryBuilder('p')->orderBy('p.nom', 'ASC'); },
+            'property' => 'nom',
+            'label' => 'Catégorie'        
+                    ))
+            ->add('contenu', 'textarea', array('required' => false, 'label' => 'Contenu de la page'))
             ->add('valider', 'submit')
         ;
     }

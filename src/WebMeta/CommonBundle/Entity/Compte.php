@@ -66,9 +66,16 @@ class Compte
     /**
      * @var string
      *
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      */
     private $avatar;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_inscription", type="datetime")
+     */
+    private $date_inscription;
 
 
     /**
@@ -241,4 +248,26 @@ class Compte
     {
         return $this->avatar;
     }
+    
+    /**
+     * Set date_inscription
+     *
+     * @param date $date_inscription
+     * @return Compte
+     */
+    public function setDateInscription($date_inscription) {
+        $this->date_inscription = $date_inscription;
+
+        return $this;
+    }
+
+    /**
+     * Get date_inscription
+     *
+     * @return timestamp 
+     */
+    public function getDateInscription() {
+        return $this->date_inscription;
+    }
+    
 }

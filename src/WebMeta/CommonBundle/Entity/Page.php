@@ -43,11 +43,11 @@ class Page {
     private $url_alias;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id_categorie", type="integer", length=11)
+     * @ORM\Column(name="nom_categorie", type="string", length=255)
      */
-    private $id_categorie;
+    private $nom_categorie;
 
     /**
      * @var string
@@ -55,6 +55,13 @@ class Page {
      * @ORM\Column(name="contenu", type="string", length=5000)
      */
     private $contenu;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_publication", type="datetime")
+     */
+    private $date_publication;
 
     /**
      * Get id
@@ -130,24 +137,24 @@ class Page {
     }
 
     /**
-     * Set id_categorie
+     * Set nom_categorie
      *
-     * @param integer $idCategorie
+     * @param string $nomCategorie
      * @return Page
      */
-    public function setIdCategorie($idCategorie) {
-        $this->id_categorie = $idCategorie;
+    public function setNomCategorie($nomCategorie) {
+        $this->nom_categorie = $nomCategorie;
 
         return $this;
     }
 
     /**
-     * Get id_categorie
+     * Get nomCategorie
      *
-     * @return integer 
+     * @return string 
      */
-    public function getIdCategorie() {
-        return $this->id_categorie;
+    public function getNomCategorie() {
+        return $this->nom_categorie;
     }
 
     /**
@@ -169,6 +176,27 @@ class Page {
      */
     public function getContenu() {
         return $this->contenu;
+    }
+    
+    /**
+     * Set date_publication
+     *
+     * @param date $date_publication
+     * @return Page
+     */
+    public function setDatePublication($date_publication) {
+        $this->date_publication = $date_publication;
+
+        return $this;
+    }
+
+    /**
+     * Get date_publication
+     *
+     * @return date
+     */
+    public function getDatePublication() {
+        return $this->date_publication;
     }
 
 }

@@ -38,12 +38,28 @@ class __TwigTemplate_ef4f216a5706791467f23d4b367f6ab70a66a7ca4a5a911d0fd0037caa2
         echo " 
     <section id=\"content\" class=\"col-md-12\">
         <div id=\"page-faq\" class=\"col-md-10\">
-            <h2>TODO : </h2>
+            <h1>Questions fréquemment posées</h1>
             <ul>
-                <li>- Demander liste des questions fréquemment posées</li>
-                <li>- les intégrer en BDD les affichées</li>
-                <li>- IUD FAQ</li>
-            </ul>
+            ";
+        // line 10
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_page"]) ? $context["liste_page"] : $this->getContext($context, "liste_page")));
+        foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
+            // line 11
+            echo "                <li> <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"), "nom_categorie" => strtr(twig_lower_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomCategorie")), array(" " => "")))), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "\"/>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "</a></li>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 13
+        echo "            </ul>
         </div>
     </section>    
  ";
@@ -52,7 +68,8 @@ class __TwigTemplate_ef4f216a5706791467f23d4b367f6ab70a66a7ca4a5a911d0fd0037caa2
     // line 19
     public function block_sidebar($context, array $blocks = array())
     {
-        echo " ";
+        echo " 
+";
     }
 
     public function getTemplateName()
@@ -67,6 +84,6 @@ class __TwigTemplate_ef4f216a5706791467f23d4b367f6ab70a66a7ca4a5a911d0fd0037caa2
 
     public function getDebugInfo()
     {
-        return array (  53 => 19,  36 => 5,  30 => 3,);
+        return array (  69 => 19,  62 => 13,  49 => 11,  45 => 10,  36 => 5,  30 => 3,);
     }
 }

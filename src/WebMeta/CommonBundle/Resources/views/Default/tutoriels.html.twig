@@ -5,14 +5,17 @@
 {% block content %} 
     <section id="content" class="col-md-12">
         <div id="page-tutoriels" class="col-md-10">
-            <h2>TODO : </h2>
+            <h1>Tutoriels</h1>
             <ul>
-                <li>- Demander exemple de tuto</li>
-                <li>- les intégrer</li>
+            {% for page in liste_page %}
+                <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+            {% endfor %}
             </ul>
         </div>
     </section>    
  {% endblock %}
 
 {# Sidebar vide #}
-{% block sidebar %} {% endblock %}
+{% block sidebar %} 
+{# TODO Liste de toute les pages tutoriels #}
+{% endblock %}
