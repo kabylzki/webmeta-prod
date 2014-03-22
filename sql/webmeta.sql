@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2014 at 09:10 PM
+-- Generation Time: Mar 22, 2014 at 08:09 PM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
 -- PHP Version: 5.5.3-1ubuntu2.2
 
@@ -62,19 +62,21 @@ CREATE TABLE IF NOT EXISTS `Compte` (
   `nom` varchar(255) COLLATE utf8_bin NOT NULL,
   `prenom` varchar(255) COLLATE utf8_bin NOT NULL,
   `date_naissance` date NOT NULL,
-  `avatar` varchar(255) COLLATE utf8_bin NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `date_inscription` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `Compte`
 --
 
-INSERT INTO `Compte` (`id`, `login`, `password`, `email`, `nom`, `prenom`, `date_naissance`, `avatar`) VALUES
-(1, 'admin', 'admin', '', 'Administrateur', '', '0000-00-00', ''),
-(2, 'kabylzki', 'azerty', 'tas.mik@gogo.fr', 'Taskiran', 'Mikaël', '2009-05-07', ''),
-(3, 'kabylzki2', 'bobo', 'eefef@ef.fr', 'zerrgg', 'ergererg', '2009-01-01', ''),
-(4, 'kabylzki3', 'ghghgh', 'eefef@ef.frg', 'ghfherthe', 'zehtethetheth', '2009-01-01', '');
+INSERT INTO `Compte` (`id`, `login`, `password`, `email`, `nom`, `prenom`, `date_naissance`, `avatar`, `date_inscription`) VALUES
+(1, 'admin', 'admin', '', 'Administrateur', '', '0000-00-00', '', '0000-00-00 00:00:00'),
+(2, 'kabylzki', 'azerty', 'tas.mik@gogo.fr', 'Taskiran', 'Mikaël', '2009-05-07', '', '0000-00-00 00:00:00'),
+(3, 'kabylzki2', 'bobo', 'eefef@ef.fr', 'zerrgg', 'ergererg', '2009-01-01', '', '0000-00-00 00:00:00'),
+(4, 'kabylzki3', 'ghghgh', 'eefef@ef.frg', 'ghfherthe', 'zehtethetheth', '2009-01-01', '', '0000-00-00 00:00:00'),
+(5, 'thth', 'thth', 'th@th.gt', 'thth', 'thth', '1932-08-16', NULL, '2014-03-22 20:58:09');
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,15 @@ CREATE TABLE IF NOT EXISTS `Jeu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `Jeu`
+--
+
+INSERT INTO `Jeu` (`id`, `nom`) VALUES
+(1, 'Warbot'),
+(2, 'Metaciv');
 
 -- --------------------------------------------------------
 
@@ -125,20 +135,21 @@ CREATE TABLE IF NOT EXISTS `Page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nom_lien` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nom_categorie` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `url_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_categorie` int(11) NOT NULL,
   `contenu` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
+  `date_publication` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `Page`
 --
 
-INSERT INTO `Page` (`id`, `titre`, `nom_lien`, `url_alias`, `id_categorie`, `contenu`) VALUES
-(1, 'Un exemple de page commune', 'link name 1', 'page-commune', 1, 'This is le contenu de pas mage commune'),
-(6, 'Ma première page', 'Link name 2 H', 'url-page-1', 1, '<h1>zefzefzef zf zf</h1>\r\n<p>&nbsp;</p>\r\n<p>zefzefzef<strong>zezezef</strong></p>\r\n<p>&nbsp;</p>\r\n<p>ezf zef ze<strong>f zef</strong></p>'),
-(7, 'Ma Méga page', 'Nom du lien de la mega page', 'mega-page.html', 2, '<h1>This is header H1</h1>\r\n<h2>Header H2</h2>\r\n<p>The little text and a link <a href="http://www.google.fr" target="_blank">lien vers google</a></p>\r\n<h2>Other H2</h2>\r\n<p><img src="http://images2.layoutsparks.com/1/102669/biker-cartoon-cute-wink.gif" alt="bettyboopwink" width="312" height="372" /></p>\r\n<p>&nbsp;</p>\r\n<p><iframe src="http://www.youtube.com/embed/PHU-AJTn0I8" width="425" height="350"></iframe></p>\r\n<p>&nbsp;</p>');
+INSERT INTO `Page` (`id`, `titre`, `nom_lien`, `nom_categorie`, `url_alias`, `contenu`, `date_publication`) VALUES
+(13, 'Le titre de ma page', 'Ma première page', 'Documentation', 'L''url what is happening', '<h1>Doc Page</h1>\r\n<p>This is a doc page</p>', '2014-03-22 20:13:50'),
+(14, 'Ma première doc warbot', 'Documentation Warbot 1', 'Warbot - Documentation', 'doc-warbot-1.html', '<h1>Documentation de warbot 1</h1>\r\n<p>This is warbot doc 1</p>', '2014-03-22 20:30:31'),
+(15, 'Ma première page FAQ', 'FAQ 1', 'Faq', 'FAQ - 1', '<h1>FAQ 1</h1>\r\n<p>zezefzef</p>\r\n<p>&nbsp;</p>', '2014-03-22 21:07:35');
 
 -- --------------------------------------------------------
 
