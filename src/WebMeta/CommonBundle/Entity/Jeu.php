@@ -27,6 +27,13 @@ class Jeu
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
 
 
     /**
@@ -60,5 +67,28 @@ class Jeu
     public function getNom()
     {
         return $this->nom;
+    }
+    
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Jeu
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

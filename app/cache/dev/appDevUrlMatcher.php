@@ -186,7 +186,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // page_view
-        if (0 === strpos($pathinfo, '/page') && preg_match('#^/page/(?P<nom_categorie>[^/]++)/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<nom_categorie>[^/]++)/page/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::viewAction',));
         }
 
@@ -203,14 +203,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // warbot_homepage
-        if ($pathinfo === '/warbot') {
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::indexAction',  '_route' => 'warbot_homepage',);
+        if (0 === strpos($pathinfo, '/warbot')) {
+            // warbot_homepage
+            if ($pathinfo === '/warbot') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::indexAction',  '_route' => 'warbot_homepage',);
+            }
+
+            // warbot_documentation
+            if ($pathinfo === '/warbot-documentation') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::documentationAction',  '_route' => 'warbot_documentation',);
+            }
+
         }
 
-        // metaciv_homepage
-        if ($pathinfo === '/metaciv') {
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MetacivController::indexAction',  '_route' => 'metaciv_homepage',);
+        if (0 === strpos($pathinfo, '/metaciv')) {
+            // metaciv_homepage
+            if ($pathinfo === '/metaciv') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MetacivController::indexAction',  '_route' => 'metaciv_homepage',);
+            }
+
+            // metaciv_documentation
+            if ($pathinfo === '/metaciv-documentation') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MetacivController::documentationAction',  '_route' => 'metaciv_documentation',);
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

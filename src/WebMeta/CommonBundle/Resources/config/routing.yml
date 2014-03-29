@@ -43,7 +43,7 @@ compte_view:
 ################ Page ################
 # Affiche une page créée et son contenu
 page_view:
-    pattern:  /page/{nom_categorie}/{id}-{url_alias}
+    pattern:  /{nom_categorie}/page/{id}-{url_alias}
     defaults: { _controller: WebMetaCommonBundle:Page:view }
     
 # Page de création d'une page
@@ -61,9 +61,19 @@ page_creation_validation:
 warbot_homepage:
     pattern:  /warbot
     defaults: { _controller: WebMetaCommonBundle:Warbot:index }
+    
+# Page de documentation de Warbot
+warbot_documentation:
+    pattern:  /warbot-documentation
+    defaults: { _controller: WebMetaCommonBundle:Warbot:documentation }
 
 ################ Metaciv ################   
 # Page d'accueil de Metaciv
 metaciv_homepage:
     pattern:  /metaciv
     defaults: { _controller: WebMetaCommonBundle:Metaciv:index }
+    
+# Page de documentation de Metaciv
+metaciv_documentation:
+    pattern:  /metaciv-documentation
+    defaults: { _controller: WebMetaCommonBundle:Metaciv:documentation }

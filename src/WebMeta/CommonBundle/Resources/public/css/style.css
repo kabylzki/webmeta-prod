@@ -15,19 +15,23 @@
 }
 
 .img-presentation img {
-    width: 300px;
+    width: 100%;
 }
 
 .img-presentation {
-    float:left;
     padding-left: 0px;
     padding-right: 0px;
     text-align: left;
+    border: 3px solid #EDEDED;
+}
+
+.img-presentation:hover {
+    border: 3px solid lightgrey;
 }
 
 .txt-presentation {
-    float:left;
-    padding-left: 10px;
+    margin-top: 5px;
+    padding-left: 0px;
     padding-right: 0px;
     text-align: left;
 }
@@ -48,4 +52,13 @@ hr
 
 .form-connexion {
     text-align: right;
+}
+
+#page-warbot-home {
+    background: url('../images/warbot_bg.jpg') no-repeat;
+    background-position: center center;
+}
+
+#page-warbot-home #content {
+    background: transparent;
 }

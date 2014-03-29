@@ -3,16 +3,18 @@
 {% block title %} WebMeta - Warbot {% endblock %}
 
 {% block content %} 
+ <div id="page-warbot-home" class="col-md-10">
     <section id="content" class="col-md-10">
-        <div id="page-warbot-home" class="col-md-10">
+       
             <h2>TODO : </h2>
             <ul>
                 <li>- Page d'accueil Warbot</li>
                 <li>- Vidéo de démo</li>
                 <li>- Texte de présentation</li>
             </ul>
-        </div>
+        
     </section>    
+     </div>
  {% endblock %}
 
 {% block sidebar %} 
@@ -25,6 +27,11 @@
         {% for page in liste_page %}
             <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
         {% endfor %}
+        </ul>
+        
+        <h3>Documentation </h3>
+        <ul>
+        <li> <a href="{{ path('warbot_documentation') }}" title="Documentation de Warbot"/>Documentation - Warbot</a></li>
         </ul>
     </article>
 </section>

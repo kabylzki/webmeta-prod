@@ -21,7 +21,7 @@
 
         {# Menu Horizontal du site #}
         {% block menu_h %} 
-        <section id="menu_h" class="col-md-12">
+        <section id="menu_h" class="row">
             <div class="liste-lien col-md-6">
                 <ul class="nav nav-pills">
                     <li class="{% if app.request.attributes.get('_route') == 'common_homepage' %}actif{% endif %}"><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
@@ -40,7 +40,6 @@
                 <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
             </div>
 
-
         </section>    
         {% endblock %}
 
@@ -49,25 +48,25 @@
         <div id="page">
             <div class="main">
                     {% block content %} 
-                        <section id="content" class="col-md-10"></section>    
+                <section id="content" class="col-md-10"></section>    
                     {% endblock %}
 
                     {# Menu de droite #}    
                     {% block sidebar %} 
-                        <section id="sidebar" class="col-md-2">
-                            <article>
-                                <header>
-                                    <h1>Menu</h1>
-                                </header>
-                                <ul>
-                                    <li>Item 1</li>
-                                    <li>Item 2</li>
-                                    <li>Item 3</li>
-                                    <li>Item 4</li>
-                                    <li>Item 5</li>
-                                </ul>
-                            </article>
-                        </section>
+                <section id="sidebar" class="col-md-2">
+                    <article>
+                        <header>
+                            <h1>Menu</h1>
+                        </header>
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 5</li>
+                        </ul>
+                    </article>
+                </section>
                     {% endblock %}
                 <div class="clear"></div>
             </div>   
@@ -78,7 +77,46 @@
         {% block footer %}
         <footer id="footer">
             <div class="container">
+                <div class="block-footer">
+                    <h3>One list</h3>
+                    <ul>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                    </ul>
+                </div>
 
+                <div class="block-footer">
+                    <h3>One list</h3>
+                    <ul>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                    </ul>
+                </div>
+
+                <div class="block-footer">
+                    <h3>One list</h3>
+                    <ul>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                        <li><a href="" title="">Link test</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+
+            <div id="bottom-bar">
+                <ul>
+                    <li><a href="" title="">Link test</a></li>
+                    <li><a href="" title="">Link test</a></li>
+                    <li><a href="" title="">Link test</a></li>
+                    <li><a href="" title="">Link test</a></li>
+                </ul>
             </div>
         </footer> 
         {% endblock %}
