@@ -1,16 +1,18 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% block stylesheet_extend %}
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/metaciv.css') }}" />
+{% endblock %}   
+    
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
-    <section id="content" class="col-md-10">
-        <div id="page-metaciv-home" class="col-md-10">
-            <h2>TODO : </h2>
-            <ul>
-                <li>- Page d'accueil Metaciv</li>
-                <li>- Vidéo de démo</li>
-                <li>- Texte de présentation</li>
-            </ul>
-        </div>
-    </section>    
+    <div id="page-metaciv-home">
+        <h2>TODO : </h2>
+        <ul>
+            <li>- Page d'accueil Metaciv</li>
+            <li>- Vidéo de démo</li>
+            <li>- Texte de présentation</li>
+        </ul>
+    </div>
  {% endblock %}

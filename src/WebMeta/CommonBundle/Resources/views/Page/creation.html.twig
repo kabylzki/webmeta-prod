@@ -1,23 +1,24 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% block script_extend %}
+    <script src="{{ asset('bundles/webmetacommon/vendor/tinymce/tinymce.min.js') }}"></script>
+{% endblock %}   
+
 {% block title %} WebMeta - Formulaire de création d'une page {% endblock %}
 
 {% block content %} 
-    <section id="content" class="col-md-12">
-        <div id="page-creation-compte" class="col-md-10">
-            <h1>Formulaire de création d'une page</h1>
+    <div id="page-creation-compte">
+        <h1>Formulaire de création d'une page</h1>
 
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-notice">
-                    {{ flashMessage }}
-                </div>
-            {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
 
-            <script src="{{ asset('bundles/webmetacommon/js/tinymce_config.js') }}"></script>
-            {{ form(form, {'action': path('page_creation_validation'), 'method': 'POST'}) }}
-
-        </div>
-    </section>    
+        <script src="{{ asset('bundles/webmetacommon/js/tinymce_config.js') }}"></script>
+        {{ form(form, {'action': path('page_creation_validation'), 'method': 'POST'}) }}
+    </div>
  {% endblock %}
 
 {# Sidebar vide #}

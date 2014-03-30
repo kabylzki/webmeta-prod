@@ -3,50 +3,47 @@
 {% block title %} WebMeta - Accueil {% endblock %}
 
 {% block content %} 
-    <section id="content" class="col-md-10">
-        <div id="liste-game">
-            
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-notice">
-                    {{ flashMessage }}
-                </div>
-            {% endfor %}
-
-            {# Bloc Warbot #}
-            <div id="warbot" class="col-md-6">
-                <h2>Warbot</h2>
-                <hr />
-                <div class="img-presentation col-md-12">
-                    <a href="{{ path('warbot_homepage') }}" title="Accès Warbot">
-                        <img src="{{ asset('bundles/webmetacommon/images/warbot.jpg') }}" alt="warbot-pres" />
-                    </a>
-                </div>
-                <div class="txt-presentation col-md-12">
-                    <p>
-                        Warbot est à la fois un jeu et une plate-forme d'évaluation et d'analyse de techniques de coordination entre agents, dans une situation de compétition où deux équipes de "robots" s'affrontent pour tuer la base de l'adversaire.
-                        Dans ce projet, les joueurs sont en fait les développeurs des agents...
-                     </p>
-                </div>
-                <div class="clear"></div>
+    <div id="liste-game">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
             </div>
-            
-            {# Bloc Metaciv #}
-            <div id="metaciv" class="col-md-6">
-                <h2>MetaCiv</h2>
-                <hr />
-                <div class="img-presentation col-md-12">
-                    <a href="{{ path('metaciv_homepage') }}" title="Accès MetaCiv">
-                        <img src="{{ asset('bundles/webmetacommon/images/metaciv.jpg') }}" alt="metaciv-pres"/>
-                    </a>
-                </div>
-                <div class="txt-presentation col-md-12">
-                    <p>
-                        MetaCiv est framework de modélisation de sociétés humaines (ou virtuelles) utilisant la technique des SMA dans lesquelles l’espace, la culture et la structure sociale jouent un rôle important...
-                    </p>
-                </div>
-                <div class="clear"></div>
+        {% endfor %}
+
+        {# Bloc Warbot #}
+        <div id="warbot" class="col-md-6">
+            <h2>Warbot</h2>
+            <hr />
+            <div class="img-presentation col-md-12">
+                <a href="{{ path('warbot_homepage') }}" title="Accès Warbot">
+                    <img src="{{ asset('bundles/webmetacommon/images/warbot.jpg') }}" alt="warbot-pres" />
+                </a>
+            </div>
+            <div class="txt-presentation col-md-12">
+                <p>
+                    Warbot est à la fois un jeu et une plate-forme d'évaluation et d'analyse de techniques de coordination entre agents, dans une situation de compétition où deux équipes de "robots" s'affrontent pour tuer la base de l'adversaire.
+                    Dans ce projet, les joueurs sont en fait les développeurs des agents...
+                 </p>
             </div>
             <div class="clear"></div>
         </div>
-    </section>    
+
+        {# Bloc Metaciv #}
+        <div id="metaciv" class="col-md-6">
+            <h2>MetaCiv</h2>
+            <hr />
+            <div class="img-presentation col-md-12">
+                <a href="{{ path('metaciv_homepage') }}" title="Accès MetaCiv">
+                    <img src="{{ asset('bundles/webmetacommon/images/metaciv.jpg') }}" alt="metaciv-pres"/>
+                </a>
+            </div>
+            <div class="txt-presentation col-md-12">
+                <p>
+                    MetaCiv est framework de modélisation de sociétés humaines (ou virtuelles) utilisant la technique des SMA dans lesquelles l’espace, la culture et la structure sociale jouent un rôle important...
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
  {% endblock %}

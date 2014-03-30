@@ -1,38 +1,32 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% block stylesheet_extend %}
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
+{% endblock %}   
+
 {% block title %} WebMeta - Warbot {% endblock %}
 
 {% block content %} 
- <div id="page-warbot-home" class="col-md-10">
-    <section id="content" class="col-md-10">
-       
-            <h2>TODO : </h2>
-            <ul>
-                <li>- Page d'accueil Warbot</li>
-                <li>- Vidéo de démo</li>
-                <li>- Texte de présentation</li>
-            </ul>
-        
-    </section>    
-     </div>
+<div id="page-warbot-home">
+    <h2>TODO : </h2>
+    <ul>
+        <li>- Page d'accueil Warbot</li>
+        <li>- Vidéo de démo</li>
+        <li>- Texte de présentation</li>
+    </ul>
+</div>
  {% endblock %}
 
 {% block sidebar %} 
-<section id="sidebar" class="col-md-2">
-    <article>
-        <header>
-            <h1>Menu</h1>
-        </header>
-        <ul>
-        {% for page in liste_page %}
-            <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
-        {% endfor %}
-        </ul>
-        
-        <h3>Documentation </h3>
-        <ul>
-        <li> <a href="{{ path('warbot_documentation') }}" title="Documentation de Warbot"/>Documentation - Warbot</a></li>
-        </ul>
-    </article>
-</section>
+<h1>Menu</h1>
+<ul>
+    {% for page in liste_page %}
+        <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+    {% endfor %}
+</ul>
+
+<h3>Documentation </h3>
+<ul>
+    <li> <a href="{{ path('warbot_documentation') }}" title="Documentation de Warbot"/>Documentation - Warbot</a></li>
+</ul>
 {% endblock %}

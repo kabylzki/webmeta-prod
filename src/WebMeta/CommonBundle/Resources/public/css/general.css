@@ -28,19 +28,19 @@ body {
 }
 
 #content {
-    background-color: #fff;
-    padding: 0px;
+    background-color: transparent;
+    padding: 0px 10px;
     min-height: 300px;
 }
 
-#page {
-    background-color: #fff;
+#content_page {
     padding: 0px;
 }
 
 #sidebar {
     background-color: lightgrey;
     min-height: 500px;
+    opacity: 0.9;
 }
 
 #footer {
@@ -52,22 +52,15 @@ body {
     border-top: 3px solid grey;
 }
 
-#footer .container {
-    width: 80%;
-}
-
 .block-footer ul {
     background-color: #595a5c;
     opacity: 0.7;
     width: 280px;
     border-top: 3px solid #312e25;
-    
 }
 
 .block-footer ul li {
     border-bottom: 1px solid #bec0bf;
-    width: 80%;
-    margin: 0px auto;
     height: 40px;
     line-height: 40px;
 }
@@ -85,10 +78,8 @@ body {
     color: white;
 }
 
-
 .block-footer {
     float: left;
-    margin-left: 55px;
 }
 
 #bottom-bar {
@@ -98,4 +89,11 @@ body {
 }
 #bottom-bar ul li {
     display: inline;
+    border-right: 1px solid white;
+    padding-right: 5px;
+}
+
+#bottom-bar a {
+    color: white;
+    text-decoration: none;
 }

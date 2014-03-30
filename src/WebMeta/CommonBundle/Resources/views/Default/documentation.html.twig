@@ -3,16 +3,14 @@
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
-    <section id="content" class="col-md-12">
-        <div id="page-documentation" class="col-md-10">
-            <h1>Documentation</h1>
-            <ul>
-            {% for page in liste_page %}
-                <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
-    </section>    
+<div id="page-documentation">
+    <h1>Documentation</h1>
+    <ul>
+    {% for page in liste_page %}
+        <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+    {% endfor %}
+    </ul>
+</div>
  {% endblock %}
 
 {# Sidebar vide #}

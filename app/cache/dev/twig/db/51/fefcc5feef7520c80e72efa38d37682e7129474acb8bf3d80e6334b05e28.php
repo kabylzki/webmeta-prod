@@ -10,6 +10,9 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         $this->parent = false;
 
         $this->blocks = array(
+            'stylesheet' => array($this, 'block_stylesheet'),
+            'stylesheet_extend' => array($this, 'block_stylesheet_extend'),
+            'script_extend' => array($this, 'block_script_extend'),
             'title' => array($this, 'block_title'),
             'header' => array($this, 'block_header'),
             'menu_h' => array($this, 'block_menu_h'),
@@ -17,7 +20,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
             'content' => array($this, 'block_content'),
             'sidebar' => array($this, 'block_sidebar'),
             'footer' => array($this, 'block_footer'),
-            'scripts' => array($this, 'block_scripts'),
+            'script' => array($this, 'block_script'),
         );
     }
 
@@ -28,81 +31,108 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
 <html lang=\"fr\">
     <head>
         <meta charset=\"utf-8\">
-        <link rel=\"stylesheet\" href=\"";
+        ";
         // line 5
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/reset.css"), "html", null, true);
-        echo "\" />
-        <link rel=\"stylesheet\" href=\"";
-        // line 6
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/bootstrap/bootstrap.css"), "html", null, true);
-        echo "\" />
-        <link rel=\"stylesheet\" href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/reset_bootstrap.css"), "html", null, true);
-        echo "\" />
-        <link rel=\"stylesheet\" href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/general.css"), "html", null, true);
-        echo "\" />
-        <link rel=\"stylesheet\" href=\"";
-        // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/style.css"), "html", null, true);
-        echo "\" />
-        <script src=\"";
-        // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/vendor/tinymce/tinymce.min.js"), "html", null, true);
-        echo "\"></script>
+        $this->displayBlock('stylesheet', $context, $blocks);
+        // line 12
+        echo "        ";
+        // line 13
+        echo "        ";
+        $this->displayBlock('stylesheet_extend', $context, $blocks);
+        echo " 
+        ";
+        // line 15
+        echo "        ";
+        $this->displayBlock('script_extend', $context, $blocks);
+        echo "     
         <title>";
-        // line 11
+        // line 16
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
     </head>
 
     <body>
         ";
-        // line 16
+        // line 21
         echo "        ";
         $this->displayBlock('header', $context, $blocks);
-        // line 21
+        // line 26
         echo "
         ";
-        // line 23
+        // line 28
         echo "        ";
         $this->displayBlock('menu_h', $context, $blocks);
-        // line 45
+        // line 49
         echo "
         ";
-        // line 47
+        // line 51
         echo "        ";
         $this->displayBlock('content_center', $context, $blocks);
-        // line 75
+        // line 65
         echo "
         ";
-        // line 76
+        // line 66
         echo "  
         ";
-        // line 77
+        // line 67
         $this->displayBlock('footer', $context, $blocks);
-        // line 123
+        // line 113
         echo "
         ";
-        // line 124
+        // line 114
         echo "  
         ";
-        // line 125
-        $this->displayBlock('scripts', $context, $blocks);
-        // line 129
+        // line 115
+        $this->displayBlock('script', $context, $blocks);
+        // line 119
         echo "    </body>
 </html>";
     }
 
-    // line 11
+    // line 5
+    public function block_stylesheet($context, array $blocks = array())
+    {
+        echo " 
+            <link rel=\"stylesheet\" href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/reset.css"), "html", null, true);
+        echo "\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/bootstrap/bootstrap.css"), "html", null, true);
+        echo "\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/reset_bootstrap.css"), "html", null, true);
+        echo "\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/general.css"), "html", null, true);
+        echo "\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/style.css"), "html", null, true);
+        echo "\" />
+        ";
+    }
+
+    // line 13
+    public function block_stylesheet_extend($context, array $blocks = array())
+    {
+    }
+
+    // line 15
+    public function block_script_extend($context, array $blocks = array())
+    {
+    }
+
+    // line 16
     public function block_title($context, array $blocks = array())
     {
         echo " WebMeta ";
     }
 
-    // line 16
+    // line 21
     public function block_header($context, array $blocks = array())
     {
         echo " 
@@ -112,15 +142,15 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 23
+    // line 28
     public function block_menu_h($context, array $blocks = array())
     {
         echo " 
         <section id=\"menu_h\" class=\"row\">
-            <div class=\"liste-lien col-md-6\">
+            <div class=\"col-md-6\">
                 <ul class=\"nav nav-pills\">
                     <li class=\"";
-        // line 27
+        // line 32
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_homepage")) {
             echo "actif";
         }
@@ -128,7 +158,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_homepage");
         echo "\" title=\"Accueil du site\">Accueil</a></li>
                     <li class=\"";
-        // line 28
+        // line 33
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_documentation")) {
             echo "actif";
         }
@@ -136,7 +166,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_documentation");
         echo "\" title=\"Documentation\">Documentation</a></li>    
                     <li class=\"";
-        // line 29
+        // line 34
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_tutoriels")) {
             echo "actif";
         }
@@ -144,7 +174,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_tutoriels");
         echo "\" title=\"Tutoriels\">Tutoriels</a></li>
                     <li class=\"";
-        // line 30
+        // line 35
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_faq")) {
             echo "actif";
         }
@@ -152,7 +182,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_faq");
         echo "\" title=\"Questions\">FAQ</a></li>
                     <li class=\"";
-        // line 31
+        // line 36
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_contact")) {
             echo "actif";
         }
@@ -160,7 +190,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_contact");
         echo "\" title=\"Formulaire de contact\">Contact</a></li>
                     <li class=\"";
-        // line 32
+        // line 37
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_creation")) {
             echo "actif";
         }
@@ -175,76 +205,94 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
 
             <div class=\"col-md-1\">
                 <a href=\"";
-        // line 40
+        // line 45
         echo $this->env->getExtension('routing')->getPath("compte_creation");
         echo "\" title=\"Accueil du site\">S'inscrire</a>
             </div>
-
         </section>    
         ";
     }
 
-    // line 47
+    // line 51
     public function block_content_center($context, array $blocks = array())
     {
-        // line 48
-        echo "        <div id=\"page\">
-            <div class=\"main\">
-                    ";
-        // line 50
-        $this->displayBlock('content', $context, $blocks);
-        // line 53
-        echo "
-                    ";
-        // line 54
-        echo "    
+        // line 52
+        echo "            ";
+        echo "   
+            <div id=\"content_page\" class=\"col-md-12\">
+                <section id=\"content\" class=\"col-md-10\">
                     ";
         // line 55
-        $this->displayBlock('sidebar', $context, $blocks);
-        // line 71
-        echo "                <div class=\"clear\"></div>
-            </div>   
-        </div> 
-        ";
-    }
-
-    // line 50
-    public function block_content($context, array $blocks = array())
-    {
-        echo " 
-                <section id=\"content\" class=\"col-md-10\"></section>    
+        $this->displayBlock('content', $context, $blocks);
+        // line 56
+        echo "                </section>  
+                ";
+        // line 57
+        echo "    
+                <section id=\"sidebar\" class=\"col-md-2\">
                     ";
+        // line 59
+        $this->displayBlock('sidebar', $context, $blocks);
+        // line 60
+        echo "                </section>
+            </div>    
+            <div class=\"clear\"></div>
+        
+        ";
     }
 
     // line 55
-    public function block_sidebar($context, array $blocks = array())
+    public function block_content($context, array $blocks = array())
     {
-        echo " 
-                <section id=\"sidebar\" class=\"col-md-2\">
-                    <article>
-                        <header>
-                            <h1>Menu</h1>
-                        </header>
-                        <ul>
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 5</li>
-                        </ul>
-                    </article>
-                </section>
-                    ";
+        echo " ";
     }
 
-    // line 77
+    // line 59
+    public function block_sidebar($context, array $blocks = array())
+    {
+        echo " ";
+    }
+
+    // line 67
     public function block_footer($context, array $blocks = array())
     {
-        // line 78
-        echo "        <footer id=\"footer\">
-            <div class=\"container\">
-                <div class=\"block-footer\">
-                    <h3>One list</h3>
+        // line 68
+        echo "            <footer id=\"footer\">
+                <div class=\"container\">
+                    <div class=\"block-footer col-md-4\">
+                        <h3>One list</h3>
+                        <ul>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                        </ul>
+                    </div>
+
+                    <div class=\"block-footer col-md-4\">
+                        <h3>One list</h3>
+                        <ul>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                        </ul>
+                    </div>
+
+                    <div class=\"block-footer col-md-4\">
+                        <h3>One list</h3>
+                        <ul>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                            <li><a href=\"\" title=\"\">Link test</a></li>
+                        </ul>
+                    </div>
+                    <div class=\"clear\"></div>
+
+                </div>
+
+                <div id=\"bottom-bar\">
                     <ul>
                         <li><a href=\"\" title=\"\">Link test</a></li>
                         <li><a href=\"\" title=\"\">Link test</a></li>
@@ -252,51 +300,19 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
                         <li><a href=\"\" title=\"\">Link test</a></li>
                     </ul>
                 </div>
-
-                <div class=\"block-footer\">
-                    <h3>One list</h3>
-                    <ul>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                    </ul>
-                </div>
-
-                <div class=\"block-footer\">
-                    <h3>One list</h3>
-                    <ul>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                        <li><a href=\"\" title=\"\">Link test</a></li>
-                    </ul>
-                </div>
-                <div class=\"clear\"></div>
-
-            </div>
-
-            <div id=\"bottom-bar\">
-                <ul>
-                    <li><a href=\"\" title=\"\">Link test</a></li>
-                    <li><a href=\"\" title=\"\">Link test</a></li>
-                    <li><a href=\"\" title=\"\">Link test</a></li>
-                    <li><a href=\"\" title=\"\">Link test</a></li>
-                </ul>
-            </div>
-        </footer> 
+            </footer> 
         ";
     }
 
-    // line 125
-    public function block_scripts($context, array $blocks = array())
+    // line 115
+    public function block_script($context, array $blocks = array())
     {
-        // line 126
-        echo "        <script src=\"";
+        // line 116
+        echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
-        <script src=\"";
-        // line 127
+            <script src=\"";
+        // line 117
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -307,13 +323,8 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         return "WebMetaCommonBundle::layout.html.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  300 => 127,  295 => 126,  292 => 125,  244 => 78,  241 => 77,  220 => 55,  212 => 50,  205 => 71,  203 => 55,  200 => 54,  197 => 53,  195 => 50,  191 => 48,  188 => 47,  179 => 40,  164 => 32,  156 => 31,  148 => 30,  140 => 29,  132 => 28,  124 => 27,  116 => 23,  106 => 16,  100 => 11,  95 => 129,  93 => 125,  90 => 124,  87 => 123,  85 => 77,  82 => 76,  79 => 75,  76 => 47,  73 => 45,  70 => 23,  67 => 21,  64 => 16,  57 => 11,  53 => 10,  49 => 9,  45 => 8,  41 => 7,  37 => 6,  33 => 5,  27 => 1,);
+        return array (  316 => 117,  311 => 116,  308 => 115,  260 => 68,  257 => 67,  251 => 59,  245 => 55,  237 => 60,  235 => 59,  231 => 57,  228 => 56,  226 => 55,  220 => 52,  217 => 51,  209 => 45,  194 => 37,  186 => 36,  178 => 35,  170 => 34,  162 => 33,  154 => 32,  146 => 28,  136 => 21,  130 => 16,  125 => 15,  120 => 13,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 119,  86 => 115,  83 => 114,  80 => 113,  78 => 67,  75 => 66,  72 => 65,  69 => 51,  66 => 49,  63 => 28,  60 => 26,  57 => 21,  50 => 16,  45 => 15,  40 => 13,  38 => 12,  36 => 5,  30 => 1,);
     }
 }
