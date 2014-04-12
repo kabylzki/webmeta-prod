@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2014 at 08:09 PM
+-- Generation Time: Apr 12, 2014 at 02:45 PM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
--- PHP Version: 5.5.3-1ubuntu2.2
+-- PHP Version: 5.5.3-1ubuntu2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `jar` (
 CREATE TABLE IF NOT EXISTS `Jeu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -121,9 +122,9 @@ CREATE TABLE IF NOT EXISTS `Jeu` (
 -- Dumping data for table `Jeu`
 --
 
-INSERT INTO `Jeu` (`id`, `nom`) VALUES
-(1, 'Warbot'),
-(2, 'Metaciv');
+INSERT INTO `Jeu` (`id`, `nom`, `url`) VALUES
+(1, 'Warbot', 'warbot_homepage'),
+(2, 'Metaciv', 'metaciv_homepage');
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `Page` (
   `contenu` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `date_publication` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `Page`
@@ -149,7 +150,22 @@ CREATE TABLE IF NOT EXISTS `Page` (
 INSERT INTO `Page` (`id`, `titre`, `nom_lien`, `nom_categorie`, `url_alias`, `contenu`, `date_publication`) VALUES
 (13, 'Le titre de ma page', 'Ma première page', 'Documentation', 'L''url what is happening', '<h1>Doc Page</h1>\r\n<p>This is a doc page</p>', '2014-03-22 20:13:50'),
 (14, 'Ma première doc warbot', 'Documentation Warbot 1', 'Warbot - Documentation', 'doc-warbot-1.html', '<h1>Documentation de warbot 1</h1>\r\n<p>This is warbot doc 1</p>', '2014-03-22 20:30:31'),
-(15, 'Ma première page FAQ', 'FAQ 1', 'Faq', 'FAQ - 1', '<h1>FAQ 1</h1>\r\n<p>zezefzef</p>\r\n<p>&nbsp;</p>', '2014-03-22 21:07:35');
+(15, 'Ma première page FAQ', 'FAQ 1', 'Faq', 'FAQ - 1', '<h1>FAQ 1</h1>\r\n<p>zezefzef</p>\r\n<p>&nbsp;</p>', '2014-03-22 21:07:35'),
+(16, 'Ma page Warbot', 'ma page warbot', 'Warbot', 'warbot-page-1.html', '<h1>Ma page Warbot</h1>\r\n<p>This is the content of my warbot page</p>\r\n<p>&nbsp;</p>', '2014-03-24 13:23:44'),
+(17, 'rgerger', 'ererg', 'Commun', 'gerger', '<p>ergergerrg</p>', '2014-04-08 16:08:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Texte`
+--
+
+CREATE TABLE IF NOT EXISTS `Texte` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contenu` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

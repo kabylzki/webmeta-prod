@@ -40,6 +40,10 @@ compte_view:
     pattern:  /mon-compte
     defaults: { _controller: WebMetaCommonBundle:Compte:index }
     
+################ Login ################
+# Connexion
+
+
 ################ Page ################
 # Affiche une page créée et son contenu
 page_view:

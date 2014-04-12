@@ -31,7 +31,7 @@ class __TwigTemplate_7d5586609dfc53b93099e8be48000f440b2edf29a09bdab926bc5a8c5c1
     public function block_script_extend($context, array $blocks = array())
     {
         // line 4
-        echo "<script src=\"";
+        echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/vendor/tinymce/tinymce.min.js"), "html", null, true);
         echo "\"></script>
 ";
