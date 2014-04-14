@@ -23,4 +23,9 @@ class WarbotController extends Controller
         
         return $this->render('WebMetaCommonBundle:Warbot:documentation_warbot.html.twig', array ("liste_page" => $liste_page));
     }
+
+    public function tournoiAction()
+    {
+        return $this->render('WebMetaCommonBundle:Warbot:tournoi.html.twig');
+    }
 }

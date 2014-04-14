@@ -23,6 +23,7 @@
     {% for page in liste_page %}
         <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
     {% endfor %}
+    <li><a href="{{ path('warbot_tournoi') }}" title="tournoi">tournoi</a></li>
 </ul>
 
 <h3>Documentation </h3>
