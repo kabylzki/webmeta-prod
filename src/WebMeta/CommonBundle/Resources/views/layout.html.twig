@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/reset_bootstrap.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/general.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/style.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/form.css') }}" />
         {% endblock %}
         {# CSS particulier #}
         {% block stylesheet_extend %}{% endblock %} 
@@ -26,7 +27,7 @@
 
         {# Menu Horizontal du site #}
         {% block menu_h %} 
-        <section id="menu_h" class="row">
+        <section id="menu_h">
             <div class="col-md-6">
                 <ul class="nav nav-pills">
                     <li class="{% if app.request.attributes.get('_route') == 'common_homepage' %}actif{% endif %}"><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
@@ -38,12 +39,16 @@
                 </ul>
             </div>
             <div class="form-connexion col-md-5">
-                Form login TODO
+                {# Inclusion du formulaire de login si user non connecté #}
+                {% if app.session.get('is_connected') == false %}
+                    {% render(controller("WebMetaCommonBundle:Login:formLogin")) %}
+                    - <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
+                {% else %}
+                    Connecté : {{ app.session.get('compte').getLogin }}
+                    - <a href="{{ path('logout') }}" title="Se déconnecter">Logout</a>
+                {% endif %}
             </div>
 
-            <div class="col-md-1">
-                <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
-            </div>
         </section>    
         {% endblock %}
 

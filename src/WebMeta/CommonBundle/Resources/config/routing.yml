@@ -42,6 +42,13 @@ compte_view:
     
 ################ Login ################
 # Connexion
+login: 
+    pattern: /login
+    defaults: {_controller: WebMetaCommonBundle:Login:login }
+    
+logout: 
+    pattern: /logout
+    defaults: {_controller: WebMetaCommonBundle:Login:logout }
 
 
 ################ Page ################

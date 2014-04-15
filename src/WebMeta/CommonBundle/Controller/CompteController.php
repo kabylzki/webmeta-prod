@@ -30,6 +30,9 @@ class CompteController extends Controller
         // Récupère et Set la date courante dans "DateInscription"
         $compte->setDateInscription(new \DateTime());
         
+        // Encrypte le MDP en MD5
+        $compte->setPassword(md5($form['password']->getData()));
+        
         // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
