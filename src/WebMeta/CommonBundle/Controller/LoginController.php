@@ -12,8 +12,15 @@ class LoginController extends Controller {
     public function formLoginAction() {
         $data = array();
         $form = $this->createFormBuilder($data)
-                ->add('login', 'text')
-                ->add('password', 'password')
+                ->add('login', 'text', array(
+                        'attr' => array(
+                        'placeholder' => 'Login',
+                )))
+
+                ->add('password', 'password', array(
+                        'attr' => array(
+                        'placeholder' => 'Mdp',
+                )))
                 ->add('Connexion', 'submit')
                 ->getForm();
 
@@ -52,7 +59,7 @@ class LoginController extends Controller {
                 $session->set('is_connected', true);
                 $session->set('compte', $compte);
                 
-                return $this->redirect($this->generateUrl('common_homepage'));
+                return $this->redirect($this->generateUrl('compte_view', array("id" => $compte->getId())));
             }
         }
         

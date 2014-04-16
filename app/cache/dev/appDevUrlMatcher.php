@@ -181,8 +181,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // compte_view
-        if ($pathinfo === '/mon-compte') {
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',  '_route' => 'compte_view',);
+        if (0 === strpos($pathinfo, '/mon-compte') && preg_match('#^/mon\\-compte/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',));
         }
 
         if (0 === strpos($pathinfo, '/log')) {

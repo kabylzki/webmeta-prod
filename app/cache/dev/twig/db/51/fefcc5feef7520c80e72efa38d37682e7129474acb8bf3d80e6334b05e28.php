@@ -62,29 +62,29 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         // line 29
         echo "        ";
         $this->displayBlock('menu_h', $context, $blocks);
-        // line 54
+        // line 59
         echo "
         ";
-        // line 56
+        // line 61
         echo "        ";
         $this->displayBlock('content_center', $context, $blocks);
-        // line 70
+        // line 75
         echo "
         ";
-        // line 71
+        // line 76
         echo "  
         ";
-        // line 72
+        // line 77
         $this->displayBlock('footer', $context, $blocks);
-        // line 118
+        // line 123
         echo "
         ";
-        // line 119
+        // line 124
         echo "  
         ";
-        // line 120
+        // line 125
         $this->displayBlock('script', $context, $blocks);
-        // line 124
+        // line 129
         echo "    </body>
 </html>";
     }
@@ -151,7 +151,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
     {
         echo " 
         <section id=\"menu_h\">
-            <div class=\"col-md-6\">
+            <div class=\"col-md-8\">
                 <ul class=\"nav nav-pills\">
                     <li class=\"";
         // line 33
@@ -203,7 +203,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo "\" title=\"Formulaire de création d'une page\">Créer une page</a></li>
                 </ul>
             </div>
-            <div class=\"form-connexion col-md-5\">
+            <div class=\"form-connexion col-md-4\">
                 ";
         // line 43
         echo "                ";
@@ -212,49 +212,58 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
             echo "                    ";
             echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("WebMetaCommonBundle:Login:formLogin"), array());
             // line 45
-            echo "                    - <a href=\"";
+            echo "                    <div class=\"link-connexion\">
+                         <a href=\"";
+            // line 46
             echo $this->env->getExtension('routing')->getPath("compte_creation");
             echo "\" title=\"Accueil du site\">S'inscrire</a>
+                    </div>
                 ";
         } else {
-            // line 47
-            echo "                    Connecté : ";
+            // line 49
+            echo "                    <div class=\"link-connexion\">
+                        Connecté : <a href=\"";
+            // line 50
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "compte"), "method"), "getId"))), "html", null, true);
+            echo "\" title=\"Compte\" >";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "compte"), "method"), "getLogin"), "html", null, true);
-            echo "
-                    - <a href=\"";
-            // line 48
+            echo "</a>
+                        <a href=\"";
+            // line 51
             echo $this->env->getExtension('routing')->getPath("logout");
-            echo "\" title=\"Se déconnecter\">Logout</a>
+            echo "\" title=\"Se déconnecter\">Se déconnecter</a>
+                    </div>
                 ";
         }
-        // line 50
-        echo "            </div>
+        // line 54
+        echo "                <div class=\"clear\"></div>
+            </div>
 
         </section>    
         ";
     }
 
-    // line 56
+    // line 61
     public function block_content_center($context, array $blocks = array())
     {
-        // line 57
+        // line 62
         echo "            ";
         echo "   
             <div id=\"content_page\" class=\"col-md-12\">
                 <section id=\"content\" class=\"col-md-10\">
                     ";
-        // line 60
+        // line 65
         $this->displayBlock('content', $context, $blocks);
-        // line 61
+        // line 66
         echo "                </section>  
                 ";
-        // line 62
+        // line 67
         echo "    
                 <section id=\"sidebar\" class=\"col-md-2\">
                     ";
-        // line 64
+        // line 69
         $this->displayBlock('sidebar', $context, $blocks);
-        // line 65
+        // line 70
         echo "                </section>
             </div>    
             <div class=\"clear\"></div>
@@ -262,22 +271,22 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 60
+    // line 65
     public function block_content($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 64
+    // line 69
     public function block_sidebar($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 72
+    // line 77
     public function block_footer($context, array $blocks = array())
     {
-        // line 73
+        // line 78
         echo "            <footer id=\"footer\">
                 <div class=\"container\">
                     <div class=\"block-footer col-md-4\">
@@ -325,15 +334,15 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 120
+    // line 125
     public function block_script($context, array $blocks = array())
     {
-        // line 121
+        // line 126
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 122
+        // line 127
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -346,6 +355,6 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
 
     public function getDebugInfo()
     {
-        return array (  337 => 122,  332 => 121,  329 => 120,  281 => 73,  278 => 72,  272 => 64,  266 => 60,  258 => 65,  256 => 64,  252 => 62,  249 => 61,  247 => 60,  241 => 57,  238 => 56,  231 => 50,  226 => 48,  221 => 47,  215 => 45,  212 => 44,  209 => 43,  198 => 38,  190 => 37,  182 => 36,  174 => 35,  166 => 34,  158 => 33,  150 => 29,  140 => 22,  134 => 17,  129 => 16,  124 => 14,  118 => 11,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 124,  86 => 120,  83 => 119,  80 => 118,  78 => 72,  75 => 71,  72 => 70,  69 => 56,  66 => 54,  63 => 29,  60 => 27,  57 => 22,  50 => 17,  45 => 16,  40 => 14,  38 => 13,  36 => 5,  30 => 1,);
+        return array (  346 => 127,  341 => 126,  338 => 125,  290 => 78,  287 => 77,  281 => 69,  275 => 65,  267 => 70,  265 => 69,  261 => 67,  258 => 66,  256 => 65,  250 => 62,  247 => 61,  239 => 54,  233 => 51,  227 => 50,  224 => 49,  218 => 46,  215 => 45,  212 => 44,  209 => 43,  198 => 38,  190 => 37,  182 => 36,  174 => 35,  166 => 34,  158 => 33,  150 => 29,  140 => 22,  134 => 17,  129 => 16,  124 => 14,  118 => 11,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 129,  86 => 125,  83 => 124,  80 => 123,  78 => 77,  75 => 76,  72 => 75,  69 => 61,  66 => 59,  63 => 29,  60 => 27,  57 => 22,  50 => 17,  45 => 16,  40 => 14,  38 => 13,  36 => 5,  30 => 1,);
     }
 }

@@ -37,7 +37,7 @@ compte_creation_validation:
     
 # Affiche la page du compte
 compte_view:
-    pattern:  /mon-compte
+    pattern:  /mon-compte/{id}
     defaults: { _controller: WebMetaCommonBundle:Compte:index }
     
 ################ Login ################
