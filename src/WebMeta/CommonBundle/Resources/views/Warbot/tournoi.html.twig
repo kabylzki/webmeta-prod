@@ -2,9 +2,20 @@
 
 {% block title %} WebMeta - Metaciv {% endblock %}
 
-
-
 {% block content %}
-    <p>ceci est la page principale</p>
-    <a href="{{ path('warbot_creationTournoi') }}" title="creerTournoi">creerTournoi</a>
+<h1>liste des tournois</h1>
+    <ul>
+        {% for tournoi in liste_tournoi %}
+            <li><a href="{{ path('warbot_tournoi_gestion_tournoi', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+{% block sidebar %}
+    <h1>Menu</h1>
+    <ul>
+        <a href="{{ path('warbot_creationTournoi') }}" title="creerTournoi">creerTournoi</a>
+    </ul>
+    <h3>Documentation </h3>
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Warbot {% endblock %}
+
+{% block content %}
+    <h1>{{ tournoi.getNom }}<h1>
+    <h1>rencontres<h1>
+            {% for match in liste_match %}
+                <li>{{ match.getIdEquipe1 }}</li>
+            {% endfor %}
+    <h1>liste des participants<h1>
+            {% for team in liste_team %}
+                <li>{{ user.getIdInvite }}</li>
+            {% endfor %}
+    ajouter participant
+
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

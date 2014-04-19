@@ -93,6 +93,12 @@ warbot_tournoi_creation_validation:
     pattern:  /warbot-tournoi-creation-validation
     defaults: { _controller: WebMetaCommonBundle:Warbot:validation }
 
+# Page de gestion d'un  tournoi
+warbot_tournoi_gestion_tournoi:
+    pattern: /warbot-tounoi-gestion-tournoi/{id}
+    defaults: {_controller: WebMetaCommonBundle:Warbot:gestionTournoi}
+
+
 ################ Metaciv ################   
 # Page d'accueil de Metaciv
 metaciv_homepage:

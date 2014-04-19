@@ -4,6 +4,8 @@ namespace WebMeta\CommonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WebMeta\CommonBundle\Entity\Tournoi;
+use WebMeta\CommonBundle\Entity\Invitation;
+use WebMeta\CommonBundle\Entity\Rencontre;
 use WebMeta\CommonBundle\Form\TournoiType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,7 +31,12 @@ class WarbotController extends Controller
 
     public function tournoiAction()
     {
-        return $this->render('WebMetaCommonBundle:Warbot:tournoi.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $liste_tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')
+                             ->findAll();
+
+
+        return $this->render('WebMetaCommonBundle:Warbot:tournoi.html.twig', array ("liste_tournoi" => $liste_tournoi));
     }
 
     public function creationTournoiAction() {
@@ -64,5 +71,22 @@ class WarbotController extends Controller
         );
 
         return $this->redirect($this->generateUrl('warbot_tournoi'));
+    }
+
+    public function gestionTournoiAction($id){
+        $t=$this->getDoctrine()->getManager();
+        $inv = $this->getDoctrine()->getManager();
+        $renc = $this->getDoctrine()->getManager();
+
+        $tournoi=$t->getRepository('WebMetaCommonBundle:Tournoi')
+            ->findOneById($id);
+
+        $liste_team= $inv->getRepository('WebMetaCommonBundle:Invitation')
+                         ->findBy(array('idTournoi'=>$id,'statut' =>'accepted'));
+        $liste_match=$renc->getRepository('WebMetaCommonBundle:Rencontre')
+                          ->findByIdTournoi($id);
+
+
+        return $this->render('WebMetaCommonBundle:Warbot:gestionTournoi.html.twig', array('liste_team' =>$liste_team, 'liste_match' =>$liste_match ,'tournoi' =>$tournoi));
     }
 }
