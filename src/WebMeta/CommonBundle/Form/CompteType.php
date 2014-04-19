@@ -25,6 +25,7 @@ class CompteType extends AbstractType
             ->add('prenom')
             ->add('date_naissance', 'birthday', array(
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour')))
+            ->add('description', 'textarea', array('required' => false, 'label' => 'Qui suis-je ?'))    
             ->add('avatar', 'file', array('required' => false))
             ->add('valider', 'submit')
         ;

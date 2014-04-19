@@ -34,57 +34,57 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
         // line 5
         $this->displayBlock('stylesheet', $context, $blocks);
-        // line 12
-        echo "        ";
         // line 13
+        echo "        ";
+        // line 14
         echo "        ";
         $this->displayBlock('stylesheet_extend', $context, $blocks);
         echo " 
         ";
-        // line 15
+        // line 16
         echo "        ";
         $this->displayBlock('script_extend', $context, $blocks);
         echo "     
         <title>";
-        // line 16
+        // line 17
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
     </head>
 
     <body>
         ";
-        // line 21
+        // line 22
         echo "        ";
         $this->displayBlock('header', $context, $blocks);
-        // line 26
+        // line 27
         echo "
         ";
-        // line 28
+        // line 29
         echo "        ";
         $this->displayBlock('menu_h', $context, $blocks);
-        // line 49
+        // line 59
         echo "
         ";
-        // line 51
+        // line 61
         echo "        ";
         $this->displayBlock('content_center', $context, $blocks);
-        // line 65
+        // line 75
         echo "
         ";
-        // line 66
+        // line 76
         echo "  
         ";
-        // line 67
+        // line 77
         $this->displayBlock('footer', $context, $blocks);
-        // line 113
+        // line 123
         echo "
         ";
-        // line 114
+        // line 124
         echo "  
         ";
-        // line 115
+        // line 125
         $this->displayBlock('script', $context, $blocks);
-        // line 119
+        // line 129
         echo "    </body>
 </html>";
     }
@@ -113,26 +113,30 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/style.css"), "html", null, true);
         echo "\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/form.css"), "html", null, true);
+        echo "\" />
         ";
     }
 
-    // line 13
+    // line 14
     public function block_stylesheet_extend($context, array $blocks = array())
     {
     }
 
-    // line 15
+    // line 16
     public function block_script_extend($context, array $blocks = array())
     {
     }
 
-    // line 16
+    // line 17
     public function block_title($context, array $blocks = array())
     {
         echo " WebMeta ";
     }
 
-    // line 21
+    // line 22
     public function block_header($context, array $blocks = array())
     {
         echo " 
@@ -142,15 +146,15 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 28
+    // line 29
     public function block_menu_h($context, array $blocks = array())
     {
         echo " 
-        <section id=\"menu_h\" class=\"row\">
-            <div class=\"col-md-6\">
+        <section id=\"menu_h\">
+            <div class=\"col-md-8\">
                 <ul class=\"nav nav-pills\">
                     <li class=\"";
-        // line 32
+        // line 33
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_homepage")) {
             echo "actif";
         }
@@ -158,7 +162,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_homepage");
         echo "\" title=\"Accueil du site\">Accueil</a></li>
                     <li class=\"";
-        // line 33
+        // line 34
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_documentation")) {
             echo "actif";
         }
@@ -166,7 +170,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_documentation");
         echo "\" title=\"Documentation\">Documentation</a></li>    
                     <li class=\"";
-        // line 34
+        // line 35
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_tutoriels")) {
             echo "actif";
         }
@@ -174,7 +178,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_tutoriels");
         echo "\" title=\"Tutoriels\">Tutoriels</a></li>
                     <li class=\"";
-        // line 35
+        // line 36
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_faq")) {
             echo "actif";
         }
@@ -182,7 +186,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_faq");
         echo "\" title=\"Questions\">FAQ</a></li>
                     <li class=\"";
-        // line 36
+        // line 37
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_contact")) {
             echo "actif";
         }
@@ -190,7 +194,7 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo $this->env->getExtension('routing')->getPath("common_contact");
         echo "\" title=\"Formulaire de contact\">Contact</a></li>
                     <li class=\"";
-        // line 37
+        // line 38
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "attributes"), "get", array(0 => "_route"), "method") == "common_creation")) {
             echo "actif";
         }
@@ -199,41 +203,67 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo "\" title=\"Formulaire de création d'une page\">Créer une page</a></li>
                 </ul>
             </div>
-            <div class=\"form-connexion col-md-5\">
-                Form login TODO
+            <div class=\"form-connexion col-md-4\">
+                ";
+        // line 43
+        echo "                ";
+        if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "is_connected"), "method") == false)) {
+            // line 44
+            echo "                    ";
+            echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("WebMetaCommonBundle:Login:formLogin"), array());
+            // line 45
+            echo "                    <div class=\"link-connexion\">
+                         <a href=\"";
+            // line 46
+            echo $this->env->getExtension('routing')->getPath("compte_creation");
+            echo "\" title=\"Accueil du site\">S'inscrire</a>
+                    </div>
+                ";
+        } else {
+            // line 49
+            echo "                    <div class=\"link-connexion\">
+                        Connecté : <a href=\"";
+            // line 50
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "compte"), "method"), "getId"))), "html", null, true);
+            echo "\" title=\"Compte\" >";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "compte"), "method"), "getLogin"), "html", null, true);
+            echo "</a>
+                        <a href=\"";
+            // line 51
+            echo $this->env->getExtension('routing')->getPath("logout");
+            echo "\" title=\"Se déconnecter\">Se déconnecter</a>
+                    </div>
+                ";
+        }
+        // line 54
+        echo "                <div class=\"clear\"></div>
             </div>
 
-            <div class=\"col-md-1\">
-                <a href=\"";
-        // line 45
-        echo $this->env->getExtension('routing')->getPath("compte_creation");
-        echo "\" title=\"Accueil du site\">S'inscrire</a>
-            </div>
         </section>    
         ";
     }
 
-    // line 51
+    // line 61
     public function block_content_center($context, array $blocks = array())
     {
-        // line 52
+        // line 62
         echo "            ";
         echo "   
             <div id=\"content_page\" class=\"col-md-12\">
                 <section id=\"content\" class=\"col-md-10\">
                     ";
-        // line 55
+        // line 65
         $this->displayBlock('content', $context, $blocks);
-        // line 56
+        // line 66
         echo "                </section>  
                 ";
-        // line 57
+        // line 67
         echo "    
                 <section id=\"sidebar\" class=\"col-md-2\">
                     ";
-        // line 59
+        // line 69
         $this->displayBlock('sidebar', $context, $blocks);
-        // line 60
+        // line 70
         echo "                </section>
             </div>    
             <div class=\"clear\"></div>
@@ -241,22 +271,22 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 55
+    // line 65
     public function block_content($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 59
+    // line 69
     public function block_sidebar($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 67
+    // line 77
     public function block_footer($context, array $blocks = array())
     {
-        // line 68
+        // line 78
         echo "            <footer id=\"footer\">
                 <div class=\"container\">
                     <div class=\"block-footer col-md-4\">
@@ -304,15 +334,15 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         ";
     }
 
-    // line 115
+    // line 125
     public function block_script($context, array $blocks = array())
     {
-        // line 116
+        // line 126
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 117
+        // line 127
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -325,6 +355,6 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
 
     public function getDebugInfo()
     {
-        return array (  316 => 117,  311 => 116,  308 => 115,  260 => 68,  257 => 67,  251 => 59,  245 => 55,  237 => 60,  235 => 59,  231 => 57,  228 => 56,  226 => 55,  220 => 52,  217 => 51,  209 => 45,  194 => 37,  186 => 36,  178 => 35,  170 => 34,  162 => 33,  154 => 32,  146 => 28,  136 => 21,  130 => 16,  125 => 15,  120 => 13,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 119,  86 => 115,  83 => 114,  80 => 113,  78 => 67,  75 => 66,  72 => 65,  69 => 51,  66 => 49,  63 => 28,  60 => 26,  57 => 21,  50 => 16,  45 => 15,  40 => 13,  38 => 12,  36 => 5,  30 => 1,);
+        return array (  346 => 127,  341 => 126,  338 => 125,  290 => 78,  287 => 77,  281 => 69,  275 => 65,  267 => 70,  265 => 69,  261 => 67,  258 => 66,  256 => 65,  250 => 62,  247 => 61,  239 => 54,  233 => 51,  227 => 50,  224 => 49,  218 => 46,  215 => 45,  212 => 44,  209 => 43,  198 => 38,  190 => 37,  182 => 36,  174 => 35,  166 => 34,  158 => 33,  150 => 29,  140 => 22,  134 => 17,  129 => 16,  124 => 14,  118 => 11,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 129,  86 => 125,  83 => 124,  80 => 123,  78 => 77,  75 => 76,  72 => 75,  69 => 61,  66 => 59,  63 => 29,  60 => 27,  57 => 22,  50 => 17,  45 => 16,  40 => 14,  38 => 13,  36 => 5,  30 => 1,);
     }
 }

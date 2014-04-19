@@ -50,14 +50,33 @@ hr
   margin: 3px 0px 10px 0px;
 }
 
-.form-connexion {
-    text-align: right;
-}
-
 #page-warbot-home {
 
 }
 
 #page-warbot-home #content {
     background: transparent;
+}
+
+#page-compte-index {
+    
+}
+
+#page-compte-index .avatar-compte {
+    float: left;
+}
+
+#page-compte-index .avatar-compte img {
+    width: 200px;
+    max-height: 200px;
+    border: 3px solid lightgrey;
+}
+
+#page-compte-index .information-compte {
+    float: left;
+    margin-left: 20px;
+}
+
+#page-compte-index .information-compte h3 {
+    margin: 0px;
 }

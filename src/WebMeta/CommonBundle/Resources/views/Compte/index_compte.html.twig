@@ -3,16 +3,27 @@
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
-    <section id="content" class="col-md-10">
-        <div id="page-metaciv-home" class="col-md-10">
-            <h2>TODO : </h2>
+<section id="content" class="col-md-10">
+    <div id="page-compte-index">
+        <h1>Compte : {{compte.getLogin}}</h1>
+
+        <div class="avatar-compte">
+            <img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" />
+        </div>
+        <div class="information-compte">
+            <h3>Mes informations</h3>
             <ul>
-                <li>- Page d'accueil Metaciv</li>
-                <li>- Vidéo de démo</li>
-                <li>- Texte de présentation</li>
+                <li><strong>Email</strong> : {{compte.getEmail}}</li>
+                <li><strong>Nom</strong> : {{compte.getNom}}</li>
+                <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
+                <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
+                <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
+                <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
             </ul>
         </div>
-    </section>    
+        <div class="clear"></div>
+    </div>
+</section>    
  {% endblock %}
 
 

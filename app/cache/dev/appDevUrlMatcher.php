@@ -181,8 +181,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // compte_view
-        if ($pathinfo === '/mon-compte') {
-            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',  '_route' => 'compte_view',);
+        if (0 === strpos($pathinfo, '/mon-compte') && preg_match('#^/mon\\-compte/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/log')) {
+            // login
+            if ($pathinfo === '/login') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\LoginController::loginAction',  '_route' => 'login',);
+            }
+
+            // logout
+            if ($pathinfo === '/logout') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\LoginController::logoutAction',  '_route' => 'logout',);
+            }
+
         }
 
         // page_view
@@ -209,9 +222,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::indexAction',  '_route' => 'warbot_homepage',);
             }
 
-            // warbot_documentation
-            if ($pathinfo === '/warbot-documentation') {
-                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::documentationAction',  '_route' => 'warbot_documentation',);
+            if (0 === strpos($pathinfo, '/warbot-')) {
+                // warbot_documentation
+                if ($pathinfo === '/warbot-documentation') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::documentationAction',  '_route' => 'warbot_documentation',);
+                }
+
+                // warbot_tournoi
+                if ($pathinfo === '/warbot-tournoi') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::tournoiAction',  '_route' => 'warbot_tournoi',);
+                }
+
             }
 
         }

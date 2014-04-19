@@ -1,0 +1,32 @@
+#webmeta_commonbundle_compte div  {
+    margin-bottom: 5px;
+}
+
+#webmeta_commonbundle_compte div label {
+    width: 150px;
+}
+
+#webmeta_commonbundle_compte_date_naissance {
+    display: inline;
+}
+
+.form-connexion {
+    text-align: right;
+    color: #ffffff;
+    height: 30px;
+}
+
+.form-connexion form div input {
+    width: 80px;
+}
+
+.form-connexion form div button {
+    height: 25px;
+    line-height: 20px;
+}
+
+.form-connexion form div  {
+    display: inline;
+    float: left;
+}
+
