@@ -1,8 +1,12 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
+{% form_theme form "WebMetaCommonBundle:Warbot:form.html.twig" %}
 
 
 {% block title %} WebMeta - Formulaire de création d'un Tournoi {% endblock %}
 
 {% block content %}
-    {{ form(form,{'action': path('warbot_tournoi_creation_validation'), 'method': 'POST'}) }}
+  <h1>formulaire de création de Tournoi</h1>
+  {{ form(form,{'action': path('warbot_tournoi_creation_validation'), 'method': 'POST'}) }}
+
+
 {% endblock %}

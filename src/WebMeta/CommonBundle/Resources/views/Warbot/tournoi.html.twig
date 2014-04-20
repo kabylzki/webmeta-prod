@@ -6,9 +6,10 @@
 <h1>liste des tournois</h1>
     <ul>
         {% for tournoi in liste_tournoi %}
-            <li><a href="{{ path('warbot_tournoi_gestion_tournoi', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}}</a></li>
+            <li><a href="{{ path('warbot_tournoi_gestion_tournoi', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a></li>
         {% endfor %}
     </ul>
+ <h1>liste des tournois publiques</h1>
 {% endblock %}
 
 

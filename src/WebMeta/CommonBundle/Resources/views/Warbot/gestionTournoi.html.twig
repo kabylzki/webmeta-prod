@@ -3,15 +3,20 @@
 {% block title %} WebMeta - Warbot {% endblock %}
 
 {% block content %}
-    <h1>{{ tournoi.getNom }}<h1>
-    <h1>rencontres<h1>
+    <center><h1>{{ tournoi.getNom }}</h1></center>
+    <h1>rencontres</h1>
+            <ul>
             {% for match in liste_match %}
-                <li>{{ match.getIdEquipe1 }}</li>
+                <li>{{ match.getIdEquipe1 }} vs {{ match.getIdEquipe2 }}</li>
             {% endfor %}
-    <h1>liste des participants<h1>
+            </ul>
+    ajouter participant
+    <h1>liste des participants</h1>
+           <ul>
             {% for team in liste_team %}
-                <li>{{ user.getIdInvite }}</li>
+                <li>{{ team.getIdInvite }}</li>
             {% endfor %}
+           </ul>
     ajouter participant
 
 {% endblock %}
