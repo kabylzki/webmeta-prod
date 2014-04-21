@@ -1,0 +1,22 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Metaciv {% endblock %}
+
+{% block content %} 
+<div id="page-compte-index">
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    <h1>Modification de l'avatar</h1>
+
+    {# Messages - (Notice, Erreur) #}
+    {{ include ('WebMetaCommonBundle:Compte:form_avatar.html.twig') }}
+
+    
+<p><a href="#" onclick="window.history.back();" title="">Retour</a></p>
+    
+</div>    
+ {% endblock %}
+
+
+

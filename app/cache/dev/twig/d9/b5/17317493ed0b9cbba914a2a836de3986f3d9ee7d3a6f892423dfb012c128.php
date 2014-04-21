@@ -36,25 +36,23 @@ class __TwigTemplate_d9b517317493ed0b9cbba914a2a836de3986f3d9ee7d3a6f892423dfb01
     public function block_content($context, array $blocks = array())
     {
         echo " 
-    <section id=\"content\" class=\"col-md-12\">
-        <div id=\"page-creation-compte\" class=\"col-md-10\">
-            <h1>Formulaire de création d'un compte</h1>
-            ";
-        // line 10
-        echo "            ";
+<div id=\"page-creation-compte\">
+    <h1>Formulaire de création d'un compte</h1>
+    ";
+        // line 9
+        echo "    ";
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
+        // line 10
+        echo "
+    ";
         // line 11
-        echo "            
-            ";
-        // line 12
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form', array("action" => $this->env->getExtension('routing')->getPath("compte_creation_validation"), "method" => "POST"));
         echo "
-        </div>
-    </section>    
+</div> 
  ";
     }
 
-    // line 18
+    // line 16
     public function block_sidebar($context, array $blocks = array())
     {
         echo " ";
@@ -72,6 +70,6 @@ class __TwigTemplate_d9b517317493ed0b9cbba914a2a836de3986f3d9ee7d3a6f892423dfb01
 
     public function getDebugInfo()
     {
-        return array (  58 => 18,  50 => 12,  47 => 11,  44 => 10,  36 => 5,  30 => 3,);
+        return array (  56 => 16,  49 => 11,  46 => 10,  43 => 9,  36 => 5,  30 => 3,);
     }
 }

@@ -12,9 +12,9 @@ class LoginController extends Controller {
     public function formLoginAction() {
         $data = array();
         $form = $this->createFormBuilder($data)
-                ->add('login', 'text', array(
+                ->add('email', 'email', array(
                         'attr' => array(
-                        'placeholder' => 'Login',
+                        'placeholder' => 'Email',
                 )))
 
                 ->add('password', 'password', array(
@@ -34,7 +34,7 @@ class LoginController extends Controller {
 
         $data = array();
         $form = $this->createFormBuilder($data)
-                ->add('login', 'text')
+                ->add('email', 'email')
                 ->add('password', 'password')
                 ->add('Connexion', 'submit')
                 ->getForm();
@@ -43,13 +43,10 @@ class LoginController extends Controller {
             $form->bind($request);
             $data = $form->getData();
 
-            $compte = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Compte')->findOneBy(array('login' => $data['login'], 'password' => md5($data['password'])));
+            $compte = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Compte')->findOneBy(array('email' => $data['email'], 'password' => md5($data['password'])));
             if (!$compte) {
-
                 // Message de confirmation pour l'utilisateur
-                $session->getFlashBag()->add(
-                        'error', "Le compte n'existe pas"
-                );
+                $session->getFlashBag()->add('error', "Le compte n'existe pas");
 
                 $session->set('is_connected', false);
                 $session->set('compte', null);
@@ -65,12 +62,12 @@ class LoginController extends Controller {
         
     }
     
-   // Test le formulaire de connexion
+   // Supprime les variables de session et redirige vers l'accueil
     public function logoutAction() {
 
         $session = $this->get('session');
         $session->set('is_connected', false);
-        unset($_SESSION['compte']);
+        $session->invalidate("compte");
         
         return $this->redirect($this->generateUrl('common_homepage'));
         

@@ -3,30 +3,41 @@
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
-<section id="content" class="col-md-10">
-    <div id="page-compte-index">
-        <h1>Compte : {{compte.getLogin}}</h1>
+<div id="page-compte-index">
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    <h1>Compte : {{compte.getPseudo}}</h1>
 
-        <div class="avatar-compte">
-            <img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" />
-        </div>
-        <div class="information-compte">
-            <h3>Mes informations</h3>
-            <ul>
-                <li><strong>Email</strong> : {{compte.getEmail}}</li>
-                <li><strong>Nom</strong> : {{compte.getNom}}</li>
-                <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
-                <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
-                <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
-                <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
-            </ul>
-        </div>
-        <div class="clear"></div>
+    <div class="avatar-compte col-md-2">
+        {% if compte.getAvatar is null %}
+            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/default_avatar.png')}}" alt="Mon avatar" /></div>
+        {% else %}
+            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
+        {% endif %}
+            {% if user_connected %}
+                <p class="avatar-link"><a href="{{ path('compte_modification_avatar') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
+            {% endif %}
     </div>
-</section>    
+    
+    <div class="information-compte col-md-10">
+        <h3>Informations</h3>
+        {% if user_connected %}
+            <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier</a></p>
+        {% endif %}
+        <ul>
+            <li><strong>Email</strong> : {{compte.getEmail}}</li>
+            <li><strong>Nom</strong> : {{compte.getNom}}</li>
+            <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
+            <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
+            <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
+            <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>    
  {% endblock %}
 
 
-{% block sidebar_game %} 
 
-{% endblock %}
+{% block sidebar %} {% endblock %}

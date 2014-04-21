@@ -26,28 +26,27 @@ class __TwigTemplate_7f39c61bf8658c9426f9e2a28531a102c4ac55342df08e3ba74bee520d7
     <div>
         ";
         // line 5
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "login"), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email"), 'errors');
         echo "
         ";
         // line 6
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "login"), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email"), 'widget');
         echo "
     </div>
 
     <div>
-
         ";
-        // line 11
+        // line 10
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password"), 'errors');
         echo "
         ";
-        // line 12
+        // line 11
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password"), 'widget');
         echo "
     </div>
 
 ";
-        // line 15
+        // line 14
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
     }
 
@@ -63,6 +62,6 @@ class __TwigTemplate_7f39c61bf8658c9426f9e2a28531a102c4ac55342df08e3ba74bee520d7
 
     public function getDebugInfo()
     {
-        return array (  51 => 15,  45 => 12,  41 => 11,  33 => 6,  29 => 5,  23 => 2,  19 => 1,);
+        return array (  50 => 14,  44 => 11,  40 => 10,  33 => 6,  29 => 5,  23 => 2,  19 => 1,);
     }
 }

@@ -28,17 +28,35 @@ common_contact:
 # Page de création de compte (formulaire)    
 compte_creation:
     pattern:  /creation-compte
-    defaults: { _controller: WebMetaCommonBundle:Compte:creation }
+    defaults: { _controller: WebMetaCommonBundle:Compte:formCreation }
     
-# Page de validation du compte
+# Page de validation des infos du compte
 compte_creation_validation:
     pattern:  /creation-compte-validation
-    defaults: { _controller: WebMetaCommonBundle:Compte:validation }
+    defaults: { _controller: WebMetaCommonBundle:Compte:creation }
     
 # Affiche la page du compte
 compte_view:
-    pattern:  /mon-compte/{id}
-    defaults: { _controller: WebMetaCommonBundle:Compte:index }
+    pattern:  /compte/{id}
+    defaults: { _controller: WebMetaCommonBundle:Compte:index}
+    
+# Page de modification de compte (formulaire) 
+compte_modification:
+    pattern:  /modification-compte
+    defaults: { _controller: WebMetaCommonBundle:Compte:formModification }
+    
+# Page de validation des infos du compte
+compte_modification_validation:
+    pattern:  /modification-compte-validation
+    defaults: { _controller: WebMetaCommonBundle:Compte:modification }
+    
+compte_modification_avatar:
+    pattern:  /modification-avatar
+    defaults: { _controller: WebMetaCommonBundle:Compte:formModificationAvatar }
+    
+compte_modification_avatar_validation:
+    pattern:  /modification-avatar-validation
+    defaults: { _controller: WebMetaCommonBundle:Compte:modificationAvatar }
     
 ################ Login ################
 # Connexion

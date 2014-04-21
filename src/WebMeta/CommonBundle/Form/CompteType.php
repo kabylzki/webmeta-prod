@@ -15,7 +15,7 @@ class CompteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('login', 'text')
+            ->add('pseudo', 'text')
              ->add('password', 'repeated', array(
                 'first_name' => 'password',
                 'second_name' => 'confirmation',
@@ -26,7 +26,6 @@ class CompteType extends AbstractType
             ->add('date_naissance', 'birthday', array(
                 'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => 'Jour')))
             ->add('description', 'textarea', array('required' => false, 'label' => 'Qui suis-je ?'))    
-            ->add('avatar', 'file', array('required' => false))
             ->add('valider', 'submit')
         ;
     }
