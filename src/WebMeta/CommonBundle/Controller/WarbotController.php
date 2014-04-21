@@ -73,20 +73,52 @@ class WarbotController extends Controller
         return $this->redirect($this->generateUrl('warbot_tournoi'));
     }
 
-    public function gestionTournoiAction($id){
-        $t=$this->getDoctrine()->getManager();
-        $inv = $this->getDoctrine()->getManager();
-        $renc = $this->getDoctrine()->getManager();
-
+    public function gestionTournoiAction($id, Request $request){
+        $t=$this->getDoctrine()
+                ->getManager();
         $tournoi=$t->getRepository('WebMetaCommonBundle:Tournoi')
-            ->findOneById($id);
+                   ->findOneById($id);
 
+        $inv = $this->getDoctrine()
+                     ->getManager();
+        $renc = $this->getDoctrine()
+                     ->getManager();
+
+        //tableau des invitations
         $liste_team= $inv->getRepository('WebMetaCommonBundle:Invitation')
                          ->findBy(array('idTournoi'=>$id,'statut' =>'accepted'));
+
+        //tableau des matchs
         $liste_match=$renc->getRepository('WebMetaCommonBundle:Rencontre')
                           ->findByIdTournoi($id);
 
 
-        return $this->render('WebMetaCommonBundle:Warbot:gestionTournoi.html.twig', array('liste_team' =>$liste_team, 'liste_match' =>$liste_match ,'tournoi' =>$tournoi));
+        //formulaire d'ajout de rencontre
+        $rencontre = new Rencontre();
+        $rencontre->setIdTournoi($tournoi->getId());
+        $rencontre->setDate(new \DateTime('today'));
+
+        $formRencontre = $this->createFormBuilder($rencontre)
+                                ->add('idequipe1','text',array('label' => 'equipe1:'))
+                                ->add('idequipe2','text' ,array('label' => 'equipe2:'))
+                                ->add('date','date')
+                                ->add('valider', 'submit')
+                                ->getForm();
+
+        //validation formulaire de rencontre
+        $formRencontre->handleRequest($request);
+
+        if ($formRencontre->isValid()) {
+
+            // persistance en bdd
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rencontre);
+            $em->flush();
+            return $this->redirect($this->generateUrl(path('warbot_tournoi_gestion_tournoi', array('id'=> $tournoi.getId()))));
+        }
+
+
+
+        return $this->render('WebMetaCommonBundle:Warbot:gestionTournoi.html.twig', array('liste_team' =>$liste_team, 'liste_match' =>$liste_match ,'tournoi' =>$tournoi, 'formRencontre' =>$formRencontre->createView()));
     }
 }

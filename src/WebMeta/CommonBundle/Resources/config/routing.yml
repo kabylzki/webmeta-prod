@@ -95,7 +95,7 @@ warbot_tournoi_creation_validation:
 
 # Page de gestion d'un  tournoi
 warbot_tournoi_gestion_tournoi:
-    pattern: /warbot-tounoi-gestion-tournoi/{id}
+    pattern: /warbot-tournoi-gestion-tournoi/{id}
     defaults: {_controller: WebMetaCommonBundle:Warbot:gestionTournoi}
 
 

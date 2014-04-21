@@ -10,7 +10,7 @@
                 <li>{{ match.getIdEquipe1 }} vs {{ match.getIdEquipe2 }}</li>
             {% endfor %}
             </ul>
-    ajouter participant
+    {{ form(formRencontre) }}
     <h1>liste des participants</h1>
            <ul>
             {% for team in liste_team %}
