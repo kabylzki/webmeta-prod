@@ -50,6 +50,24 @@ hr
   margin: 3px 0px 10px 0px;
 }
 
+.flash-notice {
+    font-weight: bold;
+    background-color: lightgreen;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.flash-error {
+    font-weight: bold;
+    background-color: lightcoral;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    margin: 10px 0px;
+}
+
 #page-warbot-home {
 
 }
@@ -62,19 +80,35 @@ hr
     
 }
 
+#content div h1:first-child  {
+    margin: 10px 0px 10px ;
+    border-bottom: 1px solid black;
+}
+
 #page-compte-index .avatar-compte {
     float: left;
+    padding: 0px;
+}
+
+#page-compte-index .avatar-compte p {
+    text-align: center;
+}
+
+#page-compte-index .avatar-compte .avatar-img {
+    text-align: center;
 }
 
 #page-compte-index .avatar-compte img {
-    width: 200px;
-    max-height: 200px;
     border: 3px solid lightgrey;
+    margin: 0px auto;
+    padding: 0px;
+    max-width: 140px;
+    display: block;
 }
 
 #page-compte-index .information-compte {
     float: left;
-    margin-left: 20px;
+    padding: 0px;
 }
 
 #page-compte-index .information-compte h3 {

@@ -24,9 +24,9 @@ class Compte
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=255)
+     * @ORM\Column(name="pseudo", type="string", length=255)
      */
-    private $login;
+    private $pseudo;
 
     /**
      * @var string
@@ -96,26 +96,26 @@ class Compte
     }
 
     /**
-     * Set login
+     * Set pseudo
      *
-     * @param string $login
+     * @param string $pseudo
      * @return Compte
      */
-    public function setLogin($login)
+    public function setPseudo($pseudo)
     {
-        $this->login = $login;
+        $this->pseudo = $pseudo;
 
         return $this;
     }
 
     /**
-     * Get login
+     * Get pseudo
      *
      * @return string 
      */
-    public function getLogin()
+    public function getPseudo()
     {
-        return $this->login;
+        return $this->pseudo;
     }
 
     /**
@@ -319,7 +319,7 @@ class Compte
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return 'uploads/documents';
+        return 'avatar/';
     }
     
 }

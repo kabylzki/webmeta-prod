@@ -1,0 +1,9 @@
+{{ form_start(form, {'action': path("compte_modification_avatar_validation"), 'method': 'POST', 'enc-type': 'multipart/form-data'} ) }}
+    {{ form_errors(form) }}
+
+    <div>
+        {{ form_errors(form.avatar) }}
+        {{ form_widget(form.avatar) }}
+    </div>
+
+{{ form_end(form) }}

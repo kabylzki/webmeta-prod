@@ -1,0 +1,28 @@
+<section id="menu_h">
+    <div class="col-md-8">
+        <ul class="nav nav-pills">
+            <li class="{% if app.request.attributes.get('_route') == 'common_homepage' %}actif{% endif %}"><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
+            <li class="{% if app.request.attributes.get('_route') == 'common_documentation' %}actif{% endif %}"><a href="{{ path('common_documentation') }}" title="Documentation">Documentation</a></li>    
+            <li class="{% if app.request.attributes.get('_route') == 'common_tutoriels' %}actif{% endif %}"><a href="{{ path('common_tutoriels') }}" title="Tutoriels">Tutoriels</a></li>
+            <li class="{% if app.request.attributes.get('_route') == 'common_faq' %}actif{% endif %}"><a href="{{ path('common_faq') }}" title="Questions">FAQ</a></li>
+            <li class="{% if app.request.attributes.get('_route') == 'common_contact' %}actif{% endif %}"><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
+            <li class="{% if app.request.attributes.get('_route') == 'common_creation' %}actif{% endif %}"><a href="{{ path('page_creation') }}" title="Formulaire de création d'une page">Créer une page</a></li>
+        </ul>
+    </div>
+    <div class="form-connexion col-md-4">
+                {# Inclusion du formulaire de login si user non connecté #}
+                {% if app.session.get('is_connected') == false %}
+                    {% render(controller("WebMetaCommonBundle:Login:formLogin")) %}
+        <div class="link-connexion">
+            <a href="{{ path('compte_creation') }}" title="Accueil du site">S'inscrire</a>
+        </div>
+                {% else %}
+        <div class="link-connexion">
+            Connecté : <a href="{{ path('compte_view', {'id': app.session.get('compte').getId }) }}" title="Compte" >{{ app.session.get('compte').getPseudo }}</a>
+            <a href="{{ path('logout') }}" title="Se déconnecter">Se déconnecter</a>
+        </div>
+                {% endif %}
+        <div class="clear"></div>
+    </div>
+
+</section>    

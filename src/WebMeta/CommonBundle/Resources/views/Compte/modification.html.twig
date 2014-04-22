@@ -1,0 +1,13 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Formulaire de création d'un compte {% endblock %}
+
+{% block content %} 
+<div id="page-modification-compte">
+    <h1>Formulaire de modification d'un compte</h1>
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+
+    {{ form(form, {'action': path('compte_modification_validation'), 'method': 'POST'}) }}
+</div> 
+{% endblock %}

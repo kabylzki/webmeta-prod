@@ -168,21 +168,50 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (0 === strpos($pathinfo, '/creation-compte')) {
                 // compte_creation
                 if ($pathinfo === '/creation-compte') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::creationAction',  '_route' => 'compte_creation',);
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::formCreationAction',  '_route' => 'compte_creation',);
                 }
 
                 // compte_creation_validation
                 if ($pathinfo === '/creation-compte-validation') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::validationAction',  '_route' => 'compte_creation_validation',);
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::creationAction',  '_route' => 'compte_creation_validation',);
                 }
 
             }
 
+            // compte_view
+            if (0 === strpos($pathinfo, '/compte') && preg_match('#^/compte/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',));
+            }
+
         }
 
-        // compte_view
-        if (0 === strpos($pathinfo, '/mon-compte') && preg_match('#^/mon\\-compte/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::indexAction',));
+        if (0 === strpos($pathinfo, '/modification-')) {
+            if (0 === strpos($pathinfo, '/modification-compte')) {
+                // compte_modification
+                if ($pathinfo === '/modification-compte') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::formModificationAction',  '_route' => 'compte_modification',);
+                }
+
+                // compte_modification_validation
+                if ($pathinfo === '/modification-compte-validation') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::modificationAction',  '_route' => 'compte_modification_validation',);
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/modification-avatar')) {
+                // compte_modification_avatar
+                if ($pathinfo === '/modification-avatar') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::formModificationAvatarAction',  '_route' => 'compte_modification_avatar',);
+                }
+
+                // compte_modification_avatar_validation
+                if ($pathinfo === '/modification-avatar-validation') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::modificationAvatarAction',  '_route' => 'compte_modification_avatar_validation',);
+                }
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {
