@@ -1,8 +1,8 @@
-#webmeta_commonbundle_compte div  {
+form div  {
     margin-bottom: 5px;
 }
 
-#webmeta_commonbundle_compte div label {
+form div label {
     width: 150px;
 }
 

@@ -7,7 +7,6 @@ use WebMeta\CommonBundle\Entity\Compte;
 use WebMeta\CommonBundle\Form\CompteType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CompteController extends Controller {
 
@@ -76,7 +75,6 @@ class CompteController extends Controller {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
 
-
         $compte = $this->getDoctrine()->getManager()->getRepository('WebMetaCommonBundle:Compte')->find($compte_session->getId());
 
         $form = $this->createForm(new CompteType(), $compte);
@@ -106,7 +104,9 @@ class CompteController extends Controller {
             $compte_update->setNom($form["nom"]->getData());
             $compte_update->setPrenom($form["prenom"]->getData());
             $compte_update->setDateNaissance($form["date_naissance"]->getData());
+            $compte_update->setDateInscription($compte_update->getDateInscription());
             $compte_update->setDescription($form["description"]->getData());
+
             $em->flush();
 
             $message = "Compte Modifié avec succès";
@@ -139,6 +139,8 @@ class CompteController extends Controller {
     public function modificationAvatarAction(Request $request) {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
+
+        // TODO RESSOURCE
 
         return $this->redirect($this->generateUrl('compte_view', array("id" => $compte_session->getId())));
     }

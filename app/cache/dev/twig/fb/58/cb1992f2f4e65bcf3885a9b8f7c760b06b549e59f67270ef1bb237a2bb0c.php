@@ -37,17 +37,17 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     {
         echo " 
 <div id=\"page-compte-index\">
-    ";
-        // line 8
-        echo "    ";
-        $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
-        // line 9
-        echo "    
     <h1>Compte : ";
-        // line 10
+        // line 7
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPseudo"), "html", null, true);
         echo "</h1>
-
+    
+    ";
+        // line 10
+        echo "    ";
+        $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
+        // line 11
+        echo "    
     <div class=\"avatar-compte col-md-2\">
         ";
         // line 13
@@ -124,7 +124,20 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     // line 43
     public function block_sidebar($context, array $blocks = array())
     {
-        echo " ";
+        echo " 
+<h1>Menu</h1>
+<ul>
+    
+</ul>
+
+<h3>Equipes</h3>
+<ul>
+    <li><a href=\"";
+        // line 51
+        echo $this->env->getExtension('routing')->getPath("equipe_creation");
+        echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
+</ul>
+";
     }
 
     public function getTemplateName()
@@ -139,6 +152,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  125 => 43,  115 => 34,  111 => 33,  107 => 32,  103 => 31,  99 => 30,  95 => 29,  92 => 28,  86 => 26,  84 => 25,  78 => 21,  72 => 19,  69 => 18,  62 => 16,  56 => 14,  54 => 13,  48 => 10,  45 => 9,  42 => 8,  36 => 5,  30 => 3,);
+        return array (  137 => 51,  125 => 43,  115 => 34,  111 => 33,  107 => 32,  103 => 31,  99 => 30,  95 => 29,  92 => 28,  86 => 26,  84 => 25,  78 => 21,  72 => 19,  69 => 18,  62 => 16,  56 => 14,  54 => 13,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
     }
 }

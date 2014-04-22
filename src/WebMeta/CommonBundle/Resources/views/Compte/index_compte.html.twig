@@ -4,11 +4,11 @@
 
 {% block content %} 
 <div id="page-compte-index">
+    <h1>Compte : {{compte.getPseudo}}</h1>
+    
     {# Messages - (Notice, Erreur) #}
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
     
-    <h1>Compte : {{compte.getPseudo}}</h1>
-
     <div class="avatar-compte col-md-2">
         {% if compte.getAvatar is null %}
             <div class="avatar-img col-md-12"><img src="{{ asset('avatar/default_avatar.png')}}" alt="Mon avatar" /></div>
@@ -40,4 +40,14 @@
 
 
 
-{% block sidebar %} {% endblock %}
+{% block sidebar %} 
+<h1>Menu</h1>
+<ul>
+    
+</ul>
+
+<h3>Equipes</h3>
+<ul>
+    <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+</ul>
+{% endblock %}

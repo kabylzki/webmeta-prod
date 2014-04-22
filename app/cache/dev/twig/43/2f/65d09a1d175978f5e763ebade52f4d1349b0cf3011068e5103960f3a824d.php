@@ -83,15 +83,25 @@ class __TwigTemplate_432f65d09a1d175978f5e763ebade52f4d1349b0cf3011068e5103960f3
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 26
-        echo "    <li><a href=\"";
-        echo $this->env->getExtension('routing')->getPath("warbot_tournoi");
-        echo "\" title=\"tournoi\">tournoi</a></li>
+        echo "
+    ";
+        // line 27
+        if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
+            // line 28
+            echo "        <li><a href=\"";
+            echo $this->env->getExtension('routing')->getPath("warbot_tournoi");
+            echo "\" title=\"tournoi\">tournoi</a></li>
+    ";
+        }
+        // line 30
+        echo "
+
 </ul>
 
 <h3>Documentation </h3>
 <ul>
     <li> <a href=\"";
-        // line 31
+        // line 36
         echo $this->env->getExtension('routing')->getPath("warbot_documentation");
         echo "\" title=\"Documentation de Warbot\"/>Documentation - Warbot</a></li>
 </ul>
@@ -110,6 +120,6 @@ class __TwigTemplate_432f65d09a1d175978f5e763ebade52f4d1349b0cf3011068e5103960f3
 
     public function getDebugInfo()
     {
-        return array (  95 => 31,  86 => 26,  73 => 24,  69 => 23,  62 => 20,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
+        return array (  105 => 36,  97 => 30,  91 => 28,  89 => 27,  86 => 26,  73 => 24,  69 => 23,  62 => 20,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

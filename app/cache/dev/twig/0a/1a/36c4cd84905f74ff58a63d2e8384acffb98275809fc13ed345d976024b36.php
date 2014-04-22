@@ -36,16 +36,15 @@ class __TwigTemplate_0a1a36c4cd84905f74ff58a63d2e8384acffb98275809fc13ed345d9760
     {
         echo " 
 <div id=\"page-compte-index\">
+    <h1>Modification de l'avatar</h1>
     ";
-        // line 8
+        // line 9
         echo "    ";
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
-        // line 9
+        // line 10
         echo "    
-    <h1>Modification de l'avatar</h1>
-
     ";
-        // line 13
+        // line 12
         echo "    ";
         echo twig_include($this->env, $context, "WebMetaCommonBundle:Compte:form_avatar.html.twig");
         echo "
@@ -69,6 +68,6 @@ class __TwigTemplate_0a1a36c4cd84905f74ff58a63d2e8384acffb98275809fc13ed345d9760
 
     public function getDebugInfo()
     {
-        return array (  49 => 13,  44 => 9,  41 => 8,  35 => 5,  29 => 3,);
+        return array (  48 => 12,  45 => 10,  42 => 9,  35 => 5,  29 => 3,);
     }
 }

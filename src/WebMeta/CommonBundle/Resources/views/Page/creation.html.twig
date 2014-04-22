@@ -9,12 +9,8 @@
 {% block content %} 
     <div id="page-creation-compte">
         <h1>Formulaire de création d'une page</h1>
-
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div class="flash-notice">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
+        {# Messages - (Notice, Erreur) #}
+        {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
 
         <script src="{{ asset('bundles/webmetacommon/js/tinymce_config.js') }}"></script>
         {{ form(form, {'action': path('page_creation_validation'), 'method': 'POST'}) }}

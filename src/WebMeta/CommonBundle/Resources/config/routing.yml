@@ -127,4 +127,19 @@ metaciv_homepage:
 metaciv_documentation:
     pattern:  /metaciv-documentation
     defaults: { _controller: WebMetaCommonBundle:Metaciv:documentation }
+    
+################ Equipe ################   
+# Page de l'équipe
+equipe_creation:
+    pattern:  /equipe/{id}
+    defaults: { _controller: WebMetaCommonBundle:Equipe:index }
+    
+# Formulaire de création d'une équipe
+equipe_creation:
+    pattern:  /creation-equipe
+    defaults: { _controller: WebMetaCommonBundle:Equipe:formCreation }
+    
+equipe_creation_validation:
+    pattern:  /creation-equipe-validation
+    defaults: { _controller: WebMetaCommonBundle:Equipe:creation }
 

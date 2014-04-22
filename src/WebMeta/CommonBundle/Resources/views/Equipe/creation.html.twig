@@ -1,14 +1,14 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
-{% block title %} WebMeta - Formulaire de création d'un compte {% endblock %}
+{% block title %} WebMeta - Formulaire de création d'une Equipe{% endblock %}
 
 {% block content %} 
-<div id="page-creation-compte">
-    <h1>Formulaire de création d'un compte</h1>
+<div id="page-creation-equipe">
+    <h1>Formulaire de création d'une équipe</h1>
     {# Messages - (Notice, Erreur) #}
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
 
-    {{ form(form, {'action': path('compte_creation_validation'), 'method': 'POST'}) }}
+    {{ form(form, {'action': path('equipe_creation_validation'), 'method': 'POST'}) }}
 </div> 
  {% endblock %}
 

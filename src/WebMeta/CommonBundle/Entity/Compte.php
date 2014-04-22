@@ -298,28 +298,4 @@ class Compte
         return $this->description;
     }
     
-    
-    public function getAbsolutePath()
-    {
-        return null === $this->avatar ? null : $this->getUploadRootDir().'/'.$this->avatar;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->avatar ? null : $this->getUploadDir().'/'.$this->avatar;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
-        // le document/image dans la vue.
-        return 'avatar/';
-    }
-    
 }

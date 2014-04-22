@@ -12,6 +12,7 @@ class __TwigTemplate_45d6ce55c21279fc6072440cd9cc5699788dd0adc76251ae71cfdb3943a
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
+            'sidebar' => array($this, 'block_sidebar'),
         );
     }
 
@@ -31,11 +32,53 @@ class __TwigTemplate_45d6ce55c21279fc6072440cd9cc5699788dd0adc76251ae71cfdb3943a
         echo " WebMeta - Metaciv ";
     }
 
-    // line 7
+    // line 5
     public function block_content($context, array $blocks = array())
     {
-        // line 8
-        echo "    <p>ceci est la page principale</p>
+        // line 6
+        echo "<div id=\"page-warbot-tournoi\">
+    <h1>Tournoi warbot</h1>
+    <h2>liste des tournois</h2>
+    <ul>
+        ";
+        // line 10
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_tournoi"]) ? $context["liste_tournoi"] : $this->getContext($context, "liste_tournoi")));
+        foreach ($context['_seq'] as $context["_key"] => $context["tournoi"]) {
+            // line 11
+            echo "            <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("warbot_tournoi_gestion_tournoi", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
+            echo "\"/>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getDate"), "format", array(0 => "d/M/Y"), "method"), "html", null, true);
+            echo "</a></li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tournoi'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 13
+        echo "    </ul>
+    <h2>liste des tournois publiques</h2>
+</div>
+";
+    }
+
+    // line 19
+    public function block_sidebar($context, array $blocks = array())
+    {
+        // line 20
+        echo "    <h1>Menu</h1>
+    <ul>
+        <a href=\"";
+        // line 22
+        echo $this->env->getExtension('routing')->getPath("warbot_creationTournoi");
+        echo "\" title=\"creerTournoi\">creerTournoi</a>
+    </ul>
+    <h3>Documentation </h3>
 ";
     }
 
@@ -51,6 +94,6 @@ class __TwigTemplate_45d6ce55c21279fc6072440cd9cc5699788dd0adc76251ae71cfdb3943a
 
     public function getDebugInfo()
     {
-        return array (  38 => 8,  35 => 7,  29 => 3,);
+        return array (  78 => 22,  74 => 20,  71 => 19,  64 => 13,  49 => 11,  45 => 10,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

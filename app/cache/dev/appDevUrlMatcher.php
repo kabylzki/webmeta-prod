@@ -262,6 +262,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::tournoiAction',  '_route' => 'warbot_tournoi',);
                 }
 
+                // warbot_creationTournoi
+                if ($pathinfo === '/warbot-creationTournoi') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::creationTournoiAction',  '_route' => 'warbot_creationTournoi',);
+                }
+
+                if (0 === strpos($pathinfo, '/warbot-tournoi-')) {
+                    // warbot_tournoi_creation_validation
+                    if ($pathinfo === '/warbot-tournoi-creation-validation') {
+                        return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::validationAction',  '_route' => 'warbot_tournoi_creation_validation',);
+                    }
+
+                    // warbot_tournoi_gestion_tournoi
+                    if (0 === strpos($pathinfo, '/warbot-tournoi-gestion-tournoi') && preg_match('#^/warbot\\-tournoi\\-gestion\\-tournoi/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'warbot_tournoi_gestion_tournoi')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::gestionTournoiAction',));
+                    }
+
+                }
+
             }
 
         }
@@ -275,6 +293,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // metaciv_documentation
             if ($pathinfo === '/metaciv-documentation') {
                 return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MetacivController::documentationAction',  '_route' => 'metaciv_documentation',);
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/creation-equipe')) {
+            // equipe_creation
+            if ($pathinfo === '/creation-equipe') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::formCreationAction',  '_route' => 'equipe_creation',);
+            }
+
+            // equipe_creation_validation
+            if ($pathinfo === '/creation-equipe-validation') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::creationAction',  '_route' => 'equipe_creation_validation',);
             }
 
         }
