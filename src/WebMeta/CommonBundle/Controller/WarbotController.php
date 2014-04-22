@@ -40,9 +40,11 @@ class WarbotController extends Controller
 
     public function tournoiAction()
     {
+        $session = $this->get('session');
+        $compte = $session->get('compte');
         $em = $this->getDoctrine()->getManager();
         $liste_tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')
-                             ->findAll();
+                             ->findById_compte($compte->getId());
 
 
         return $this->render('WebMetaCommonBundle:Warbot:tournoi.html.twig', array ("liste_tournoi" => $liste_tournoi));
