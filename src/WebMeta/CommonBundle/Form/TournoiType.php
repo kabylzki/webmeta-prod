@@ -16,9 +16,9 @@ class TournoiType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('status')
+            ->add('type')
             ->add('date')
-            ->add('valider', 'submit')
+            ->add('valider','submit')
         ;
     }
     

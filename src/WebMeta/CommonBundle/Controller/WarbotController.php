@@ -13,11 +13,20 @@ class WarbotController extends Controller
 {
     public function indexAction()
     {
+        $user_connected = false;
+        $session = $this->get('session');
+        $compte = $session->get('compte');
+        if($compte != null){
+            // gestion utilisateur connecté
+            $user_connected = true;
+        }
+
+
         $em = $this->getDoctrine()->getManager();
         $liste_page = $em->getRepository('WebMetaCommonBundle:Page')
                 ->findAllPageByNomCategorie("Warbot");
         
-        return $this->render('WebMetaCommonBundle:Warbot:index_warbot.html.twig', array ("liste_page" => $liste_page));
+        return $this->render('WebMetaCommonBundle:Warbot:index_warbot.html.twig', array ("liste_page" => $liste_page , 'user_connected'=> $user_connected));
     }
     
     public function documentationAction()
@@ -47,6 +56,10 @@ class WarbotController extends Controller
     }
 
     public function validationAction(Request $request) {
+        //récupération de la session
+        $session = $this->get('session');
+        $compte = $session->get('compte');
+
         $tournoi = new Tournoi();
 
         $form = $this->createForm(new TournoiType(), $tournoi);
@@ -55,6 +68,11 @@ class WarbotController extends Controller
 
         // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
+            //on attribue le tournoi au user et on affecte le statut en attente
+            $tournoi->setIdCompte($compte->getId());
+            $tournoi->setStatut("enAttente");
+
+            //persistance des données en base
             $em = $this->getDoctrine()->getManager();
             $em->persist($tournoi);
             $em->flush();
@@ -74,6 +92,11 @@ class WarbotController extends Controller
     }
 
     public function gestionTournoiAction($id, Request $request){
+        //session
+        $session = $this->get('session');
+        $compte = $session->get('compte');
+
+
         $t=$this->getDoctrine()
                 ->getManager();
         $tournoi=$t->getRepository('WebMetaCommonBundle:Tournoi')
@@ -93,32 +116,57 @@ class WarbotController extends Controller
                           ->findByIdTournoi($id);
 
 
+
+        //envoi d'invitation pour participer a un tournoi
         //formulaire d'ajout de rencontre
-        $rencontre = new Rencontre();
-        $rencontre->setIdTournoi($tournoi->getId());
-        $rencontre->setDate(new \DateTime('today'));
+        $invitation = new Invitation();
+        $invitation->setIdTournoi($tournoi->getId());
 
-        $formRencontre = $this->createFormBuilder($rencontre)
-                                ->add('idequipe1','text',array('label' => 'equipe1:'))
-                                ->add('idequipe2','text' ,array('label' => 'equipe2:'))
-                                ->add('date','date')
-                                ->add('valider', 'submit')
-                                ->getForm();
 
-        //validation formulaire de rencontre
-        $formRencontre->handleRequest($request);
+        $formInvitation = $this->createFormBuilder($invitation)
+            ->add('idInvite','text',array('label' => 'nom de l\'equipe:'))
+            ->add('valider', 'submit')
+            ->getForm();
 
-        if ($formRencontre->isValid()) {
+
+        //validation formulaire d'envoi de l'invitation
+        $formInvitation->handleRequest($request);
+        if ($formInvitation->isValid()) {
+            //récupération de l'idée de l'équipe à inviter
+            $nomE=$invitation->getIdInvite();
+            $tmp=$t->getRepository('WebMetaCommonBundle:Equipe')
+                   ->findOneByNom($nomE);
+            $invitation->setIdInvite($tmp->getId());
+
+            //configuration de la ligne a insérer en base
+            $invitation->setStatut("enAttente");
+            $invitation->setIdTournoi($id);
+            $invitation->setIdCreateur($compte->getId());
 
             // persistance en bdd
             $em = $this->getDoctrine()->getManager();
-            $em->persist($rencontre);
+            $em->persist($invitation);
             $em->flush();
-            return $this->redirect($this->generateUrl(path('warbot_tournoi_gestion_tournoi', array('id'=> $tournoi.getId()))));
         }
 
 
 
-        return $this->render('WebMetaCommonBundle:Warbot:gestionTournoi.html.twig', array('liste_team' =>$liste_team, 'liste_match' =>$liste_match ,'tournoi' =>$tournoi, 'formRencontre' =>$formRencontre->createView()));
+        return $this->render('WebMetaCommonBundle:Warbot:gestionTournoi.html.twig', array('liste_team' =>$liste_team, 'liste_match' =>$liste_match ,'tournoi' =>$tournoi ,'formInvitation'=>$formInvitation->createView()));
+
+        /*
+        //generation des tableaux de tournois
+        for($i=1; $i <= $liste_team->length() ; $i++){
+            $rencontre=new Rencontre();
+            $rencontre->setIdequipe1($liste_team[$i])
+                      ->setIdequipe2($liste_team[$i+1])
+                      ->setIdTournoi($tournoi->getId())
+                      ->setDate(new \DateTime('today'));
+
+            //persistance des données en base
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rencontre);
+            $em->flush();
+        }
+        */
     }
 }

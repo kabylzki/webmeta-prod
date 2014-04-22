@@ -3,13 +3,16 @@
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %}
-<h1>liste des tournois</h1>
+<div id="page-warbot-tournoi">
+    <h1>Tournoi warbot</h1>
+    <h2>liste des tournois</h2>
     <ul>
         {% for tournoi in liste_tournoi %}
             <li><a href="{{ path('warbot_tournoi_gestion_tournoi', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a></li>
         {% endfor %}
     </ul>
- <h1>liste des tournois publiques</h1>
+    <h2>liste des tournois publiques</h2>
+</div>
 {% endblock %}
 
 

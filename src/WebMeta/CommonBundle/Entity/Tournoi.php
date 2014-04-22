@@ -28,12 +28,14 @@ class Tournoi
      */
     private $nom;
 
+
+
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $status;
+    private $type;
 
     /**
      * @var \DateTime
@@ -42,6 +44,19 @@ class Tournoi
      */
     private $date;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_compte", type="integer")
+     */
+    private $id_compte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=255)
+     */
+    private $statut;
 
     /**
      * Get id
@@ -51,6 +66,29 @@ class Tournoi
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id_compte
+     *
+     * @param string $id_compte
+     * @return Tournoi
+     */
+    public function setIdCompte($id_compte)
+    {
+        $this->id_compte = $id_compte;
+
+        return $this;
+    }
+
+    /**
+     * Get id_compte
+     *
+     * @return integer
+     */
+    public function getIdCompte()
+    {
+        return $this->id_compte;
     }
 
     /**
@@ -69,7 +107,7 @@ class Tournoi
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -77,26 +115,49 @@ class Tournoi
     }
 
     /**
-     * Set status
+     * Set statut
      *
-     * @param string $status
+     * @param string $statut
      * @return Tournoi
      */
-    public function setStatus($status)
+    public function setStatut($statut)
     {
-        $this->status = $status;
+        $this->statut = $statut;
 
         return $this;
     }
 
     /**
-     * Get status
+     * Get statut
      *
      * @return string 
      */
-    public function getStatus()
+    public function getStatut()
     {
-        return $this->status;
+        return $this->statut;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Tournoi
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
