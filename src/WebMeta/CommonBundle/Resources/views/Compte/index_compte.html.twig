@@ -46,7 +46,14 @@
     
 </ul>
 
-<h3>Equipes</h3>
+<h3>Mes équipes</h3>
+
+<ul>
+{% for equipe in liste_equipe %}
+    <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a> </li>
+{% endfor %}
+</ul>
+
 <ul>
     <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
 </ul>

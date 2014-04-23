@@ -29,8 +29,10 @@ class CompteController extends Controller {
                 return $this->redirect($this->generateUrl('common_homepage'));
             }
         }
+        
+        $liste_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->findBy(array("id_compte" => $compte->getId()));
 
-        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected));
+        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe));
     }
 
     public function formCreationAction() {

@@ -310,6 +310,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // equipe_view
+        if (0 === strpos($pathinfo, '/equipe') && preg_match('#^/equipe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::indexAction',));
+        }
+
+        // equipe_quit
+        if (0 === strpos($pathinfo, '/quitter-equipe') && preg_match('#^/quitter\\-equipe/(?P<id_equipe>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_quit')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::quitAction',));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

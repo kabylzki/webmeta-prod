@@ -84,7 +84,6 @@ class Compte
      */
     private $description;
 
-
     /**
      * Get id
      *

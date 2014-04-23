@@ -17,9 +17,15 @@ class Membre
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(name="id_equipe", type="integer")
+     */
+    private $id_equipe;
 
     /**
      * @var string
@@ -27,15 +33,18 @@ class Membre
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
-
+    
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_equipe", type="integer")
+     * Set id
+     * @param integer $id
+     * @return Membre 
      */
-    private $id_equipe;
-
-
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $this;
+    }
     /**
      * Get id
      *

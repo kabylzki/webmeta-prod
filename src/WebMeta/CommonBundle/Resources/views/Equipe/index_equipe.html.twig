@@ -3,51 +3,32 @@
 {% block title %} WebMeta - Metaciv {% endblock %}
 
 {% block content %} 
-<div id="page-compte-index">
-    <h1>Compte : {{compte.getPseudo}}</h1>
+<div id="page-equipe-index">
+    <h1>Equipe : {{equipe.getNom}}</h1>
     
     {# Messages - (Notice, Erreur) #}
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
     
-    <div class="avatar-compte col-md-2">
-        {% if compte.getAvatar is null %}
-            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/default_avatar.png')}}" alt="Mon avatar" /></div>
-        {% else %}
-            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
-        {% endif %}
-            {% if user_connected %}
-                <p class="avatar-link"><a href="{{ path('compte_modification_avatar') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
-            {% endif %}
+    <div class="presentation-equipe col-md-12">
+        <h3>Présentation</h3>
+        <p>{{equipe.getPresentation}}</p>
     </div>
     
-    <div class="information-compte col-md-10">
-        <h3>Informations</h3>
-        {% if user_connected %}
-            <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier</a></p>
-        {% endif %}
+    <div class="membre-equipe col-md-12">
+        <h3>Liste des membres de l'équipe</h3>
         <ul>
-            <li><strong>Email</strong> : {{compte.getEmail}}</li>
-            <li><strong>Nom</strong> : {{compte.getNom}}</li>
-            <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
-            <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
-            <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
-            <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
+            {% for membre in liste_membre %}
+            <li>- <img src="{{ asset('bundles/webmetacommon/images/leader.jpg')}}" alt="Leader" style="width:20px;"/><a href="{{ path('compte_view', {id:membre.getId})}}" title="Voir la page de {{membre.getPseudo}}">{{membre.getPseudo}}</a></li>
+            {% endfor %}
         </ul>
     </div>
-    <div class="clear"></div>
+
 </div>    
  {% endblock %}
-
-
 
 {% block sidebar %} 
 <h1>Menu</h1>
 <ul>
-    
-</ul>
-
-<h3>Equipes</h3>
-<ul>
-    <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+    <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir quitter cette équipe ?');">Quitter l'équipe</a></li>
 </ul>
 {% endblock %}

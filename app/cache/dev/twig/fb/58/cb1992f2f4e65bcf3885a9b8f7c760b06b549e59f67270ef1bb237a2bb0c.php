@@ -130,10 +130,33 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     
 </ul>
 
-<h3>Equipes</h3>
+<h3>Mes équipes</h3>
+
+<ul>
+";
+        // line 52
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
+        foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
+            // line 53
+            echo "    <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
+            echo "\" title=\"Voir l'équipe  ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getNom"), "html", null, true);
+            echo "\"> ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getNom"), "html", null, true);
+            echo "</a> </li>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipe'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 55
+        echo "</ul>
+
 <ul>
     <li><a href=\"";
-        // line 51
+        // line 58
         echo $this->env->getExtension('routing')->getPath("equipe_creation");
         echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
 </ul>
@@ -152,6 +175,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  137 => 51,  125 => 43,  115 => 34,  111 => 33,  107 => 32,  103 => 31,  99 => 30,  95 => 29,  92 => 28,  86 => 26,  84 => 25,  78 => 21,  72 => 19,  69 => 18,  62 => 16,  56 => 14,  54 => 13,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
+        return array (  160 => 58,  155 => 55,  142 => 53,  138 => 52,  125 => 43,  115 => 34,  111 => 33,  107 => 32,  103 => 31,  99 => 30,  95 => 29,  92 => 28,  86 => 26,  84 => 25,  78 => 21,  72 => 19,  69 => 18,  62 => 16,  56 => 14,  54 => 13,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
     }
 }
