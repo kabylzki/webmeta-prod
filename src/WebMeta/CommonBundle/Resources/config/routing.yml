@@ -96,26 +96,27 @@ warbot_documentation:
     pattern:  /warbot-documentation
     defaults: { _controller: WebMetaCommonBundle:Warbot:documentation }
 
+
+################ Tournoi ################   
 #Page de tournoi warbot
-warbot_tournoi:
+tournoi_warbot:
     pattern: /warbot-tournoi
-    defaults: { _controller: WebMetaCommonBundle:Warbot:tournoi }
+    defaults: { _controller: WebMetaCommonBundle:Tournoi:tournoi }
 
 #Page de creation de tournoi warbot
-warbot_creationTournoi:
-    pattern: /warbot-creationTournoi
-    defaults: { _controller: WebMetaCommonBundle:Warbot:creationTournoi}
+tournoi_creation:
+    pattern: /creation-tournoi
+    defaults: { _controller: WebMetaCommonBundle:Tournoi:creationTournoi}
 
 # Page de validation de la creation de tournoi
-warbot_tournoi_creation_validation:
-    pattern:  /warbot-tournoi-creation-validation
-    defaults: { _controller: WebMetaCommonBundle:Warbot:validation }
+tournoi_creation_validation:
+    pattern:  /creation-tournoi-validation
+    defaults: { _controller: WebMetaCommonBundle:Tournoi:validation }
 
 # Page de gestion d'un  tournoi
-warbot_tournoi_gestion_tournoi:
-    pattern: /warbot-tournoi-gestion-tournoi/{id}
-    defaults: {_controller: WebMetaCommonBundle:Warbot:gestionTournoi}
-
+tournoi_gestion:
+    pattern: /tournoi-gestion/{id}
+    defaults: {_controller: WebMetaCommonBundle:Tournoi:gestionTournoi}
 
 ################ Metaciv ################   
 # Page d'accueil de Metaciv

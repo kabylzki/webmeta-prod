@@ -89,7 +89,7 @@ class __TwigTemplate_432f65d09a1d175978f5e763ebade52f4d1349b0cf3011068e5103960f3
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
             // line 28
             echo "        <li><a href=\"";
-            echo $this->env->getExtension('routing')->getPath("warbot_tournoi");
+            echo $this->env->getExtension('routing')->getPath("tournoi_warbot");
             echo "\" title=\"tournoi\">tournoi</a></li>
     ";
         }

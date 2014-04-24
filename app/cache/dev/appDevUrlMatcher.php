@@ -257,31 +257,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::documentationAction',  '_route' => 'warbot_documentation',);
                 }
 
-                // warbot_tournoi
+                // tournoi_warbot
                 if ($pathinfo === '/warbot-tournoi') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::tournoiAction',  '_route' => 'warbot_tournoi',);
-                }
-
-                // warbot_creationTournoi
-                if ($pathinfo === '/warbot-creationTournoi') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::creationTournoiAction',  '_route' => 'warbot_creationTournoi',);
-                }
-
-                if (0 === strpos($pathinfo, '/warbot-tournoi-')) {
-                    // warbot_tournoi_creation_validation
-                    if ($pathinfo === '/warbot-tournoi-creation-validation') {
-                        return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::validationAction',  '_route' => 'warbot_tournoi_creation_validation',);
-                    }
-
-                    // warbot_tournoi_gestion_tournoi
-                    if (0 === strpos($pathinfo, '/warbot-tournoi-gestion-tournoi') && preg_match('#^/warbot\\-tournoi\\-gestion\\-tournoi/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'warbot_tournoi_gestion_tournoi')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\WarbotController::gestionTournoiAction',));
-                    }
-
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::tournoiAction',  '_route' => 'tournoi_warbot',);
                 }
 
             }
 
+        }
+
+        if (0 === strpos($pathinfo, '/creation-tournoi')) {
+            // tournoi_creation
+            if ($pathinfo === '/creation-tournoi') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::creationTournoiAction',  '_route' => 'tournoi_creation',);
+            }
+
+            // tournoi_creation_validation
+            if ($pathinfo === '/creation-tournoi-validation') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::validationAction',  '_route' => 'tournoi_creation_validation',);
+            }
+
+        }
+
+        // tournoi_gestion
+        if (0 === strpos($pathinfo, '/tournoi-gestion') && preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
         }
 
         if (0 === strpos($pathinfo, '/metaciv')) {
