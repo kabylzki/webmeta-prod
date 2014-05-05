@@ -68,7 +68,6 @@ logout:
     pattern: /logout
     defaults: {_controller: WebMetaCommonBundle:Login:logout }
 
-
 ################ Page ################
 # Affiche une page créée et son contenu
 page_view:
@@ -147,6 +146,16 @@ equipe_creation_validation:
     pattern:  /creation-equipe-validation
     defaults: { _controller: WebMetaCommonBundle:Equipe:creation }
     
+# Postuler pour entrer dans une équipe
+equipe_postuler:
+    pattern:  /postuler-equipe/{id_equipe}
+    defaults: { _controller: WebMetaCommonBundle:Equipe:postuler }
+    
+# Page de l'équipe
+equipe_liste:
+    pattern:  /liste-equipes
+    defaults: { _controller: WebMetaCommonBundle:Equipe:liste }
+    
 # Page de l'équipe
 equipe_view:
     pattern:  /equipe/{id}
@@ -154,5 +163,5 @@ equipe_view:
     
 # Quitter une équipe
 equipe_quit:
-    pattern:  /quitter-equipe/{id_equipe}
-    defaults: { _controller: WebMetaCommonBundle:Equipe:quit }
+    pattern:  /quitter-equipe/{id_equipe}-{last}
+    defaults: { _controller: WebMetaCommonBundle:Equipe:quit, last: false }

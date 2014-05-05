@@ -42,6 +42,13 @@ class Equipe
      */
     private $presentation;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime")
+     */
+    private $date_creation;
+
 
     /**
      * Get id
@@ -120,5 +127,26 @@ class Equipe
     public function getPresentation()
     {
         return $this->presentation;
+    }
+    
+    /**
+     * Set date_creation
+     *
+     * @param date $date_creation
+     * @return Equipe
+     */
+    public function setDateCreation($date_creation) {
+        $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    /**
+     * Get date_creation
+     *
+     * @return timestamp 
+     */
+    public function getDateCreation() {
+        return $this->date_creation;
     }
 }

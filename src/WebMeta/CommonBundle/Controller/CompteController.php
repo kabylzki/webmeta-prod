@@ -15,6 +15,7 @@ class CompteController extends Controller {
         $compte = $session->get('compte');
         // gestion utilisateur connecté
         $user_connected = true;
+        
 
         // Si la session n'est pas intialisée (utilisateur non connecté)
         if (empty($compte)) {
@@ -30,9 +31,29 @@ class CompteController extends Controller {
             }
         }
         
-        $liste_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->findBy(array("id_compte" => $compte->getId()));
-
-        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe));
+        // Récupère la liste des équipes dont le membre fait partie
+        $liste_id_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Membre')->findAllEquipe($compte->getId());
+        
+        // Boucle sur la liste des ID d'équipe dont le membre fait partie et charge leurs informations
+        $liste_equipe = array();
+        foreach ($liste_id_equipe as $une_equipe) {
+            $equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->find($une_equipe['id_equipe']);
+            
+            array_push($liste_equipe, $equipe);
+        }
+        
+        // Récupère la liste des demandes en attente
+        $liste_id_demande_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:InvitationEquipe')->findAllDemandeEquipe($compte->getId(), 'en attente', 'joueur');
+        
+        // Boucle sur la liste des ID d'équipe dont le membre a fait la demande et charge leurs informations
+        $liste_demande = array();
+        foreach ($liste_id_demande_equipe as $un_id_equipe) {
+            $equipe_demande = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->find($un_id_equipe['id_equipe']);
+            array_push($liste_demande, $equipe_demande);
+        }
+        
+        // Appel du template avec tous les paramètres
+        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande));
     }
 
     public function formCreationAction() {

@@ -1,6 +1,6 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
-{% block title %} WebMeta - Metaciv {% endblock %}
+{% block title %} WebMeta - Compte de {{compte.getPseudo}}{% endblock %}
 
 {% block content %} 
 <div id="page-compte-index">
@@ -35,26 +35,38 @@
         </ul>
     </div>
     <div class="clear"></div>
+    
+    {% if user_connected %}
+        <div class="demandes-compte col-md-12">
+            <h3>Mes demandes en attente</h3>
+            <ul>
+            {% for demande in liste_demande %}
+                <li><a href="{{ path('equipe_view', {id:demande.getId}) }}" title="Voir l'équipe  {{ demande.getNom }}"> {{ demande.getNom }}</a> - <i>En attente </i></li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>    
  {% endblock %}
-
 
 
 {% block sidebar %} 
 <h1>Menu</h1>
 <ul>
-    
+    <li><a href="{{ path('equipe_liste') }}" title="Afficher la liste des équipes" />Liste des équipes</a></li>
 </ul>
 
-<h3>Mes équipes</h3>
+<h3>Equipes</h3>
 
 <ul>
 {% for equipe in liste_equipe %}
-    <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a> </li>
+    <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
 {% endfor %}
 </ul>
+{% if user_connected %}
+    <ul>
+        <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+    </ul>
+{% endif %}
 
-<ul>
-    <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
-</ul>
 {% endblock %}

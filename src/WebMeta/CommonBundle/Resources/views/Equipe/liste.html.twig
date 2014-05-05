@@ -1,0 +1,29 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Liste des équipes {% endblock %}
+
+{% block content %} 
+<div id="page-equipe-liste">
+    <h1>Liste des équipes</h1>
+    
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    <div class="liste-equipe col-md-12">
+        <ul>
+            {% for equipe in liste_equipe %}
+                <li>- <a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>    
+ {% endblock %}
+
+{% block sidebar %} 
+<h1>Menu</h1>
+<ul>
+
+        
+</ul>
+{% endblock %}

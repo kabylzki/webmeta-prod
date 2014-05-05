@@ -29,6 +29,15 @@
 {% block sidebar %} 
 <h1>Menu</h1>
 <ul>
-    <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir quitter cette équipe ?');">Quitter l'équipe</a></li>
+    {% if is_membre %}
+        {% if nb_membre > 1 %}
+            <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir quitter cette équipe ?');">Quitter l'équipe</a></li>
+        {% else %}
+            <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId, last:true}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Attention ! vous êtes le dernier membre, quitter l\'équipe la supprimera également, êtes-vous sûr ? ');">Quitter l'équipe {{equipe.getNom}}</a></li>
+        {% endif %}
+    {% else %}
+        <li><a href="{{ path('equipe_postuler', {id_equipe:equipe.getId}) }}" title="Postuler : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir postuler pour l\'équipe {{equipe.getNom}}  ?  ');">Postuler</a></li>
+    {% endif %}
+        
 </ul>
 {% endblock %}
