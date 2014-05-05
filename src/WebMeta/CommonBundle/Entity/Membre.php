@@ -35,6 +35,13 @@ class Membre
     private $status;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_recrutement", type="datetime")
+     */
+    private $date_recrutement;   
+    
+    /**
      * Set id
      * @param integer $id
      * @return Membre 
@@ -99,5 +106,26 @@ class Membre
     public function getIdEquipe()
     {
         return $this->id_equipe;
+    }
+    
+    /**
+     * Set date_recrutement
+     *
+     * @param date $date_recrutement
+     * @return Membre
+     */
+    public function setDateRecrutement($date_recrutement) {
+        $this->date_recrutement = $date_recrutement;
+
+        return $this;
+    }
+
+    /**
+     * Get date_recrutement
+     *
+     * @return timestamp 
+     */
+    public function getDateRecrutement() {
+        return $this->date_recrutement;
     }
 }

@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class MembreRepository extends EntityRepository
 {
     
-        /**
+     /**
      * Récupère une liste de membre d'une équipe
      * @param int $idEquipe id de l'équipe
      * @return array
@@ -27,6 +27,21 @@ class MembreRepository extends EntityRepository
             WHERE m.id = c.id
             AND m.id_equipe = :idEquipe
             ORDER BY c.pseudo ASC')->setParameter('idEquipe', $id_equipe)->getResult();
+                 
+    }
+    
+     /**
+     * Récupère une liste d'équipe dont le membre fait partie
+     * @param int $id_membre id de l'équipe
+     * @return array
+     */
+    public function findAllEquipe($id_membre) {
+        
+        return $this->getEntityManager()
+                        ->createQuery(
+            'SELECT DISTINCT m.id_equipe
+            FROM WebMetaCommonBundle:Membre m
+            WHERE m.id = :idMembre')->setParameter('idMembre', $id_membre)->getResult();
                  
     }
 
