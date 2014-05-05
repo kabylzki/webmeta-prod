@@ -1,0 +1,34 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Metaciv {% endblock %}
+
+{% block content %} 
+<div id="page-equipe-index">
+    <h1>Equipe : {{equipe.getNom}}</h1>
+    
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    <div class="presentation-equipe col-md-12">
+        <h3>Présentation</h3>
+        <p>{{equipe.getPresentation}}</p>
+    </div>
+    
+    <div class="membre-equipe col-md-12">
+        <h3>Liste des membres de l'équipe</h3>
+        <ul>
+            {% for membre in liste_membre %}
+            <li>- <img src="{{ asset('bundles/webmetacommon/images/leader.jpg')}}" alt="Leader" style="width:20px;"/><a href="{{ path('compte_view', {id:membre.getId})}}" title="Voir la page de {{membre.getPseudo}}">{{membre.getPseudo}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>    
+ {% endblock %}
+
+{% block sidebar %} 
+<h1>Menu</h1>
+<ul>
+    <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir quitter cette équipe ?');">Quitter l'équipe</a></li>
+</ul>
+{% endblock %}
