@@ -6,17 +6,17 @@
     <div id="page-warbot-gestion">
         <center><h1>{{ tournoi.getNom }}</h1></center>
         <h1>rencontres</h1>
-                <ul>
-                {% for match in liste_match %}
-                    <li>{{ match.getIdEquipe1 }} vs {{ match.getIdEquipe2 }}</li>
-                {% endfor %}
-                </ul>
+            {% block rencontres %}
+                <a href="{{ path('tournoi_coupe')}}">tableau des rencontres</a>
+            {% endblock %}
         <h1>liste des participants</h1>
                <ul>
                 {% for team in liste_team %}
-                    <li>{{ team.getIdInvite }}</li>
+                    <li>{{ team.getIdInvite()}}</li>
                 {% endfor %}
                </ul>
+        {# Messages - (Notice, Erreur) #}
+        {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
         {{ form(formInvitation) }}
     </div>
 

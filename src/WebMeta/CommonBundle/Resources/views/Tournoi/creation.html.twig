@@ -6,7 +6,9 @@
 
 {% block content %}
   <h1>formulaire de création de Tournoi</h1>
-  {{ form(form,{'action': path('tournoi_creation_validation'), 'method': 'POST'}) }}
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    {{ form(form,{'action': path('tournoi_creation_validation'), 'method': 'POST'}) }}
 
 
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace WebMeta\CommonBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -70,78 +71,95 @@ class TournoiController extends Controller {
         $session = $this->get('session');
         $compte = $session->get('compte');
 
-
+        //récupération du tournoi courant
         $t = $this->getDoctrine()
-                ->getManager();
+                  ->getManager();
         $tournoi = $t->getRepository('WebMetaCommonBundle:Tournoi')
-                ->findOneById($id);
+                     ->findOneById($id);
+
 
         $inv = $this->getDoctrine()
-                ->getManager();
+                    ->getManager();
         $renc = $this->getDoctrine()
-                ->getManager();
+                     ->getManager();
 
-        //tableau des invitations
-        $liste_team = $inv->getRepository('WebMetaCommonBundle:Invitation')
-                ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
+        //tableau des id des  equipes invités
+        $liste_team= $inv->getRepository('WebMetaCommonBundle:Invitation')
+                            ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
+        /*
+        //tableau des noms des equipes
+         $liste_team = array();
+         for($i=1; $i <= $liste_teamId->size() ;$i++){
+            //$liste_team->array_push( $inv->getRepository('WebMetaCommonBundle:Equipe')->findOneById($liste_teamId[$i]));
+         }
+        */
 
-        //tableau des matchs
+        //tableau des rencontres
         $liste_match = $renc->getRepository('WebMetaCommonBundle:Rencontre')
-                ->findByIdTournoi($id);
+                            ->findByIdTournoi($id);
 
 
 
         //envoi d'invitation pour participer a un tournoi
-        //formulaire d'ajout de rencontre
         $invitation = new Invitation();
         $invitation->setIdTournoi($tournoi->getId());
 
 
         $formInvitation = $this->createFormBuilder($invitation)
-                ->add('idInvite', 'text', array('label' => 'nom de l\'equipe:'))
-                ->add('valider', 'submit')
-                ->getForm();
+                               ->add('idInvite', 'text', array('label' => 'nom de l\'equipe:'))
+                               ->add('valider', 'submit')
+                               ->getForm();
 
 
         //validation formulaire d'envoi de l'invitation
         $formInvitation->handleRequest($request);
         if ($formInvitation->isValid()) {
-            //récupération de l'idée de l'équipe à inviter
+
+            //on fait correspondre le nom de l'équipe a son id pour pour pouvoir insérer la ligne en base
             $nomE = $invitation->getIdInvite();
-            $tmp = $t->getRepository('WebMetaCommonBundle:Equipe')
+            $tmp= $t->getRepository('WebMetaCommonBundle:Equipe')
                     ->findOneByNom($nomE);
-            $invitation->setIdInvite($tmp->getId());
+            if($tmp){
+                $invitation->setIdInvite($tmp->getId());
 
-            //configuration de la ligne a insérer en base
-            $invitation->setStatut("enAttente");
-            $invitation->setIdTournoi($id);
-            $invitation->setIdCreateur($compte->getId());
+                //configuration de la ligne a insérer en base
+                $invitation->setStatut("accepted");
+                $invitation->setIdTournoi($id);
+                $invitation->setIdCreateur($compte->getId());
 
-            // persistance en bdd
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($invitation);
-            $em->flush();
+                // persistance en bdd
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($invitation);
+                $em->flush();
+                $message = "invitation envoyée";
+
+            }
+            else{
+                $message = "Une erreur est survenue";
+            }
+
+            //message de notification
+            $this->get('session')->getFlashBag()->add('notice', $message);
+
         }
+         return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('liste_team' => $liste_team, 'liste_match' => $liste_match, 'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
 
-
-
-        return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('liste_team' => $liste_team, 'liste_match' => $liste_match, 'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
-
-        /*
-          //generation des tableaux de tournois
+           /*
+          //generation des rencontres
           for($i=1; $i <= $liste_team->length() ; $i++){
-          $rencontre=new Rencontre();
-          $rencontre->setIdequipe1($liste_team[$i])
-          ->setIdequipe2($liste_team[$i+1])
-          ->setIdTournoi($tournoi->getId())
-          ->setDate(new \DateTime('today'));
+            $rencontre=new Rencontre();
+            $rencontre->setIdequipe1($liste_team[$i])
+                      ->setIdequipe2($liste_team[$i+1])
+                       ->setIdTournoi($tournoi->getId())
+                       ->setDate(new \DateTime('today'));
 
           //persistance des données en base
           $em = $this->getDoctrine()->getManager();
           $em->persist($rencontre);
           $em->flush();
           }
-         */
+           */
+
     }
 
 }

@@ -118,6 +118,13 @@ tournoi_gestion:
     pattern: /tournoi-gestion/{id}
     defaults: {_controller: WebMetaCommonBundle:Tournoi:gestionTournoi}
 
+################ TypedeTournoi##################
+
+#Coupe
+tournoi_coupe:
+    pattern: /tournoi-coupe
+    defaults: { _controller: WebMetaCommonBundle:TypeTournoi:coupe}
+
 ################ Metaciv ################   
 # Page d'accueil de Metaciv
 metaciv_homepage:
