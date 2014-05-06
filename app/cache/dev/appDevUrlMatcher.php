@@ -279,9 +279,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // tournoi_gestion
-        if (0 === strpos($pathinfo, '/tournoi-gestion') && preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
+        if (0 === strpos($pathinfo, '/tournoi-')) {
+            // tournoi_gestion
+            if (0 === strpos($pathinfo, '/tournoi-gestion') && preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
+            }
+
+            // tournoi_coupe
+            if ($pathinfo === '/tournoi-coupe') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TypeTournoiController::coupeAction',  '_route' => 'tournoi_coupe',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/metaciv')) {
@@ -310,14 +318,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // equipe_postuler
+        if (0 === strpos($pathinfo, '/postuler-equipe') && preg_match('#^/postuler\\-equipe/(?P<id_equipe>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_postuler')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::postulerAction',));
+        }
+
+        // equipe_liste
+        if ($pathinfo === '/liste-equipes') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::listeAction',  '_route' => 'equipe_liste',);
+        }
+
         // equipe_view
         if (0 === strpos($pathinfo, '/equipe') && preg_match('#^/equipe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::indexAction',));
         }
 
         // equipe_quit
-        if (0 === strpos($pathinfo, '/quitter-equipe') && preg_match('#^/quitter\\-equipe/(?P<id_equipe>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_quit')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::quitAction',));
+        if (0 === strpos($pathinfo, '/quitter-equipe') && preg_match('#^/quitter\\-equipe/(?P<id_equipe>[^/\\-]++)(?:\\-(?P<last>[^/]++))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_quit')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::quitAction',  'last' => false,));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
