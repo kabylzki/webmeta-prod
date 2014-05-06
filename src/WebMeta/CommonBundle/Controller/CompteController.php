@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class CompteController extends Controller {
 
+    // Page d'accueil du compte
     public function indexAction($id) {
         $session = $this->get('session');
         $compte = $session->get('compte');
@@ -56,6 +57,7 @@ class CompteController extends Controller {
         return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande));
     }
 
+    // Formulaire de création d'un compte
     public function formCreationAction() {
         $compte = new Compte();
         $form = $this->createForm(new CompteType(), $compte);
