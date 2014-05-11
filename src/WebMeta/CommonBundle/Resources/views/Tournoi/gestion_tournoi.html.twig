@@ -12,7 +12,7 @@
         <h1>liste des participants</h1>
                <ul>
                 {% for team in liste_team %}
-                    <li>{{ team.getIdInvite()}}</li>
+                    <li>{{ team.getNom()}}</li>
                 {% endfor %}
                </ul>
         {# Messages - (Notice, Erreur) #}

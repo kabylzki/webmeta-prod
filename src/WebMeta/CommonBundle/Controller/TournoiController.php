@@ -84,15 +84,16 @@ class TournoiController extends Controller {
                      ->getManager();
 
         //tableau des id des  equipes invités
-        $liste_team= $inv->getRepository('WebMetaCommonBundle:Invitation')
+        $liste_teamId= $inv->getRepository('WebMetaCommonBundle:Invitation')
                             ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
-        /*
+
         //tableau des noms des equipes
          $liste_team = array();
-         for($i=1; $i <= $liste_teamId->size() ;$i++){
-            //$liste_team->array_push( $inv->getRepository('WebMetaCommonBundle:Equipe')->findOneById($liste_teamId[$i]));
+         for($i=0; $i <count($liste_teamId);$i++){
+             array_push( $liste_team , $inv->getRepository('WebMetaCommonBundle:Equipe')
+                                           ->findOneById($liste_teamId[$i]->getIdInvite()));
          }
-        */
+
 
         //tableau des rencontres
         $liste_match = $renc->getRepository('WebMetaCommonBundle:Rencontre')
