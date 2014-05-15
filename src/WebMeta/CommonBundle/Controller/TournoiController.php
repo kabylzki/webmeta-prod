@@ -129,13 +129,18 @@ class TournoiController extends Controller {
 
          }
         #########################invitation###############################################
+        $liste_nom_equipe = array();
+        $items=$inv->getRepository('WebMetaCommonBundle:Equipe')->findAll();
+        for($i=0; $i <count($items);$i++){
+           $liste_nom_equipe[$items[$i]->getNom()]=$items[$i]->getNom();
+        }
         //envoi d'invitation pour participer a un tournoi
         $invitation = new Invitation();
         $invitation->setIdTournoi($tournoi->getId());
 
         //formulaire d'envoie d'invitation à une équipe
         $formInvitation = $this->createFormBuilder($invitation)
-                               ->add('idInvite', 'text', array('label' => 'nom de l\'equipe:'))
+                               ->add('idInvite','choice', array('choices' => $liste_nom_equipe,'required'  => true))
                                ->add('valider', 'submit')
                                ->getForm();
 
@@ -145,9 +150,8 @@ class TournoiController extends Controller {
         if ($formInvitation->isValid()) {
 
             //on fait correspondre le nom de l'équipe a son id  pour pouvoir insérer la ligne en base
-            $nomE = $invitation->getIdInvite();
             $tmp= $t->getRepository('WebMetaCommonBundle:Equipe')
-                    ->findOneByNom($nomE);
+                    ->findOneByNom($invitation->getIdInvite());
             if($tmp){
                 $invitation->setIdInvite($tmp->getId());
 
@@ -161,10 +165,11 @@ class TournoiController extends Controller {
                 $em->persist($invitation);
                 $em->flush();
                 $message = "invitation envoyée";
+                return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $id)));
 
             }
             else{
-                $message = "équipe introuvable";
+                $message = $invitation->getIdInvite();
             }
 
             //message de notification
