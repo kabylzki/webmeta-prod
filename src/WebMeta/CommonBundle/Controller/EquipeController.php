@@ -40,8 +40,20 @@ class EquipeController extends Controller {
         }
 
         $nb_membre = count($liste_membre);
-
-        return $this->render('WebMetaCommonBundle:Equipe:index_equipe.html.twig', array('equipe' => $equipe, 'liste_membre' => $liste_membre, 'nb_membre' => $nb_membre, 'is_membre' => $is_membre));
+        
+        // Récupération de la liste des joueurs en attente pour rejoindre l'équipe
+        $liste_id_membre_attente = $em->getRepository('WebMetaCommonBundle:InvitationEquipe')->findAllDemandeMembre($id);
+        
+        // Boucle sur la liste des ID de compte et charge leurs informations
+        $liste_membre_attente = array();
+        foreach ($liste_id_membre_attente as $un_compte) {
+            $compte = $em->getRepository('WebMetaCommonBundle:Compte')->find($un_compte['id_compte']);
+            array_push($liste_membre_attente, $compte);
+        }
+        
+        $nb_membre_attente = count($liste_membre_attente);
+        
+        return $this->render('WebMetaCommonBundle:Equipe:index_equipe.html.twig', array('equipe' => $equipe, 'liste_membre' => $liste_membre, 'nb_membre' => $nb_membre, 'is_membre' => $is_membre, 'liste_membre_attente' => $liste_membre_attente, 'nb_membre_attente' => $nb_membre_attente));
     }
 
     // Affiche la liste des équipes
@@ -137,6 +149,7 @@ class EquipeController extends Controller {
             $membre->setId($compte_session->getId());
             $membre->setIdEquipe($id_equipe);
             $membre->setStatus("Leader");
+            $membre->setDateRecrutement(new \DateTime());
             $em_membre->persist($membre);
             $em_membre->flush();
 
@@ -174,24 +187,65 @@ class EquipeController extends Controller {
         $em->remove($membre);
         $em->flush();
 
+        // Suppression de l'équipe si le dernier membre quitte l'équipe
         if ($last) {
-            $equipe = new Membre();
-            $em_membre = $this->getDoctrine()->getManager();
-            $em_membre->getRepository('WebMetaCommonBundle:Membre');
-
-            $membre->setId($compte_session->getId());
-            $membre->setIdEquipe($id_equipe);
-            $membre->setStatus("Leader");
-            $em_membre->persist($membre);
-            $em_membre->flush();
+            $equipe = $em->getRepository('WebMetaCommonBundle:Equipe')->find($id_equipe);
+            $em->remove($equipe);
+            $em->flush();
         }
-
-
 
         // Message de confirmation pour l'utilisateur
         $this->get('session')->getFlashBag()->add(
                 'notice', "Equipe quitée avec succès "
         );
+
+        return $this->redirect($this->generateUrl('compte_view', array("id" => $id_compte)));
+    }
+    
+    public function recrutementAction($id_equipe, $id_compte, $accept = "allow") {
+        $session = $this->get('session');
+        $compte = $session->get('compte');
+
+        $em = $this->getDoctrine()->getManager();
+
+        if ($accept == "allow") {
+            // Save du Membre
+            $membre = new Membre();
+            $em->getRepository('WebMetaCommonBundle:Membre');
+
+            $membre->setId($id_compte);
+            $membre->setIdEquipe($id_equipe);
+            $membre->setStatus("Membre");
+            $membre->setDateRecrutement(new \DateTime());
+            $em->persist($membre);
+            $em->flush();   
+            
+            // Supprime la demande d'invitation
+            $invitation_equipe = $em->getRepository('WebMetaCommonBundle:InvitationEquipe')->findBy(array("id_compte" => $id_compte, "id_equipe" => $id_equipe));
+            $em->remove($invitation_equipe[0]);
+            $em->flush();
+            
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'notice', "Membre recruté"
+            );
+
+            // TODO Message info user
+        } else {
+            // Supprime la demande d'invitation
+            $invitation_equipe = $em->getRepository('WebMetaCommonBundle:InvitationEquipe')->findBy(array("id_compte" => $id_compte, "id_equipe" => $id_equipe));
+            $em->remove($invitation_equipe[0]);
+            $em->flush();
+            
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'notice', "Membre refusé"
+            );
+            
+            // TODO Message info user
+        }
+
+
 
         return $this->redirect($this->generateUrl('compte_view', array("id" => $id_compte)));
     }

@@ -286,8 +286,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // tournoi_coupe
-            if ($pathinfo === '/tournoi-coupe') {
-                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TypeTournoiController::coupeAction',  '_route' => 'tournoi_coupe',);
+            if (0 === strpos($pathinfo, '/tournoi-coupe') && preg_match('#^/tournoi\\-coupe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_coupe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TypeTournoiController::coupeAction',));
             }
 
         }
@@ -336,6 +336,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // equipe_quit
         if (0 === strpos($pathinfo, '/quitter-equipe') && preg_match('#^/quitter\\-equipe/(?P<id_equipe>[^/\\-]++)(?:\\-(?P<last>[^/]++))?$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_quit')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::quitAction',  'last' => false,));
+        }
+
+        // equipe_recrutement
+        if (0 === strpos($pathinfo, '/recrutement') && preg_match('#^/recrutement/(?P<id_equipe>[^/\\-]++)\\-(?P<id_compte>[^/\\-]++)\\-(?P<accept>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_recrutement')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::recrutementAction',));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
