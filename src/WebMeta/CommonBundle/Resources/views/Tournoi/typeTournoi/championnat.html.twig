@@ -2,33 +2,52 @@
 
 
 {% block content %}
-    {% for renc in liste_Rencontre %}
+    {% for i in 0..liste_RencP|length-1 %}
         <div class="row">
             <div class="row">
-                <div class="col-md-2 struct">{{ renc.getIdEquipe1() }}</div>
+                <div class="col-md-2 struct">{{ liste_RencP[i][0] }}</div>
             </div>
             <div class="row">
-                <div class="col-md-2 struct">{{ renc.getIdEquipe2() }}</div>
+                <div class="col-md-2 struct">{{ liste_RencP[i][1] }}</div>
             </div>
         </div>
-        {% if loop.index != liste_Rencontre |length and loop.index != (liste_Rencontre|length / 2) %}
-
-            <div class="row">
+        {% if  i%2 == 0 %}
+            {% if  liste_RencD|length==0%}
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-3 struct">demi finale</div>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-3 struct">?</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-3 struct">?</div>
+                    </div>
                 </div>
+            {% else %}
+                {% if  i >= liste_RencD|length - 1 %}
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][0] }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][1] }}</div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][0] }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][1] }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+            {% if loop.index == (liste_RencP|length / 2) %}
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-3 struct">demi finale</div>
+                    <div class="col-md-2 col-md-offset-6 struct">finale</div>
                 </div>
-            </div>
-        {% endif %}
-
-        {% if loop.index == (liste_Rencontre|length / 2) %}
-            <div class="row">
-                <div class="col-md-2 col-md-offset-6 struct">finale</div>
-            </div>
-        {% endif %}
-
+            {% endif %}
     {% endfor %}
 
     {# Messages - (Notice, Erreur) #}

@@ -49,6 +49,12 @@ class Rencontre
      */
     private $date;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phase",type="string", length=255)
+     */
+    private $phase;
 
     /**
      * Get id
@@ -150,5 +156,28 @@ class Rencontre
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set phase
+     *
+     * @param string $phase
+     * @return Rencontre
+     */
+    public function setPhase($phase)
+    {
+        $this->phase = $phase;
+
+        return $this;
+    }
+
+    /**
+     * Get phase
+     *
+     * @return string
+     */
+    public function getPhase()
+    {
+        return $this->phase;
     }
 }
