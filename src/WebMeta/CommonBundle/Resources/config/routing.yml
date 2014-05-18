@@ -165,3 +165,8 @@ equipe_view:
 equipe_quit:
     pattern:  /quitter-equipe/{id_equipe}-{last}
     defaults: { _controller: WebMetaCommonBundle:Equipe:quit, last: false }
+    
+# Quitter une équipe
+equipe_recrutement:
+    pattern:  /recrutement/{id_equipe}-{id_compte}-{accept}
+    defaults: { _controller: WebMetaCommonBundle:Equipe:recrutement }

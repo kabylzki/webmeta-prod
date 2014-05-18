@@ -30,4 +30,23 @@ class InvitationEquipeRepository extends EntityRepository
         
     }
 
+    
+    
+    /**
+     * Récupère une liste de membre ayant fait une demande pour l'équipe
+     * @param int $id_equipe id du compte faisant la demande
+     * @param string $statut statut de la demande
+     * @param string $demandeur 
+     * @return array
+     */
+    public function findAllDemandeMembre($id_equipe, $statut = 'en attente', $demandeur = 'joueur') {
+        
+        $query = $this->getEntityManager()->createQuery('SELECT ie.id_compte FROM WebMetaCommonBundle:InvitationEquipe ie WHERE ie.id_equipe = ?1 AND ie.statut = ?2 AND ie.demandeur = ?3');
+        $query->setParameter(1, $id_equipe);
+        $query->setParameter(2, $statut);
+        $query->setParameter(3, $demandeur);
+        return $query->getResult();
+        
+    }
+
 }
