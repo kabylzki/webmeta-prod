@@ -13,7 +13,7 @@ use WebMeta\CommonBundle\Form\ResultatType;
 
 class TypeTournoiController extends Controller
 {
-    public function coupeAction($id,Request $request){
+    public function coupeAction($id,Request $request,$phase){
 
 
         $em = $this->getDoctrine()
@@ -24,9 +24,12 @@ class TypeTournoiController extends Controller
                             ->findBy(array('idTournoi' => $id));
 
         $liste_RencontrePool=array();#array indexé contenant les equipes par paire d'adversaire d'un match phase pool
-        $liste_RencontreSemiFinal=array();#phase de demi finale
+        $liste_RencontreSemiFinal=array();#array indexé contenant les equipes par paire d'adversaire d'un match phase de demi finale
+        $liste_RencontreFinal=array();#array indexé contenant les equipes par paire d'adversaire d'un match en phase finale
+
         $liste_RencP=array();#array contenant le nom des équipes par paire d'aversaire d'un match
         $liste_RencD=array();#array contenant le nom des équipes par paire d'aversaire d'un match
+        $liste_RencF=array();#array contenant le nom des équipes par paire d'aversaire d'un match
 
 
         #boucle qui ajoute qui recupere les rencontres et les ajoute dans les  deux differents tableaux
@@ -42,9 +45,13 @@ class TypeTournoiController extends Controller
                 array_push($liste_RencontrePool,array($adv1->getNom()=> $adv1->getNom(), $adv2->getNom()=> $adv2->getNom()));#indéxée par la valeur des items (pour le besoin du formulaire
                 array_push($liste_RencP,array($adv1->getNom(), $adv2->getNom()));#indexée par des entiers
             }
+            elseif($liste_tmp[$i]->getPhase()=="final"){
+                array_push($liste_RencontreFinal,array($adv1->getNom()=> $adv1->getNom(), $adv2->getNom()=> $adv2->getNom()));#indéxée par la valeur des items (pour le besoin du formulaire
+                array_push($liste_RencF,array($adv1->getNom(), $adv2->getNom()));#indexée par des entiers
+            }
         }
 
-
+        #####################################phase de pool###############################################
         #formulaire pour renseigner les gagnants du premier tour
         $formPool = $this->createFormBuilder();
             for($i=0;$i<count($liste_RencontrePool);$i++){
@@ -78,17 +85,82 @@ class TypeTournoiController extends Controller
                 $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
 
             }
-            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id)));
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'demiFinal')));
         }
+
+        ################################phase de demi-final##############################################
 
         #formulaire pour rensigner les gagnants des demifinals
         $formSemiFinal =$this->createFormBuilder();
             for($i=0;$i<count($liste_RencontreSemiFinal);$i++){
-                $formPool->add('match-'.($i+1),'choice', array('choices'   => array($liste_RencontreSemiFinal[$i]),'required'  => true,));
+                $formSemiFinal->add('match-'.($i+1),'choice', array('choices'   => array($liste_RencontreSemiFinal[$i]),'required'  => true,));
             }
         $formSemiFinal=$formSemiFinal->add('valider','submit')
                                      ->getForm();
 
-        return $this->render('WebMetaCommonBundle:Tournoi/typeTournoi:championnat.html.twig', array('form' => $formPool->createView(),"liste_RencP" =>$liste_RencP,"liste_RencD" =>$liste_RencD));
+        $formSemiFinal->handleRequest($request);
+        if($formSemiFinal->isValid()){
+            $rencontre= new Rencontre();
+            for($i=1;$i<count($liste_RencontreSemiFinal);$i=$i+2){
+                $n1=$formSemiFinal->get('match-'.$i)->getData();
+                $n2=$formSemiFinal->get('match-'.($i+1))->getData();
+                $id1=$em->getRepository('WebMetaCommonBundle:Equipe')->findOneByNom($n1."")->getId();
+                $id2=$em->getRepository('WebMetaCommonBundle:Equipe')->findOneByNom($n2."")->getId();
+
+                $rencontre->setIdequipe1($id1)
+                    ->setIdequipe2($id2)
+                    ->setIdTournoi($id)
+                    ->setDate(new \DateTime('today'))
+                    ->setPhase("final");
+
+                //persistance des données en base
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($rencontre);
+                $em->flush();
+                $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
+
+            }
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'final')));
+        }
+
+        ############################phase final###################################################################
+        #formulaire pour rensigner les gagnants des demifinals
+        $formFinal =$this->createFormBuilder();
+        for($i=0;$i<count($liste_RencontreFinal);$i++){
+            $formFinal->add('gagnant','choice', array('choices'   => array($liste_RencontreFinal[$i]),'required'  => true,));
+        }
+        $formFinal=$formFinal->add('valider','submit')
+                                     ->getForm();
+        /*
+        $formFinal->handleRequest($request);
+        if($formFinal->isValid()){
+            $rencontre= new Rencontre();
+                $n1=$formFinal->get('gagnant')->getData();
+
+                //persistance des données en base
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($rencontre);
+                $em->flush();
+                $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
+
+            }
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'final')));
+        }
+        */
+
+
+        $form=null;
+        if($phase=="pool"){
+            $form=$formPool;
+        }
+        else if($phase=="demiFinal"){
+            $form=$formSemiFinal;
+        }
+        else if($phase=="final"){
+            $form=$formFinal;
+        }
+
+
+        return $this->render('WebMetaCommonBundle:Tournoi/typeTournoi:championnat.html.twig', array('form' => $form->createView(),"liste_RencP" =>$liste_RencP,"liste_RencD" =>$liste_RencD,"liste_RencF" =>$liste_RencF));
     }
 }

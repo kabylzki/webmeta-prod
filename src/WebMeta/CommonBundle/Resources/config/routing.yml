@@ -107,6 +107,11 @@ tournoi_creation:
     pattern: /creation-tournoi
     defaults: { _controller: WebMetaCommonBundle:Tournoi:creationTournoi}
 
+#suppression tournoi
+tournoi_suppression:
+    pattern: /suppression-tournoi/{id}
+    defaults: { _controller: WebMetaCommonBundle:Tournoi:suppression}
+
 # Page de validation de la creation de tournoi
 tournoi_creation_validation:
     pattern:  /creation-tournoi-validation
@@ -121,7 +126,7 @@ tournoi_gestion:
 
 #Coupe
 tournoi_coupe:
-    pattern: /tournoi-coupe/{id}
+    pattern: /tournoi-coupe/{id}/{phase}
     defaults: { _controller: WebMetaCommonBundle:TypeTournoi:coupe}
 
 ################ Metaciv ################   

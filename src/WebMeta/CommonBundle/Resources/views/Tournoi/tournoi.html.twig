@@ -8,7 +8,7 @@
     <h2>liste des tournois</h2>
     <ul>
         {% for tournoi in liste_tournoi %}
-            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a></li>
+            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>  <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a></li>
         {% endfor %}
     </ul>
     <h2>liste des tournois publiques</h2>

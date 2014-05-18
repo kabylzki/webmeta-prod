@@ -116,6 +116,7 @@ class TournoiController extends Controller {
                  $rencontre->setIdequipe1($liste_teamId[$i]->getIdInvite())
                            ->setIdequipe2($liste_teamId[$i+1]->getIdInvite())
                            ->setIdTournoi($id)
+                           ->setPhase("pool")
                            ->setDate(new \DateTime('today'));
 
                  //persistance des données en base
@@ -183,6 +184,37 @@ class TournoiController extends Controller {
 
 
 
+    }
+    public function suppressionAction($id){
+        //récupération du tournoi courant
+        $t = $this->getDoctrine()
+            ->getManager();
+        $tournoi = $t->getRepository('WebMetaCommonBundle:Tournoi')
+            ->findOneById($id);
+
+        $liste_E= $t->getRepository('WebMetaCommonBundle:Invitation')
+                    ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
+
+        for($i=0; $i <count($liste_E);$i++){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($liste_E[$i]);
+            $em->flush();
+        }
+
+        $liste_R=$em->getRepository('WebMetaCommonBundle:Rencontre')
+                    ->findBy(array('idTournoi' => $id));
+        for($i=0; $i <count($liste_R);$i++){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($liste_R[$i]);
+            $em->flush();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($tournoi);
+        $em->flush();
+
+
+        return $this->redirect($this->generateUrl('tournoi_warbot'));
     }
 
 }

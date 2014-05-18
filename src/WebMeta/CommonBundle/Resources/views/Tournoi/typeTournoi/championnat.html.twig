@@ -44,9 +44,17 @@
             {% endif %}
         {% endif %}
             {% if loop.index == (liste_RencP|length / 2) %}
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-6 struct">finale</div>
-                </div>
+                {% if  liste_RencF|length==0%}
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-6 struct">?</div>
+                        <div class="col-md-2 col-md-offset-6 struct">?</div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-6 struct">{{ liste_RencF[0][0] }}</div>
+                        <div class="col-md-2 col-md-offset-6 struct">{{ liste_RencF[0][1] }}</div>
+                    </div>
+                {% endif %}
             {% endif %}
     {% endfor %}
 
