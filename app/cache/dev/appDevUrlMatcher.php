@@ -199,15 +199,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            if (0 === strpos($pathinfo, '/modification-avatar')) {
-                // compte_modification_avatar
-                if ($pathinfo === '/modification-avatar') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::formModificationAvatarAction',  '_route' => 'compte_modification_avatar',);
+            if (0 === strpos($pathinfo, '/modification-password')) {
+                // compte_modification_password
+                if ($pathinfo === '/modification-password') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::formModificationPasswordAction',  '_route' => 'compte_modification_password',);
                 }
 
-                // compte_modification_avatar_validation
-                if ($pathinfo === '/modification-avatar-validation') {
-                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::modificationAvatarAction',  '_route' => 'compte_modification_avatar_validation',);
+                // compte_modification_password_validation
+                if ($pathinfo === '/modification-password-validation') {
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\CompteController::modificationPasswordAction',  '_route' => 'compte_modification_password_validation',);
                 }
 
             }
@@ -341,6 +341,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // equipe_recrutement
         if (0 === strpos($pathinfo, '/recrutement') && preg_match('#^/recrutement/(?P<id_equipe>[^/\\-]++)\\-(?P<id_compte>[^/\\-]++)\\-(?P<accept>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_recrutement')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::recrutementAction',));
+        }
+
+        // equipe_devenir_leader
+        if (0 === strpos($pathinfo, '/equipe-devenir-leader') && preg_match('#^/equipe\\-devenir\\-leader/(?P<id_equipe>[^/\\-]++)\\-(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'equipe_devenir_leader')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\EquipeController::devenirLeaderAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/ressources')) {
+            // ressource_view
+            if (preg_match('#^/ressources\\-(?P<jeu>[^/]++)/?$#s', $pathinfo, $matches)) {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'ressource_view');
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ressource_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::indexAction',));
+            }
+
+            // ressource_compte_view
+            if (preg_match('#^/ressources/(?P<id_compte>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ressource_compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::indexAction',));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

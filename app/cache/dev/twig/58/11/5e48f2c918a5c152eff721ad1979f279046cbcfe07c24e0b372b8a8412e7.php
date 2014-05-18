@@ -28,7 +28,7 @@ class __TwigTemplate_58115e48f2c918a5c152eff721ad1979f279046cbcfe07c24e0b372b8a8
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Formulaire de création d'un compte ";
+        echo " WebMeta - Formulaire de modification d'un compte ";
     }
 
     // line 5

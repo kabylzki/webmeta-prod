@@ -53,7 +53,7 @@ class __TwigTemplate_d81d187de05ab470fa3c61b9ac29d6350cf0f379c36ec57cbe0c7b540fb
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
             // line 15
-            echo "                <li>- <a href=\"";
+            echo "                <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
             echo "\" title=\"Voir l'équipe  ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getNom"), "html", null, true);

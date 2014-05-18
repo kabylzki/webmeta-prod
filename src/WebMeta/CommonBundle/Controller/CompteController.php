@@ -16,7 +16,7 @@ class CompteController extends Controller {
         $compte = $session->get('compte');
         // gestion utilisateur connecté
         $user_connected = true;
-        
+
 
         // Si la session n'est pas intialisée (utilisateur non connecté)
         if (empty($compte)) {
@@ -31,28 +31,28 @@ class CompteController extends Controller {
                 return $this->redirect($this->generateUrl('common_homepage'));
             }
         }
-        
+
         // Récupère la liste des équipes dont le membre fait partie
         $liste_id_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Membre')->findAllEquipe($compte->getId());
-        
+
         // Boucle sur la liste des ID d'équipe dont le membre fait partie et charge leurs informations
         $liste_equipe = array();
         foreach ($liste_id_equipe as $une_equipe) {
             $equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->find($une_equipe['id_equipe']);
-            
+
             array_push($liste_equipe, $equipe);
         }
-        
+
         // Récupère la liste des demandes en attente
         $liste_id_demande_equipe = $this->getDoctrine()->getRepository('WebMetaCommonBundle:InvitationEquipe')->findAllDemandeEquipe($compte->getId(), 'en attente', 'joueur');
-        
+
         // Boucle sur la liste des ID d'équipe dont le membre a fait la demande et charge leurs informations
         $liste_demande = array();
         foreach ($liste_id_demande_equipe as $un_id_equipe) {
             $equipe_demande = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->find($un_id_equipe['id_equipe']);
             array_push($liste_demande, $equipe_demande);
         }
-        
+
         // Appel du template avec tous les paramètres
         return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande));
     }
@@ -150,22 +150,55 @@ class CompteController extends Controller {
         return $this->redirect($this->generateUrl('compte_view', array("id" => $compte_session->getId())));
     }
 
-    // Formulaire de modification de l'avatar
-    public function formModificationAvatarAction() {
+    // Formulaire de modification de password
+    public function formModificationPasswordAction() {
         $form = $this->createFormBuilder()
-                ->add('avatar', 'file')
+                ->add('password', 'repeated', array(
+                    'first_name' => 'password',
+                    'second_name' => 'confirmation',
+                    'type' => 'password'))
                 ->add('Valider', 'submit')
                 ->getForm();
 
-        return $this->render('WebMetaCommonBundle:Compte:modification_avatar.html.twig', array('form' => $form->createView()));
+        return $this->render('WebMetaCommonBundle:Compte:modification_password.html.twig', array('form' => $form->createView()));
     }
 
     // Modification de l'avatar
-    public function modificationAvatarAction(Request $request) {
+    public function modificationPasswordAction(Request $request) {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
 
-        // TODO RESSOURCE
+        $data = array();
+        $form = $this->createFormBuilder($data)
+                ->add('password', 'repeated', array(
+                    'first_name' => 'password',
+                    'second_name' => 'confirmation',
+                    'type' => 'password'))
+                ->add('Valider', 'submit')
+                ->getForm();
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            $data = $form->getData();
+
+            $compte = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Compte')->findOneBy(array('email' => $compte_session->getEmail(), 'password' => $compte_session->getPassword()));
+            if (!$compte) {
+                // Message de confirmation pour l'utilisateur
+                $session->getFlashBag()->add('error', "Le compte n'existe pas");
+
+                return $this->redirect($this->generateUrl('common_homepage'));
+            } else {
+                if ($form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $compte->setPassword(md5($data['password']));
+                    $em->flush();
+
+                    $session->getFlashBag()->add('notice', "Mot de passe modifié avec succès");
+
+                    return $this->redirect($this->generateUrl('compte_view', array("id" => $compte->getId())));
+                }
+            }
+        }
 
         return $this->redirect($this->generateUrl('compte_view', array("id" => $compte_session->getId())));
     }

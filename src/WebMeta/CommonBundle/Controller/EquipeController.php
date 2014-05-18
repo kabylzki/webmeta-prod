@@ -15,6 +15,7 @@ class EquipeController extends Controller {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
         $is_membre = false;
+        $is_leader = false;
 
         $em = $this->getDoctrine()->getManager();
 
@@ -30,16 +31,24 @@ class EquipeController extends Controller {
             return $this->redirect($this->generateUrl('compte_view', array('id' => $compte_session->getId())));
         }
 
-        $liste_membre = $em->getRepository('WebMetaCommonBundle:Membre')->findAllMembreEquipe($id);
+        $liste_leader = $em->getRepository('WebMetaCommonBundle:Membre')->findAllMembreEquipe($id, 'Leader');
+        $liste_membre = $em->getRepository('WebMetaCommonBundle:Membre')->findAllMembreEquipe($id, 'Membre');
 
+        $liste_totale = array_merge($liste_leader ,$liste_membre);
         // Vérifie sur l'utilisateur connecté fait partie de l'équipe
         foreach ($liste_membre as $memb) {
             if ($memb->getId() == $compte_session->getId()) {
                 $is_membre = true;
             }
         }
+        // Vérifie sur l'utilisateur connecté fait partie de l'équipe
+        foreach ($liste_leader as $memb_leader) {
+            if ($memb_leader->getId() == $compte_session->getId()) {
+                $is_leader = true;
+            }
+        }
 
-        $nb_membre = count($liste_membre);
+        $nb_membre = count($liste_totale);
         
         // Récupération de la liste des joueurs en attente pour rejoindre l'équipe
         $liste_id_membre_attente = $em->getRepository('WebMetaCommonBundle:InvitationEquipe')->findAllDemandeMembre($id);
@@ -53,7 +62,7 @@ class EquipeController extends Controller {
         
         $nb_membre_attente = count($liste_membre_attente);
         
-        return $this->render('WebMetaCommonBundle:Equipe:index_equipe.html.twig', array('equipe' => $equipe, 'liste_membre' => $liste_membre, 'nb_membre' => $nb_membre, 'is_membre' => $is_membre, 'liste_membre_attente' => $liste_membre_attente, 'nb_membre_attente' => $nb_membre_attente));
+        return $this->render('WebMetaCommonBundle:Equipe:index_equipe.html.twig', array('equipe' => $equipe, 'liste_leader' => $liste_leader,'liste_membre' => $liste_membre, 'nb_membre' => $nb_membre, 'is_membre' => $is_membre,'is_leader' => $is_leader, 'liste_membre_attente' => $liste_membre_attente, 'nb_membre_attente' => $nb_membre_attente));
     }
 
     // Affiche la liste des équipes
@@ -77,7 +86,7 @@ class EquipeController extends Controller {
         if ($check_invitation) {
             // Si le post n'exsite pas message flash d'erreur
             $this->get('session')->getFlashBag()->add(
-                    'error', "Vous avez déjà postulé pour cette équipe, veuillez attendre la réponse de la part du leader"
+                    'error', "Vous avez déjà postulé pour cette équipe, veuillez attendre la réponse de la part d'un leader"
             );
 
             return $this->redirect($this->generateUrl('compte_view', array("id" => $compte_session->getId())));
@@ -250,4 +259,29 @@ class EquipeController extends Controller {
         return $this->redirect($this->generateUrl('compte_view', array("id" => $id_compte)));
     }
 
+    // Passage des droits de leader
+    public function devenirLeaderAction($id_equipe, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $membre = $em->getRepository('WebMetaCommonBundle:Membre')->findOneBy(array('id'=>$id,'id_equipe' => $id_equipe));
+
+        if (!$membre) {
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'error', "Le membre n'existe pas"
+            );
+        }
+
+        $membre->setStatus('Leader');
+        $em->flush();
+        
+        // Message de confirmation pour l'utilisateur
+        $this->get('session')->getFlashBag()->add(
+                'notice', "Le membre est devenu leader"
+        );
+
+        return $this->redirect($this->generateUrl('equipe_view', array("id" => $id_equipe)));
+    }
+    
+   
+    
 }

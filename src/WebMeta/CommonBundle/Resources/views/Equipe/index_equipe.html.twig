@@ -1,6 +1,6 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
-{% block title %} WebMeta - Metaciv {% endblock %}
+{% block title %} WebMeta - Page de l'équipe {{equipe.getNom}} {% endblock %}
 
 {% block content %} 
     <div id="page-equipe-index">
@@ -15,37 +15,58 @@
         </div>
 
         <div class="membre-equipe col-md-12">
+            {# Liste des leaders de l'équipe #}  
             <h3>Liste des membres de l'équipe</h3>
-            <ul>
-                {% for membre in liste_membre %}
-                    <li>- <img src="{{ asset('bundles/webmetacommon/images/leader.jpg')}}" alt="Leader" style="width:20px;"/><a href="{{ path('compte_view', {id:membre.getId})}}" title="Voir la page de {{membre.getPseudo}}">{{membre.getPseudo}}</a></li>
-                    {% endfor %}
-            </ul>
-        </div>
-
-        <div class="membre-equipe-attente col-md-12">
-            <h3>Liste des membres qui souhaitent rejoindre l'équipe</h3>
-            {% if nb_membre_attente > 0 %}
+            <div class="leader-equipe">
                 <ul>
-                    {% for membre_attente in liste_membre_attente %}
-                        <li>- <a href="{{ path('compte_view', {id:membre_attente.getId})}}" title="Voir la page de {{membre_attente.getPseudo}}">{{membre_attente.getPseudo}}</a> 
-                            - <a href="{{ path('equipe_recrutement', {id_equipe:equipe.getId, id_compte:membre_attente.getId, accept:"allow"})}}" title="Accepter">Accepter</a> / 
-                            <a href="{{ path('equipe_recrutement', {id_equipe:equipe.getId, id_compte:membre_attente.getId, accept:"deny"})}}" title="Refuser">Refuser</a>
+                    {% for leader in liste_leader %}
+                        <li>- <img src="{{ asset('bundles/webmetacommon/images/leader.jpg')}}" alt="Leader" style="width:20px;"/><a href="{{ path('compte_view', {id:leader.getId})}}" title="Voir la page de {{leader.getPseudo}}">{{leader.getPseudo}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+                
+            {# Liste des membres de l'équipe #}    
+            <div class="membre-equipe">
+                <ul>
+                    {% for membre in liste_membre %}
+                        <li>
+                            - <a href="{{ path('compte_view', {id:membre.getId})}}" title="Voir la page de {{membre.getPseudo}}">{{membre.getPseudo}}</a>
+                            {# Passage des droits (devenir leader) #}    
+                            {% if is_leader %}
+                                - <a href="{{ path('equipe_devenir_leader', {id_equipe:equipe.getId, id:membre.getId})}}" title="Faire de ce membre un leader"> Donner les droits de leader </a>   
+                            {% endif %}    
                         </li>
                     {% endfor %}
                 </ul>
-            {% else %}
-                <i>Aucun membre en attente de recrutement</i>
-            {% endif %}
+            </div>
         </div>
 
+        {# Si le membre est leader #}
+        {% if is_leader %}
+            <div class="membre-equipe-attente col-md-12">
+                <h3>Liste des membres qui souhaitent rejoindre l'équipe</h3>
+                {% if nb_membre_attente > 0 %}
+                    <ul>
+                        {% for membre_attente in liste_membre_attente %}
+                            <li>- <a href="{{ path('compte_view', {id:membre_attente.getId})}}" title="Voir la page de {{membre_attente.getPseudo}}">{{membre_attente.getPseudo}}</a> 
+                                - <a href="{{ path('equipe_recrutement', {id_equipe:equipe.getId, id_compte:membre_attente.getId, accept:"allow"})}}" title="Accepter">Accepter</a> / 
+                                <a href="{{ path('equipe_recrutement', {id_equipe:equipe.getId, id_compte:membre_attente.getId, accept:"deny"})}}" title="Refuser">Refuser</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <i>Aucun membre en attente de recrutement</i>
+                {% endif %}
+            </div>
+        {% endif %}
+        
     </div>    
 {% endblock %}
 
 {% block sidebar %} 
     <h1>Menu</h1>
     <ul>
-        {% if is_membre %}
+        {% if is_membre or is_leader %}
             {% if nb_membre > 1 %}
                 <li><a href="{{ path('equipe_quit', {id_equipe:equipe.getId}) }}" title="Quitter l'équipe : {{equipe.getNom}}" onclick="return confirm('Etes-vous sur de vouloir quitter cette équipe ?');">Quitter l'équipe</a></li>
                 {% else %}

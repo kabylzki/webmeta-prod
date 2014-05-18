@@ -116,6 +116,7 @@ class TournoiController extends Controller {
                  $rencontre->setIdequipe1($liste_teamId[$i]->getIdInvite())
                            ->setIdequipe2($liste_teamId[$i+1]->getIdInvite())
                            ->setIdTournoi($id)
+                           ->setPhase("pool")
                            ->setDate(new \DateTime('today'));
 
                  //persistance des données en base

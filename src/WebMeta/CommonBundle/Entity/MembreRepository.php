@@ -18,15 +18,19 @@ class MembreRepository extends EntityRepository
      * @param int $idEquipe id de l'équipe
      * @return array
      */
-    public function findAllMembreEquipe($id_equipe) {
+    public function findAllMembreEquipe($id_equipe,$statut) {
         
         return $this->getEntityManager()
                         ->createQuery(
             'SELECT c
             FROM WebMetaCommonBundle:Membre m, WebMetaCommonBundle:Compte c
             WHERE m.id = c.id
+            AND m.status = :statut
             AND m.id_equipe = :idEquipe
-            ORDER BY c.pseudo ASC')->setParameter('idEquipe', $id_equipe)->getResult();
+            ORDER BY m.date_recrutement, c.pseudo ASC')
+                ->setParameter('idEquipe', $id_equipe)
+                ->setParameter('statut', $statut)
+                ->getResult();
                  
     }
     

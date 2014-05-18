@@ -57,94 +57,151 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
         </div>
 
         <div class=\"membre-equipe col-md-12\">
+            ";
+        // line 18
+        echo "  
             <h3>Liste des membres de l'équipe</h3>
-            <ul>
-                ";
-        // line 20
+            <div class=\"leader-equipe\">
+                <ul>
+                    ";
+        // line 22
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_leader"]) ? $context["liste_leader"] : $this->getContext($context, "liste_leader")));
+        foreach ($context['_seq'] as $context["_key"] => $context["leader"]) {
+            // line 23
+            echo "                        <li>- <img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/leader.jpg"), "html", null, true);
+            echo "\" alt=\"Leader\" style=\"width:20px;\"/><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute((isset($context["leader"]) ? $context["leader"] : $this->getContext($context, "leader")), "getId"))), "html", null, true);
+            echo "\" title=\"Voir la page de ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["leader"]) ? $context["leader"] : $this->getContext($context, "leader")), "getPseudo"), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["leader"]) ? $context["leader"] : $this->getContext($context, "leader")), "getPseudo"), "html", null, true);
+            echo "</a></li>
+                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['leader'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 25
+        echo "                </ul>
+            </div>
+                
+            ";
+        // line 28
+        echo "    
+            <div class=\"membre-equipe\">
+                <ul>
+                    ";
+        // line 31
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_membre"]) ? $context["liste_membre"] : $this->getContext($context, "liste_membre")));
         foreach ($context['_seq'] as $context["_key"] => $context["membre"]) {
-            // line 21
-            echo "                    <li>- <img src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/leader.jpg"), "html", null, true);
-            echo "\" alt=\"Leader\" style=\"width:20px;\"/><a href=\"";
+            // line 32
+            echo "                        <li>
+                            - <a href=\"";
+            // line 33
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getId"))), "html", null, true);
             echo "\" title=\"Voir la page de ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getPseudo"), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getPseudo"), "html", null, true);
-            echo "</a></li>
+            echo "</a>
+                            ";
+            // line 34
+            echo "    
+                            ";
+            // line 35
+            if ((isset($context["is_leader"]) ? $context["is_leader"] : $this->getContext($context, "is_leader"))) {
+                // line 36
+                echo "                                - <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_devenir_leader", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id" => $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getId"))), "html", null, true);
+                echo "\" title=\"Faire de ce membre un leader\"> Donner les droits de leader </a>   
+                            ";
+            }
+            // line 37
+            echo "    
+                        </li>
                     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['membre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
-        echo "            </ul>
+        // line 40
+        echo "                </ul>
+            </div>
         </div>
 
-        <div class=\"membre-equipe-attente col-md-12\">
-            <h3>Liste des membres qui souhaitent rejoindre l'équipe</h3>
-            ";
-        // line 28
-        if (((isset($context["nb_membre_attente"]) ? $context["nb_membre_attente"] : $this->getContext($context, "nb_membre_attente")) > 0)) {
-            // line 29
-            echo "                <ul>
-                    ";
-            // line 30
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["liste_membre_attente"]) ? $context["liste_membre_attente"] : $this->getContext($context, "liste_membre_attente")));
-            foreach ($context['_seq'] as $context["_key"] => $context["membre_attente"]) {
-                // line 31
-                echo "                        <li>- <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"))), "html", null, true);
-                echo "\" title=\"Voir la page de ";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getPseudo"), "html", null, true);
-                echo "\">";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getPseudo"), "html", null, true);
-                echo "</a> 
-                            - <a href=\"";
-                // line 32
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_recrutement", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id_compte" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"), "accept" => "allow")), "html", null, true);
-                echo "\" title=\"Accepter\">Accepter</a> / 
-                            <a href=\"";
-                // line 33
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_recrutement", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id_compte" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"), "accept" => "deny")), "html", null, true);
-                echo "\" title=\"Refuser\">Refuser</a>
-                        </li>
-                    ";
+        ";
+        // line 45
+        echo "        ";
+        if ((isset($context["is_leader"]) ? $context["is_leader"] : $this->getContext($context, "is_leader"))) {
+            // line 46
+            echo "            <div class=\"membre-equipe-attente col-md-12\">
+                <h3>Liste des membres qui souhaitent rejoindre l'équipe</h3>
+                ";
+            // line 48
+            if (((isset($context["nb_membre_attente"]) ? $context["nb_membre_attente"] : $this->getContext($context, "nb_membre_attente")) > 0)) {
+                // line 49
+                echo "                    <ul>
+                        ";
+                // line 50
+                $context['_parent'] = (array) $context;
+                $context['_seq'] = twig_ensure_traversable((isset($context["liste_membre_attente"]) ? $context["liste_membre_attente"] : $this->getContext($context, "liste_membre_attente")));
+                foreach ($context['_seq'] as $context["_key"] => $context["membre_attente"]) {
+                    // line 51
+                    echo "                            <li>- <a href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("compte_view", array("id" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"))), "html", null, true);
+                    echo "\" title=\"Voir la page de ";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getPseudo"), "html", null, true);
+                    echo "\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getPseudo"), "html", null, true);
+                    echo "</a> 
+                                - <a href=\"";
+                    // line 52
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_recrutement", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id_compte" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"), "accept" => "allow")), "html", null, true);
+                    echo "\" title=\"Accepter\">Accepter</a> / 
+                                <a href=\"";
+                    // line 53
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_recrutement", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id_compte" => $this->getAttribute((isset($context["membre_attente"]) ? $context["membre_attente"] : $this->getContext($context, "membre_attente")), "getId"), "accept" => "deny")), "html", null, true);
+                    echo "\" title=\"Refuser\">Refuser</a>
+                            </li>
+                        ";
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['membre_attente'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 56
+                echo "                    </ul>
+                ";
+            } else {
+                // line 58
+                echo "                    <i>Aucun membre en attente de recrutement</i>
+                ";
             }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['membre_attente'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 36
-            echo "                </ul>
-            ";
-        } else {
-            // line 38
-            echo "                <i>Aucun membre en attente de recrutement</i>
-            ";
+            // line 60
+            echo "            </div>
+        ";
         }
-        // line 40
-        echo "        </div>
-
+        // line 62
+        echo "        
     </div>    
 ";
     }
 
-    // line 45
+    // line 66
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
     <h1>Menu</h1>
     <ul>
         ";
-        // line 48
-        if ((isset($context["is_membre"]) ? $context["is_membre"] : $this->getContext($context, "is_membre"))) {
-            // line 49
+        // line 69
+        if (((isset($context["is_membre"]) ? $context["is_membre"] : $this->getContext($context, "is_membre")) || (isset($context["is_leader"]) ? $context["is_leader"] : $this->getContext($context, "is_leader")))) {
+            // line 70
             echo "            ";
             if (((isset($context["nb_membre"]) ? $context["nb_membre"] : $this->getContext($context, "nb_membre")) > 1)) {
-                // line 50
+                // line 71
                 echo "                <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_quit", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
                 echo "\" title=\"Quitter l'équipe : ";
@@ -152,7 +209,7 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
                 echo "\" onclick=\"return confirm('Etes-vous sur de vouloir quitter cette équipe ?');\">Quitter l'équipe</a></li>
                 ";
             } else {
-                // line 52
+                // line 73
                 echo "                <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_quit", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "last" => true)), "html", null, true);
                 echo "\" title=\"Quitter l'équipe : ";
@@ -162,10 +219,10 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
                 echo "</a></li>
                 ";
             }
-            // line 54
+            // line 75
             echo "            ";
         } else {
-            // line 55
+            // line 76
             echo "            <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_postuler", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
             echo "\" title=\"Postuler : ";
@@ -175,7 +232,7 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
             echo "  ?  ');\">Postuler</a></li>
             ";
         }
-        // line 57
+        // line 78
         echo "
     </ul>
 ";
@@ -193,6 +250,6 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
 
     public function getDebugInfo()
     {
-        return array (  179 => 57,  169 => 55,  166 => 54,  156 => 52,  148 => 50,  145 => 49,  143 => 48,  136 => 45,  129 => 40,  125 => 38,  121 => 36,  112 => 33,  108 => 32,  99 => 31,  95 => 30,  92 => 29,  90 => 28,  83 => 23,  68 => 21,  64 => 20,  55 => 14,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
+        return array (  236 => 78,  226 => 76,  223 => 75,  213 => 73,  205 => 71,  202 => 70,  200 => 69,  193 => 66,  187 => 62,  183 => 60,  179 => 58,  175 => 56,  166 => 53,  162 => 52,  153 => 51,  149 => 50,  146 => 49,  144 => 48,  140 => 46,  137 => 45,  131 => 40,  123 => 37,  117 => 36,  115 => 35,  112 => 34,  104 => 33,  101 => 32,  97 => 31,  92 => 28,  87 => 25,  72 => 23,  68 => 22,  62 => 18,  55 => 14,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
     }
 }

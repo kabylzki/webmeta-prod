@@ -45,46 +45,50 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         echo "        ";
         $this->displayBlock('script_extend', $context, $blocks);
         echo "     
-        <title>";
+        <link id=\"page_favicon\" href=\"";
         // line 18
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
+        echo "\" rel=\"icon\" type=\"image/x-icon\" />
+        <title>";
+        // line 19
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
     </head>
 
     <body>
         ";
-        // line 23
+        // line 24
         echo "        ";
         $this->displayBlock('header', $context, $blocks);
-        // line 27
+        // line 28
         echo "
         ";
-        // line 29
+        // line 30
         echo "        ";
         $this->displayBlock('menu_h', $context, $blocks);
-        // line 33
+        // line 34
         echo "
         ";
-        // line 35
+        // line 36
         echo "        ";
         $this->displayBlock('content_center', $context, $blocks);
-        // line 48
-        echo "
-        ";
         // line 49
-        echo "  
+        echo "
         ";
         // line 50
-        $this->displayBlock('footer', $context, $blocks);
-        // line 54
-        echo "
-        ";
-        // line 55
         echo "  
         ";
+        // line 51
+        $this->displayBlock('footer', $context, $blocks);
+        // line 55
+        echo "
+        ";
         // line 56
+        echo "  
+        ";
+        // line 57
         $this->displayBlock('script', $context, $blocks);
-        // line 60
+        // line 61
         echo "    </body>
 </html>";
     }
@@ -134,96 +138,96 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
     {
     }
 
-    // line 18
+    // line 19
     public function block_title($context, array $blocks = array())
     {
         echo " WebMeta ";
     }
 
-    // line 23
+    // line 24
     public function block_header($context, array $blocks = array())
     {
         echo " 
             ";
-        // line 25
+        // line 26
         echo "            ";
         echo twig_include($this->env, $context, "WebMetaCommonBundle:Structure:header.html.twig");
         echo "
         ";
     }
 
-    // line 29
+    // line 30
     public function block_menu_h($context, array $blocks = array())
     {
         echo " 
             ";
-        // line 31
+        // line 32
         echo "            ";
         echo twig_include($this->env, $context, "WebMetaCommonBundle:Structure:menu_h.html.twig");
         echo "
         ";
     }
 
-    // line 35
+    // line 36
     public function block_content_center($context, array $blocks = array())
     {
-        // line 36
+        // line 37
         echo "            ";
         echo "   
             <div id=\"content_page\" class=\"col-md-12\">
                 <section id=\"content\" class=\"col-md-10\">
                     ";
-        // line 39
-        $this->displayBlock('content', $context, $blocks);
         // line 40
+        $this->displayBlock('content', $context, $blocks);
+        // line 41
         echo "                </section>  
                 ";
-        // line 41
+        // line 42
         echo "    
                 <section id=\"sidebar\" class=\"col-md-2\">
                     ";
-        // line 43
-        $this->displayBlock('sidebar', $context, $blocks);
         // line 44
+        $this->displayBlock('sidebar', $context, $blocks);
+        // line 45
         echo "                </section>
             </div>    
             <div class=\"clear\"></div>
         ";
     }
 
-    // line 39
+    // line 40
     public function block_content($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 43
+    // line 44
     public function block_sidebar($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 50
+    // line 51
     public function block_footer($context, array $blocks = array())
     {
-        // line 51
-        echo "            ";
         // line 52
+        echo "            ";
+        // line 53
         echo "            ";
         echo twig_include($this->env, $context, "WebMetaCommonBundle:Structure:footer.html.twig");
         echo "
         ";
     }
 
-    // line 56
+    // line 57
     public function block_script($context, array $blocks = array())
     {
-        // line 57
+        // line 58
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/jquery-1.11.0.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 58
+        // line 59
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         ";
@@ -234,8 +238,13 @@ class __TwigTemplate_db51fefcc5feef7520c80e72efa38d37682e7129474acb8bf3d80e6334b
         return "WebMetaCommonBundle::layout.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  227 => 58,  222 => 57,  219 => 56,  212 => 52,  210 => 51,  207 => 50,  201 => 43,  195 => 39,  188 => 44,  186 => 43,  182 => 41,  179 => 40,  177 => 39,  171 => 36,  168 => 35,  161 => 31,  156 => 29,  149 => 25,  144 => 23,  138 => 18,  133 => 17,  128 => 15,  122 => 12,  118 => 11,  114 => 10,  110 => 9,  106 => 8,  102 => 7,  98 => 6,  93 => 5,  88 => 60,  86 => 56,  83 => 55,  80 => 54,  78 => 50,  75 => 49,  72 => 48,  69 => 35,  63 => 29,  50 => 18,  40 => 15,  38 => 14,  36 => 5,  30 => 1,  95 => 37,  91 => 36,  85 => 32,  70 => 19,  66 => 33,  60 => 27,  57 => 23,  48 => 9,  45 => 17,  41 => 7,  35 => 5,  29 => 3,);
+        return array (  231 => 59,  226 => 58,  223 => 57,  216 => 53,  214 => 52,  211 => 51,  205 => 44,  199 => 40,  192 => 45,  190 => 44,  186 => 42,  183 => 41,  181 => 40,  175 => 37,  172 => 36,  165 => 32,  160 => 30,  153 => 26,  148 => 24,  142 => 19,  137 => 17,  132 => 15,  126 => 12,  122 => 11,  118 => 10,  114 => 9,  110 => 8,  106 => 7,  102 => 6,  97 => 5,  92 => 61,  90 => 57,  87 => 56,  84 => 55,  82 => 51,  79 => 50,  76 => 49,  73 => 36,  70 => 34,  67 => 30,  64 => 28,  61 => 24,  54 => 19,  50 => 18,  45 => 17,  40 => 15,  38 => 14,  36 => 5,  30 => 1,);
     }
 }

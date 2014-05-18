@@ -4,11 +4,8 @@
 
 {% block content %} 
     <div id="liste-game">
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div class="flash-notice">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
+        {# Messages - (Notice, Erreur) #}
+        {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
 
         {# Bloc Warbot #}
         <div id="warbot" class="col-md-6">
