@@ -78,7 +78,7 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         // line 21
         echo "    </div>
     
-    <div class=\"information-compte col-md-10\">
+    <div class=\"information-compte col-md-7\">
         <h3>Informations</h3>
         ";
         // line 25
@@ -119,21 +119,19 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         echo "</li>
         </ul>
     </div>
-    <div class=\"clear\"></div>
-    
     ";
-        // line 39
+        // line 37
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 40
-            echo "        <div class=\"demandes-compte col-md-12\">
-            <h3>Mes demandes en attente</h3>
+            // line 38
+            echo "        <div class=\"demandes-compte col-md-3\">
+            <h3>Demandes en attente</h3>
             <ul>
             ";
-            // line 43
+            // line 41
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["liste_demande"]) ? $context["liste_demande"] : $this->getContext($context, "liste_demande")));
             foreach ($context['_seq'] as $context["_key"] => $context["demande"]) {
-                // line 44
+                // line 42
                 echo "                <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["demande"]) ? $context["demande"] : $this->getContext($context, "demande")), "getId"))), "html", null, true);
                 echo "\" title=\"Voir l'équipe  ";
@@ -146,47 +144,50 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['demande'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 46
+            // line 44
             echo "            </ul>
         </div>
     ";
         }
-        // line 49
-        echo "</div>    
+        // line 47
+        echo "    <div class=\"clear\"></div>
+    
+
+</div>    
  ";
     }
 
-    // line 53
+    // line 54
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
 <h1>Menu</h1>
 <ul>
     <li><a href=\"";
-        // line 56
+        // line 57
         echo $this->env->getExtension('routing')->getPath("equipe_liste");
         echo "\" title=\"Afficher la liste des équipes\" />Liste des équipes</a></li>
     ";
-        // line 57
+        // line 58
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 58
+            // line 59
             echo "        <li><a href=\"";
             echo $this->env->getExtension('routing')->getPath("equipe_creation");
             echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
     ";
         }
-        // line 60
+        // line 61
         echo "</ul>
 
 <h3>Equipes</h3>
 
 <ul>
 ";
-        // line 65
+        // line 66
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
-            // line 66
+            // line 67
             echo "    <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
             echo "\" title=\"Voir l'équipe  ";
@@ -199,32 +200,32 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipe'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 68
+        // line 69
         echo "</ul>
 
 
 <h3>Ressources</h3>
 
 ";
-        // line 73
+        // line 74
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 74
+            // line 75
             echo "    <ul>
         <li><a href=\"";
-            // line 75
+            // line 76
             echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "warbot"));
             echo "\" title=\"Ressources relatives à Warbot\">Ressources Warbot</a></li>
         <li><a href=\"";
-            // line 76
+            // line 77
             echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "metaciv"));
             echo "\" title=\"Ressources relatives à Metaciv\">Ressources Metaciv</a></li>
     </ul>
 ";
         } else {
-            // line 79
+            // line 80
             echo "    <ul>
         <li><a href=\"";
-            // line 80
+            // line 81
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ressource_compte_view", array("id_compte" => $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getId"))), "html", null, true);
             echo "\" title=\"Voir les ressources de ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPseudo"), "html", null, true);
@@ -232,7 +233,7 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     </ul>
 ";
         }
-        // line 83
+        // line 84
         echo "
 ";
     }
@@ -249,6 +250,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  236 => 83,  228 => 80,  225 => 79,  219 => 76,  215 => 75,  212 => 74,  210 => 73,  203 => 68,  190 => 66,  186 => 65,  179 => 60,  173 => 58,  171 => 57,  167 => 56,  160 => 53,  155 => 49,  150 => 46,  137 => 44,  133 => 43,  128 => 40,  126 => 39,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 29,  95 => 28,  87 => 26,  85 => 25,  79 => 21,  73 => 19,  70 => 18,  63 => 16,  57 => 14,  55 => 13,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
+        return array (  237 => 84,  229 => 81,  226 => 80,  220 => 77,  216 => 76,  213 => 75,  211 => 74,  204 => 69,  191 => 67,  187 => 66,  180 => 61,  174 => 59,  172 => 58,  168 => 57,  161 => 54,  153 => 47,  148 => 44,  135 => 42,  131 => 41,  126 => 38,  124 => 37,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 29,  95 => 28,  87 => 26,  85 => 25,  79 => 21,  73 => 19,  70 => 18,  63 => 16,  57 => 14,  55 => 13,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
     }
 }

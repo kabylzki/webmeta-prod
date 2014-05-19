@@ -3,6 +3,10 @@
 {% block title %} WebMeta - {{page.getTitre}} {% endblock %}
 
 {% block content %} 
+    
+    {# Suppression de la page #}
+    
+    
     <div id="page">
         {{page.getContenu | raw}}
         <p><a href="#" onclick="window.history.back();" title="">Retour</a></p>
@@ -11,5 +15,9 @@
 
 {# Sidebar vide #}
 {% block sidebar %} 
-{# TODO Liste de toute les pages #}
+    <h1>Menu</h1>
+    <ul>
+        <li><a href="{{ path('page_modification', {id_page:page.getId}) }}" title="Modifier la page">Modifier la page</a></li>
+        <li><a href="{{ path('page_suppression', {id_page:page.getId}) }}" title="Supprimer la page" onclick="return confirm('Etes-vous sur de vouloir supprimer la page ?');">Supprimer la page</a></li>
+    </ul>
 {% endblock %}

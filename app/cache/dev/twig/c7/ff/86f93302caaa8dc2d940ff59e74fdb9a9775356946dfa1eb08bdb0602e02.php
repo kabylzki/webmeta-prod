@@ -10,6 +10,7 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
         $this->parent = $this->env->loadTemplate("WebMetaCommonBundle::layout.html.twig");
 
         $this->blocks = array(
+            'stylesheet_extend' => array($this, 'block_stylesheet_extend'),
             'content' => array($this, 'block_content'),
         );
     }
@@ -24,10 +25,20 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 3
+    public function block_stylesheet_extend($context, array $blocks = array())
+    {
+        // line 4
+        echo "    <link rel=\"stylesheet\" href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/warbot.css"), "html", null, true);
+        echo "\" />
+";
+    }
+
+    // line 7
     public function block_content($context, array $blocks = array())
     {
-        // line 5
+        // line 8
         echo "    ";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable(range(0, (twig_length_filter($this->env, (isset($context["liste_RencP"]) ? $context["liste_RencP"] : $this->getContext($context, "liste_RencP"))) - 1)));
@@ -45,28 +56,28 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 6
+            // line 9
             echo "        <div class=\"row\">
             <div class=\"row\">
                 <div class=\"col-md-2 struct\">";
-            // line 8
+            // line 11
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencP"]) ? $context["liste_RencP"] : $this->getContext($context, "liste_RencP")), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array"), 0, array(), "array"), "html", null, true);
             echo "</div>
             </div>
             <div class=\"row\">
                 <div class=\"col-md-2 struct\">";
-            // line 11
+            // line 14
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencP"]) ? $context["liste_RencP"] : $this->getContext($context, "liste_RencP")), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array"), 1, array(), "array"), "html", null, true);
             echo "</div>
             </div>
         </div>
         ";
-            // line 14
+            // line 17
             if ((((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) % 2) == 0)) {
-                // line 15
+                // line 18
                 echo "            ";
                 if ((twig_length_filter($this->env, (isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD"))) == 0)) {
-                    // line 16
+                    // line 19
                     echo "                <div class=\"row\">
                     <div class=\"row\">
                         <div class=\"col-md-2 col-md-offset-3 struct\">?</div>
@@ -77,59 +88,59 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
                 </div>
             ";
                 } else {
-                    // line 25
+                    // line 28
                     echo "                ";
                     if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) >= (twig_length_filter($this->env, (isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD"))) - 1))) {
-                        // line 26
+                        // line 29
                         echo "                    <div class=\"row\">
                         <div class=\"row\">
                             <div class=\"col-md-2 col-md-offset-3 struct\">";
-                        // line 28
+                        // line 31
                         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD")), (twig_length_filter($this->env, (isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD"))) - 1), array(), "array"), 0, array(), "array"), "html", null, true);
                         echo "</div>
                         </div>
                         <div class=\"row\">
                             <div class=\"col-md-2 col-md-offset-3 struct\">";
-                        // line 31
+                        // line 34
                         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD")), (twig_length_filter($this->env, (isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD"))) - 1), array(), "array"), 1, array(), "array"), "html", null, true);
                         echo "</div>
                         </div>
                     </div>
                 ";
                     } else {
-                        // line 35
+                        // line 38
                         echo "                    <div class=\"row\">
                         <div class=\"row\">
                             <div class=\"col-md-2 col-md-offset-3 struct\">";
-                        // line 37
+                        // line 40
                         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD")), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array"), 0, array(), "array"), "html", null, true);
                         echo "</div>
                         </div>
                         <div class=\"row\">
                             <div class=\"col-md-2 col-md-offset-3 struct\">";
-                        // line 40
+                        // line 43
                         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencD"]) ? $context["liste_RencD"] : $this->getContext($context, "liste_RencD")), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array"), 1, array(), "array"), "html", null, true);
                         echo "</div>
                         </div>
                     </div>
                 ";
                     }
-                    // line 44
+                    // line 47
                     echo "            ";
                 }
-                // line 45
+                // line 48
                 echo "        ";
             }
-            // line 46
+            // line 49
             echo "            ";
             if (($this->getAttribute((isset($context["loop"]) ? $context["loop"] : $this->getContext($context, "loop")), "index") == (twig_length_filter($this->env, (isset($context["liste_RencP"]) ? $context["liste_RencP"] : $this->getContext($context, "liste_RencP"))) / 2))) {
-                // line 47
+                // line 50
                 echo "                <div class=\"row\">
                     <div class=\"col-md-2 col-md-offset-6 struct\">finale</div>
                 </div>
             ";
             }
-            // line 51
+            // line 54
             echo "    ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
@@ -143,13 +154,13 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 52
+        // line 55
         echo "
     ";
-        // line 54
+        // line 57
         echo "    ";
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
-        // line 55
+        // line 58
         echo "    ";
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form');
         echo "
@@ -168,6 +179,6 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
 
     public function getDebugInfo()
     {
-        return array (  153 => 55,  150 => 54,  147 => 52,  133 => 51,  127 => 47,  124 => 46,  121 => 45,  118 => 44,  111 => 40,  105 => 37,  101 => 35,  94 => 31,  88 => 28,  84 => 26,  81 => 25,  70 => 16,  67 => 15,  65 => 14,  59 => 11,  53 => 8,  49 => 6,  31 => 5,  28 => 4,);
+        return array (  164 => 58,  161 => 57,  158 => 55,  144 => 54,  138 => 50,  135 => 49,  132 => 48,  129 => 47,  122 => 43,  116 => 40,  112 => 38,  105 => 34,  99 => 31,  95 => 29,  92 => 28,  81 => 19,  78 => 18,  76 => 17,  70 => 14,  64 => 11,  60 => 9,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

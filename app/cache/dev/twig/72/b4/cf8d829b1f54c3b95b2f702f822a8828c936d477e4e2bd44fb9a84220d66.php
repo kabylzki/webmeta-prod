@@ -38,9 +38,14 @@ class __TwigTemplate_72b4cf8d829b1f54c3b95b2f702f822a8828c936d477e4e2bd44fb9a842
     public function block_content($context, array $blocks = array())
     {
         echo " 
+    
+    ";
+        // line 8
+        echo "    
+    
     <div id=\"page\">
         ";
-        // line 7
+        // line 11
         echo $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getContenu");
         echo "
         <p><a href=\"#\" onclick=\"window.history.back();\" title=\"\">Retour</a></p>
@@ -48,10 +53,21 @@ class __TwigTemplate_72b4cf8d829b1f54c3b95b2f702f822a8828c936d477e4e2bd44fb9a842
  ";
     }
 
-    // line 13
+    // line 17
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
+    <h1>Menu</h1>
+    <ul>
+        <li><a href=\"";
+        // line 20
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_modification", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
+        echo "\" title=\"Modifier la page\">Modifier la page</a></li>
+        <li><a href=\"";
+        // line 21
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_suppression", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
+        echo "\" title=\"Supprimer la page\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer la page ?');\">Supprimer la page</a></li>
+    </ul>
 ";
     }
 
@@ -67,6 +83,6 @@ class __TwigTemplate_72b4cf8d829b1f54c3b95b2f702f822a8828c936d477e4e2bd44fb9a842
 
     public function getDebugInfo()
     {
-        return array (  52 => 13,  44 => 7,  38 => 5,  30 => 3,);
+        return array (  68 => 21,  64 => 20,  57 => 17,  49 => 11,  44 => 8,  38 => 5,  30 => 3,);
     }
 }
