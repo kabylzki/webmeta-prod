@@ -1,5 +1,8 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% block stylesheet_extend %}
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
+{% endblock %}   
 
 {% block content %}
     {% for i in 0..liste_RencP|length-1 %}

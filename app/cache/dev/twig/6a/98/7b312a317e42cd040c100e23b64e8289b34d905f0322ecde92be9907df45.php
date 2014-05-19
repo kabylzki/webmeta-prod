@@ -13,6 +13,7 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
             'stylesheet_extend' => array($this, 'block_stylesheet_extend'),
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
+            'sidebar' => array($this, 'block_sidebar'),
         );
     }
 
@@ -39,7 +40,7 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
     // line 7
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Metaciv ";
+        echo " WebMeta - Accueil Metaciv ";
     }
 
     // line 9
@@ -54,7 +55,45 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
             <li>- Texte de présentation</li>
         </ul>
     </div>
- ";
+";
+    }
+
+    // line 20
+    public function block_sidebar($context, array $blocks = array())
+    {
+        echo " 
+    <h1>Menu</h1>
+    <ul>
+        ";
+        // line 23
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["liste_page"]) ? $context["liste_page"] : $this->getContext($context, "liste_page")));
+        foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
+            // line 24
+            echo "            <li> <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_view", array("id" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"), "url_alias" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getUrlAlias"), "nom_categorie" => strtr(twig_lower_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomCategorie")), array(" " => "")))), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "\"/>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
+            echo "</a></li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 26
+        echo "
+    </ul>
+
+    <h3>Documentation </h3>
+    <ul>
+        <li> <a href=\"";
+        // line 31
+        echo $this->env->getExtension('routing')->getPath("metaciv_documentation");
+        echo "\" title=\"Documentation de Metaciv\"/>Documentation - Metaciv</a></li>
+    </ul>
+";
     }
 
     public function getTemplateName()
@@ -69,6 +108,6 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
 
     public function getDebugInfo()
     {
-        return array (  46 => 9,  40 => 7,  33 => 4,  30 => 3,);
+        return array (  93 => 31,  86 => 26,  73 => 24,  69 => 23,  62 => 20,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

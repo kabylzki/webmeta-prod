@@ -29,7 +29,7 @@ class __TwigTemplate_db3038ad4edf4765b12e81611cd9d51c7dc0eb13936e2603569cf524c11
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Formulaire de création d'une Equipe";
+        echo " WebMeta - Formulaire de création d'une Equipe ";
     }
 
     // line 5

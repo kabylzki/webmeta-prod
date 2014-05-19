@@ -29,7 +29,9 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Metaciv ";
+        echo " WebMeta - Page de l'équipe ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getNom"), "html", null, true);
+        echo " ";
     }
 
     // line 5
@@ -250,6 +252,6 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
 
     public function getDebugInfo()
     {
-        return array (  236 => 78,  226 => 76,  223 => 75,  213 => 73,  205 => 71,  202 => 70,  200 => 69,  193 => 66,  187 => 62,  183 => 60,  179 => 58,  175 => 56,  166 => 53,  162 => 52,  153 => 51,  149 => 50,  146 => 49,  144 => 48,  140 => 46,  137 => 45,  131 => 40,  123 => 37,  117 => 36,  115 => 35,  112 => 34,  104 => 33,  101 => 32,  97 => 31,  92 => 28,  87 => 25,  72 => 23,  68 => 22,  62 => 18,  55 => 14,  50 => 11,  47 => 10,  42 => 7,  36 => 5,  30 => 3,);
+        return array (  238 => 78,  228 => 76,  225 => 75,  215 => 73,  207 => 71,  204 => 70,  202 => 69,  195 => 66,  189 => 62,  185 => 60,  181 => 58,  177 => 56,  168 => 53,  164 => 52,  155 => 51,  151 => 50,  148 => 49,  146 => 48,  142 => 46,  139 => 45,  133 => 40,  125 => 37,  119 => 36,  117 => 35,  114 => 34,  106 => 33,  103 => 32,  99 => 31,  94 => 28,  89 => 25,  74 => 23,  70 => 22,  64 => 18,  57 => 14,  52 => 11,  49 => 10,  44 => 7,  38 => 5,  30 => 3,);
     }
 }

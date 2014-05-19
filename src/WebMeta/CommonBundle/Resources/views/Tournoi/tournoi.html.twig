@@ -1,17 +1,21 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
-{% block title %} WebMeta - Metaciv {% endblock %}
+{% block stylesheet_extend %}
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
+{% endblock %}   
+
+{% block title %} WebMeta - Liste des tournois Warbot {% endblock %}
 
 {% block content %}
 <div id="page-warbot-tournoi">
-    <h1>Tournoi warbot</h1>
-    <h2>liste des tournois</h2>
+    <h1>Liste des tournois Warbot</h1>
+    
+    <h3>Publiques</h3>
     <ul>
         {% for tournoi in liste_tournoi %}
             <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a></li>
         {% endfor %}
     </ul>
-    <h2>liste des tournois publiques</h2>
 </div>
 {% endblock %}
 
@@ -19,7 +23,7 @@
 {% block sidebar %}
     <h1>Menu</h1>
     <ul>
-        <a href="{{ path('tournoi_creation') }}" title="creerTournoi">creerTournoi</a>
+        <a href="{{ path('tournoi_creation') }}" title="Créer un tournoi Warbot">Créer un tournoi</a>
     </ul>
     <h3>Documentation </h3>
 {% endblock %}

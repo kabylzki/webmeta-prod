@@ -1,6 +1,7 @@
 /* redéfinition du CSS #content_page (ajout du Background) */
 #content_page {
-    background: url('../images/metaciv_bg-1351x500.jpg') no-repeat;
+    /*background: url('../images/metaciv_bg-1351x500.jpg') no-repeat;
     background-position: top left;
-    background-size: 100%;
+    background-size: 100%;*/
+    background-color: lightyellow;
 }

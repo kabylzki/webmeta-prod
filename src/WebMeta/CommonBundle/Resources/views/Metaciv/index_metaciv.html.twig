@@ -3,8 +3,8 @@
 {% block stylesheet_extend %}
     <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/metaciv.css') }}" />
 {% endblock %}   
-    
-{% block title %} WebMeta - Metaciv {% endblock %}
+
+{% block title %} WebMeta - Accueil Metaciv {% endblock %}
 
 {% block content %} 
     <div id="page-metaciv-home">
@@ -15,4 +15,19 @@
             <li>- Texte de présentation</li>
         </ul>
     </div>
- {% endblock %}
+{% endblock %}
+
+{% block sidebar %} 
+    <h1>Menu</h1>
+    <ul>
+        {% for page in liste_page %}
+            <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+        {% endfor %}
+
+    </ul>
+
+    <h3>Documentation </h3>
+    <ul>
+        <li> <a href="{{ path('metaciv_documentation') }}" title="Documentation de Metaciv"/>Documentation - Metaciv</a></li>
+    </ul>
+{% endblock %}
