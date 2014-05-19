@@ -15,15 +15,15 @@
         {% else %}
             <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
         {% endif %}
-            {% if user_connected %}
-                <p class="avatar-link"><a href="{{ path('compte_modification_avatar') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
-            {% endif %}
+        {% if user_connected %}
+            <p class="avatar-link"><a href="{{ path('compte_modification_password') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
+        {% endif %}
     </div>
     
     <div class="information-compte col-md-10">
         <h3>Informations</h3>
         {% if user_connected %}
-            <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier</a></p>
+            <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier mes informations</a> - <a href="{{ path('compte_modification_password') }}" title="Modifier mot de passe">Modifier mot de passe</a></p>
         {% endif %}
         <ul>
             <li><strong>Email</strong> : {{compte.getEmail}}</li>
@@ -54,6 +54,9 @@
 <h1>Menu</h1>
 <ul>
     <li><a href="{{ path('equipe_liste') }}" title="Afficher la liste des équipes" />Liste des équipes</a></li>
+    {% if user_connected %}
+        <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+    {% endif %}
 </ul>
 
 <h3>Equipes</h3>
@@ -63,9 +66,18 @@
     <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
 {% endfor %}
 </ul>
+
+
+<h3>Ressources</h3>
+
 {% if user_connected %}
     <ul>
-        <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+        <li><a href="{{ path('ressource_view', {jeu:"warbot"}) }}" title="Ressources relatives à Warbot">Ressources Warbot</a></li>
+        <li><a href="{{ path('ressource_view', {jeu:"metaciv"}) }}" title="Ressources relatives à Metaciv">Ressources Metaciv</a></li>
+    </ul>
+{% else %}
+    <ul>
+        <li><a href="{{ path('ressource_compte_view', {id_compte:compte.getId}) }}" title="Voir les ressources de {{compte.getPseudo}}">Voir les ressources</a></li>
     </ul>
 {% endif %}
 

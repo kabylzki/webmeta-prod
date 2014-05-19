@@ -29,7 +29,7 @@ class __TwigTemplate_5e4f4ef08bd94827b588e63a99a1ea26030d2c2c40bc00025abf26a9305
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " WebMeta - Metaciv ";
+        echo " WebMeta - Documentation ";
     }
 
     // line 5

@@ -50,13 +50,13 @@ compte_modification_validation:
     pattern:  /modification-compte-validation
     defaults: { _controller: WebMetaCommonBundle:Compte:modification }
     
-compte_modification_avatar:
-    pattern:  /modification-avatar
-    defaults: { _controller: WebMetaCommonBundle:Compte:formModificationAvatar }
+compte_modification_password:
+    pattern:  /modification-password
+    defaults: { _controller: WebMetaCommonBundle:Compte:formModificationPassword }
     
-compte_modification_avatar_validation:
-    pattern:  /modification-avatar-validation
-    defaults: { _controller: WebMetaCommonBundle:Compte:modificationAvatar }
+compte_modification_password_validation:
+    pattern:  /modification-password-validation
+    defaults: { _controller: WebMetaCommonBundle:Compte:modificationPassword }
     
 ################ Login ################
 # Connexion
@@ -171,7 +171,23 @@ equipe_quit:
     pattern:  /quitter-equipe/{id_equipe}-{last}
     defaults: { _controller: WebMetaCommonBundle:Equipe:quit, last: false }
     
-# Quitter une équipe
+# Recrutement d'un membre
 equipe_recrutement:
     pattern:  /recrutement/{id_equipe}-{id_compte}-{accept}
     defaults: { _controller: WebMetaCommonBundle:Equipe:recrutement }
+    
+# Faire d'un membre un leader
+equipe_devenir_leader:
+    pattern:  /equipe-devenir-leader/{id_equipe}-{id}
+    defaults: { _controller: WebMetaCommonBundle:Equipe:devenirLeader }
+    
+################ Ressources ################   
+# Visualisation des ressources
+ressource_view:
+    pattern:  /ressources-{jeu}/
+    defaults: { _controller: WebMetaCommonBundle:Ressource:index }
+    
+# Visualisation des ressources d'un utilisateur
+ressource_compte_view:
+    pattern:  /ressources/{id_compte}
+    defaults: { _controller: WebMetaCommonBundle:Ressource:index }

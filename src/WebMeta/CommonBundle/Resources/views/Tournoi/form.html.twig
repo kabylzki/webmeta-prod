@@ -1,5 +1,9 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% block stylesheet_extend %}
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
+{% endblock %}   
+
 {% block form_row%}
     <div class="container-fluid">
 

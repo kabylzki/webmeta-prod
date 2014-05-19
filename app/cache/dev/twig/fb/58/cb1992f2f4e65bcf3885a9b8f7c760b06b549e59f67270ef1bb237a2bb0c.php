@@ -67,13 +67,13 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         ";
         }
         // line 18
-        echo "            ";
+        echo "        ";
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
             // line 19
-            echo "                <p class=\"avatar-link\"><a href=\"";
-            echo $this->env->getExtension('routing')->getPath("compte_modification_avatar");
+            echo "            <p class=\"avatar-link\"><a href=\"";
+            echo $this->env->getExtension('routing')->getPath("compte_modification_password");
             echo "\" title=\"Modifier mon avatar\">Modifier mon avatar</a></p>
-            ";
+        ";
         }
         // line 21
         echo "    </div>
@@ -86,7 +86,9 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             // line 26
             echo "            <p><a href=\"";
             echo $this->env->getExtension('routing')->getPath("compte_modification");
-            echo "\" title=\"Modifier mes information\">Modifier</a></p>
+            echo "\" title=\"Modifier mes information\">Modifier mes informations</a> - <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("compte_modification_password");
+            echo "\" title=\"Modifier mot de passe\">Modifier mot de passe</a></p>
         ";
         }
         // line 28
@@ -164,17 +166,27 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         // line 56
         echo $this->env->getExtension('routing')->getPath("equipe_liste");
         echo "\" title=\"Afficher la liste des équipes\" />Liste des équipes</a></li>
-</ul>
+    ";
+        // line 57
+        if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
+            // line 58
+            echo "        <li><a href=\"";
+            echo $this->env->getExtension('routing')->getPath("equipe_creation");
+            echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
+    ";
+        }
+        // line 60
+        echo "</ul>
 
 <h3>Equipes</h3>
 
 <ul>
 ";
-        // line 62
+        // line 65
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
-            // line 63
+            // line 66
             echo "    <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
             echo "\" title=\"Voir l'équipe  ";
@@ -187,21 +199,40 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipe'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 65
+        // line 68
         echo "</ul>
+
+
+<h3>Ressources</h3>
+
 ";
-        // line 66
+        // line 73
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 67
+            // line 74
             echo "    <ul>
         <li><a href=\"";
-            // line 68
-            echo $this->env->getExtension('routing')->getPath("equipe_creation");
-            echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
+            // line 75
+            echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "warbot"));
+            echo "\" title=\"Ressources relatives à Warbot\">Ressources Warbot</a></li>
+        <li><a href=\"";
+            // line 76
+            echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "metaciv"));
+            echo "\" title=\"Ressources relatives à Metaciv\">Ressources Metaciv</a></li>
+    </ul>
+";
+        } else {
+            // line 79
+            echo "    <ul>
+        <li><a href=\"";
+            // line 80
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ressource_compte_view", array("id_compte" => $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getId"))), "html", null, true);
+            echo "\" title=\"Voir les ressources de ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPseudo"), "html", null, true);
+            echo "\">Voir les ressources</a></li>
     </ul>
 ";
         }
-        // line 71
+        // line 83
         echo "
 ";
     }
@@ -218,6 +249,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  205 => 71,  199 => 68,  196 => 67,  194 => 66,  191 => 65,  178 => 63,  174 => 62,  165 => 56,  158 => 53,  153 => 49,  148 => 46,  135 => 44,  131 => 43,  126 => 40,  124 => 39,  116 => 34,  112 => 33,  108 => 32,  104 => 31,  100 => 30,  96 => 29,  93 => 28,  87 => 26,  85 => 25,  79 => 21,  73 => 19,  70 => 18,  63 => 16,  57 => 14,  55 => 13,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
+        return array (  236 => 83,  228 => 80,  225 => 79,  219 => 76,  215 => 75,  212 => 74,  210 => 73,  203 => 68,  190 => 66,  186 => 65,  179 => 60,  173 => 58,  171 => 57,  167 => 56,  160 => 53,  155 => 49,  150 => 46,  137 => 44,  133 => 43,  128 => 40,  126 => 39,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 29,  95 => 28,  87 => 26,  85 => 25,  79 => 21,  73 => 19,  70 => 18,  63 => 16,  57 => 14,  55 => 13,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
     }
 }

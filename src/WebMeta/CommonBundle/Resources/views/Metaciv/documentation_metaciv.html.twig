@@ -1,0 +1,23 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Documentation Metaciv {% endblock %}
+
+{% block content %} 
+    <div id="page-documentation">
+        <h1>Documentation - Metaciv</h1>
+        <ul>
+        {% for page in liste_page %}
+            <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+ {% endblock %}
+
+{# Sidebar vide #}
+{% block sidebar %} 
+<h1>Menu</h1>
+<h3>Documentation</h3>
+<ul>
+    <li> <a href="{{ path('metaciv_documentation') }}" title="Documentation de Metaciv"/>Documentation - Metaciv</a></li>
+</ul>
+{% endblock %}

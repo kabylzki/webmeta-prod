@@ -37,36 +37,23 @@ class __TwigTemplate_af4fdb258e9f2beaeb76ef163210a1c7f954aeeee4cd96d3e6fb316a694
         echo " 
     <div id=\"liste-game\">
         ";
-        // line 7
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "get", array(0 => "notice"), "method"));
-        foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
-            // line 8
-            echo "            <div class=\"flash-notice\">
-                ";
-            // line 9
-            echo twig_escape_filter($this->env, (isset($context["flashMessage"]) ? $context["flashMessage"] : $this->getContext($context, "flashMessage")), "html", null, true);
-            echo "
-            </div>
-        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 12
+        // line 8
+        echo "        ";
+        $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
+        // line 9
         echo "
         ";
-        // line 14
+        // line 11
         echo "        <div id=\"warbot\" class=\"col-md-6\">
             <h2>Warbot</h2>
             <hr />
             <div class=\"img-presentation col-md-12\">
                 <a href=\"";
-        // line 18
+        // line 15
         echo $this->env->getExtension('routing')->getPath("warbot_homepage");
         echo "\" title=\"Accès Warbot\">
                     <img src=\"";
-        // line 19
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/warbot.jpg"), "html", null, true);
         echo "\" alt=\"warbot-pres\" />
                 </a>
@@ -81,17 +68,17 @@ class __TwigTemplate_af4fdb258e9f2beaeb76ef163210a1c7f954aeeee4cd96d3e6fb316a694
         </div>
 
         ";
-        // line 32
+        // line 29
         echo "        <div id=\"metaciv\" class=\"col-md-6\">
             <h2>MetaCiv</h2>
             <hr />
             <div class=\"img-presentation col-md-12\">
                 <a href=\"";
-        // line 36
+        // line 33
         echo $this->env->getExtension('routing')->getPath("metaciv_homepage");
         echo "\" title=\"Accès MetaCiv\">
                     <img src=\"";
-        // line 37
+        // line 34
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/metaciv.jpg"), "html", null, true);
         echo "\" alt=\"metaciv-pres\"/>
                 </a>
@@ -120,6 +107,6 @@ class __TwigTemplate_af4fdb258e9f2beaeb76ef163210a1c7f954aeeee4cd96d3e6fb316a694
 
     public function getDebugInfo()
     {
-        return array (  95 => 37,  91 => 36,  85 => 32,  70 => 19,  66 => 18,  60 => 14,  57 => 12,  48 => 9,  45 => 8,  41 => 7,  35 => 5,  29 => 3,);
+        return array (  82 => 34,  78 => 33,  72 => 29,  57 => 16,  53 => 15,  47 => 11,  44 => 9,  41 => 8,  35 => 5,  29 => 3,);
     }
 }

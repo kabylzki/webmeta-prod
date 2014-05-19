@@ -12,7 +12,7 @@
     <div class="liste-equipe col-md-12">
         <ul>
             {% for equipe in liste_equipe %}
-                <li>- <a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
+                <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
             {% endfor %}
         </ul>
     </div>

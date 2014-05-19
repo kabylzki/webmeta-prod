@@ -7,32 +7,30 @@
 {% block title %} WebMeta - Warbot {% endblock %}
 
 {% block content %} 
-<div id="page-warbot-home">
-    <h2>TODO : </h2>
-    <ul>
-        <li>- Page d'accueil Warbot</li>
-        <li>- Vidéo de démo</li>
-        <li>- Texte de présentation</li>
-    </ul>
-</div>
- {% endblock %}
+    <div id="page-warbot-home">
+        <h2>TODO : </h2>
+        <ul>
+            <li>- Page d'accueil Warbot</li>
+            <li>- Vidéo de démo</li>
+            <li>- Texte de présentation</li>
+        </ul>
+    </div>
+{% endblock %}
 
 {% block sidebar %} 
-<h1>Menu</h1>
-<ul>
-    {% for page in liste_page %}
-        <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
-    {% endfor %}
+    <h1>Menu</h1>
 
-    {% if user_connected  %}
-        <li><a href="{{ path('tournoi_warbot') }}" title="tournoi">tournoi</a></li>
-    {% endif %}
-
-
-</ul>
-
-<h3>Documentation </h3>
-<ul>
-    <li> <a href="{{ path('warbot_documentation') }}" title="Documentation de Warbot"/>Documentation - Warbot</a></li>
-</ul>
+    <ul>
+        <li> <a href="{{ path('warbot_documentation') }}" title="Documentation de Warbot"/>Documentation - Warbot</a></li>
+        {% for page in liste_page %}
+            <li><a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Tournois </h3>
+    <ul>
+        {% if user_connected  %}
+            <li><a href="{{ path('tournoi_warbot') }}" title="Accéder à la liste des tournois">Liste des tournois</a></li>
+        {% endif %}
+    </ul>
 {% endblock %}

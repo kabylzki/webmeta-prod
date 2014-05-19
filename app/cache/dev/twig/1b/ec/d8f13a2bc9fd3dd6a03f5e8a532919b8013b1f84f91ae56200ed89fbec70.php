@@ -10,6 +10,7 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
         $this->parent = $this->env->loadTemplate("WebMetaCommonBundle::layout.html.twig");
 
         $this->blocks = array(
+            'stylesheet_extend' => array($this, 'block_stylesheet_extend'),
             'title' => array($this, 'block_title'),
             'content' => array($this, 'block_content'),
             'sidebar' => array($this, 'block_sidebar'),
@@ -27,25 +28,36 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
     }
 
     // line 3
-    public function block_title($context, array $blocks = array())
+    public function block_stylesheet_extend($context, array $blocks = array())
     {
-        echo " WebMeta - Metaciv ";
+        // line 4
+        echo "    <link rel=\"stylesheet\" href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/css/warbot.css"), "html", null, true);
+        echo "\" />
+";
     }
 
-    // line 5
+    // line 7
+    public function block_title($context, array $blocks = array())
+    {
+        echo " WebMeta - Liste des tournois Warbot ";
+    }
+
+    // line 9
     public function block_content($context, array $blocks = array())
     {
-        // line 6
+        // line 10
         echo "<div id=\"page-warbot-tournoi\">
-    <h1>Tournoi warbot</h1>
-    <h2>liste des tournois</h2>
+    <h1>Liste des tournois Warbot</h1>
+    
+    <h3>Publiques</h3>
     <ul>
         ";
-        // line 10
+        // line 15
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_tournoi"]) ? $context["liste_tournoi"] : $this->getContext($context, "liste_tournoi")));
         foreach ($context['_seq'] as $context["_key"] => $context["tournoi"]) {
-            // line 11
+            // line 16
             echo "            <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_gestion", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
             echo "\" title=\"";
@@ -60,23 +72,22 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tournoi'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
+        // line 18
         echo "    </ul>
-    <h2>liste des tournois publiques</h2>
 </div>
 ";
     }
 
-    // line 19
+    // line 23
     public function block_sidebar($context, array $blocks = array())
     {
-        // line 20
+        // line 24
         echo "    <h1>Menu</h1>
     <ul>
         <a href=\"";
-        // line 22
+        // line 26
         echo $this->env->getExtension('routing')->getPath("tournoi_creation");
-        echo "\" title=\"creerTournoi\">creerTournoi</a>
+        echo "\" title=\"Créer un tournoi Warbot\">Créer un tournoi</a>
     </ul>
     <h3>Documentation </h3>
 ";
@@ -94,6 +105,6 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
 
     public function getDebugInfo()
     {
-        return array (  78 => 22,  74 => 20,  71 => 19,  64 => 13,  49 => 11,  45 => 10,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  89 => 26,  85 => 24,  82 => 23,  76 => 18,  61 => 16,  57 => 15,  50 => 10,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

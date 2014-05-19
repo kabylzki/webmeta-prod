@@ -12,15 +12,8 @@ class LoginController extends Controller {
     public function formLoginAction() {
         $data = array();
         $form = $this->createFormBuilder($data)
-                ->add('email', 'email', array(
-                        'attr' => array(
-                        'placeholder' => 'Email',
-                )))
-
-                ->add('password', 'password', array(
-                        'attr' => array(
-                        'placeholder' => 'Mdp',
-                )))
+                ->add('email', 'email', array('attr' => array('placeholder' => 'Email')))
+                ->add('password', 'password', array('attr' => array('placeholder' => 'Mdp')))
                 ->add('Connexion', 'submit')
                 ->getForm();
 
