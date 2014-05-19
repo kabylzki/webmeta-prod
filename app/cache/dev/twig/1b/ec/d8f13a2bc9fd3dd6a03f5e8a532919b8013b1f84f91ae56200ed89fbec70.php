@@ -66,7 +66,9 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getDate"), "format", array(0 => "d/M/Y"), "method"), "html", null, true);
-            echo "</a></li>
+            echo "</a>  <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_suppression", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
+            echo "\">supprimer</a></li>
         ";
         }
         $_parent = $context['_parent'];
@@ -105,6 +107,6 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
 
     public function getDebugInfo()
     {
-        return array (  89 => 26,  85 => 24,  82 => 23,  76 => 18,  61 => 16,  57 => 15,  50 => 10,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
+        return array (  91 => 26,  87 => 24,  84 => 23,  78 => 18,  61 => 16,  57 => 15,  50 => 10,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

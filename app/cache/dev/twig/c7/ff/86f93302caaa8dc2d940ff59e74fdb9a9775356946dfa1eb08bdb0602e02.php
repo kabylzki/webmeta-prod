@@ -135,12 +135,32 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
             echo "            ";
             if (($this->getAttribute((isset($context["loop"]) ? $context["loop"] : $this->getContext($context, "loop")), "index") == (twig_length_filter($this->env, (isset($context["liste_RencP"]) ? $context["liste_RencP"] : $this->getContext($context, "liste_RencP"))) / 2))) {
                 // line 50
-                echo "                <div class=\"row\">
-                    <div class=\"col-md-2 col-md-offset-6 struct\">finale</div>
-                </div>
-            ";
+                echo "                ";
+                if ((twig_length_filter($this->env, (isset($context["liste_RencF"]) ? $context["liste_RencF"] : $this->getContext($context, "liste_RencF"))) == 0)) {
+                    // line 51
+                    echo "                    <div class=\"row\">
+                        <div class=\"col-md-2 col-md-offset-6 struct\">?</div>
+                        <div class=\"col-md-2 col-md-offset-6 struct\">?</div>
+                    </div>
+                ";
+                } else {
+                    // line 56
+                    echo "                    <div class=\"row\">
+                        <div class=\"col-md-2 col-md-offset-6 struct\">";
+                    // line 57
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencF"]) ? $context["liste_RencF"] : $this->getContext($context, "liste_RencF")), 0, array(), "array"), 0, array(), "array"), "html", null, true);
+                    echo "</div>
+                        <div class=\"col-md-2 col-md-offset-6 struct\">";
+                    // line 58
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["liste_RencF"]) ? $context["liste_RencF"] : $this->getContext($context, "liste_RencF")), 0, array(), "array"), 1, array(), "array"), "html", null, true);
+                    echo "</div>
+                    </div>
+                ";
+                }
+                // line 61
+                echo "            ";
             }
-            // line 54
+            // line 62
             echo "    ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
@@ -154,13 +174,13 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 55
+        // line 63
         echo "
     ";
-        // line 57
+        // line 65
         echo "    ";
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
-        // line 58
+        // line 66
         echo "    ";
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form');
         echo "
@@ -179,6 +199,6 @@ class __TwigTemplate_c7ff86f93302caaa8dc2d940ff59e74fdb9a9775356946dfa1eb08bdb06
 
     public function getDebugInfo()
     {
-        return array (  164 => 58,  161 => 57,  158 => 55,  144 => 54,  138 => 50,  135 => 49,  132 => 48,  129 => 47,  122 => 43,  116 => 40,  112 => 38,  105 => 34,  99 => 31,  95 => 29,  92 => 28,  81 => 19,  78 => 18,  76 => 17,  70 => 14,  64 => 11,  60 => 9,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  184 => 66,  181 => 65,  178 => 63,  164 => 62,  161 => 61,  155 => 58,  151 => 57,  148 => 56,  141 => 51,  138 => 50,  135 => 49,  132 => 48,  129 => 47,  122 => 43,  116 => 40,  112 => 38,  105 => 34,  99 => 31,  95 => 29,  92 => 28,  81 => 19,  78 => 18,  76 => 17,  70 => 14,  64 => 11,  60 => 9,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

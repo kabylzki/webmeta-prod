@@ -107,7 +107,7 @@ class __TwigTemplate_15b387f606de1c3882b98a53c6a6b9b0fb115e1570777dd86934d3bd48c
         if (($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getStatut") == "pret")) {
             // line 15
             echo "                <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_coupe", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_coupe", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "phase" => "pool")), "html", null, true);
             echo "\" title=\"tournoi\"/>tableau des rencontres</a>
             ";
         } elseif (($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getStatut") == "enAttente")) {

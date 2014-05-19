@@ -25,7 +25,7 @@ class MessageRepository extends EntityRepository
             'SELECT m.id
             FROM WebMetaCommonBundle:Message m
             WHERE m.id = :idCompte
-            AND m.statut = :statut' )->setParameter('idCompte', $id_compte)->setParameter('statut', "non lu")->getResult();
+            AND m.statut = :statut' )->setParameter('idCompte', $id_compte)->setParameter('statut', "non-lu")->getResult();
                  
     }
 

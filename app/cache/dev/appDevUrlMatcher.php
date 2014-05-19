@@ -284,17 +284,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/creation-tournoi')) {
-            // tournoi_creation
-            if ($pathinfo === '/creation-tournoi') {
-                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::creationTournoiAction',  '_route' => 'tournoi_creation',);
-            }
+        // tournoi_creation
+        if ($pathinfo === '/creation-tournoi') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::creationTournoiAction',  '_route' => 'tournoi_creation',);
+        }
 
-            // tournoi_creation_validation
-            if ($pathinfo === '/creation-tournoi-validation') {
-                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::validationAction',  '_route' => 'tournoi_creation_validation',);
-            }
+        // tournoi_suppression
+        if (0 === strpos($pathinfo, '/suppression-tournoi') && preg_match('#^/suppression\\-tournoi/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_suppression')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::suppressionAction',));
+        }
 
+        // tournoi_creation_validation
+        if ($pathinfo === '/creation-tournoi-validation') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::validationAction',  '_route' => 'tournoi_creation_validation',);
         }
 
         if (0 === strpos($pathinfo, '/tournoi-')) {
@@ -304,7 +306,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // tournoi_coupe
-            if (0 === strpos($pathinfo, '/tournoi-coupe') && preg_match('#^/tournoi\\-coupe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/tournoi-coupe') && preg_match('#^/tournoi\\-coupe/(?P<id>[^/]++)/(?P<phase>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_coupe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TypeTournoiController::coupeAction',));
             }
 
