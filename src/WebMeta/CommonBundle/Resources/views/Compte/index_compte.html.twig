@@ -20,7 +20,7 @@
         {% endif %}
     </div>
     
-    <div class="information-compte col-md-10">
+    <div class="information-compte col-md-7">
         <h3>Informations</h3>
         {% if user_connected %}
             <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier mes informations</a> - <a href="{{ path('compte_modification_password') }}" title="Modifier mot de passe">Modifier mot de passe</a></p>
@@ -34,11 +34,9 @@
             <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
         </ul>
     </div>
-    <div class="clear"></div>
-    
     {% if user_connected %}
-        <div class="demandes-compte col-md-12">
-            <h3>Mes demandes en attente</h3>
+        <div class="demandes-compte col-md-3">
+            <h3>Demandes en attente</h3>
             <ul>
             {% for demande in liste_demande %}
                 <li><a href="{{ path('equipe_view', {id:demande.getId}) }}" title="Voir l'équipe  {{ demande.getNom }}"> {{ demande.getNom }}</a> - <i>En attente </i></li>
@@ -46,6 +44,9 @@
             </ul>
         </div>
     {% endif %}
+    <div class="clear"></div>
+    
+
 </div>    
  {% endblock %}
 

@@ -69,11 +69,6 @@ logout:
     defaults: {_controller: WebMetaCommonBundle:Login:logout }
 
 ################ Page ################
-# Affiche une page créée et son contenu
-page_view:
-    pattern:  /{nom_categorie}/page/{id}-{url_alias}
-    defaults: { _controller: WebMetaCommonBundle:Page:view }
-    
 # Page de création d'une page
 page_creation:
     pattern:  /creation-page
@@ -83,6 +78,26 @@ page_creation:
 page_creation_validation:
     pattern:  /creation-page-validation
     defaults: { _controller: WebMetaCommonBundle:Page:validation }
+    
+# Affiche une page créée et son contenu
+page_view:
+    pattern:  /{nom_categorie}/page/{id}-{url_alias}
+    defaults: { _controller: WebMetaCommonBundle:Page:view }
+    
+# Page de modification d'une page
+page_modification:
+    pattern:  /modification-page-{id_page}
+    defaults: { _controller: WebMetaCommonBundle:Page:formModification }
+
+# Page de validation de la page modification
+page_modification_validation:
+    pattern:  /modif-page
+    defaults: { _controller: WebMetaCommonBundle:Page:modification }
+    
+# Suppression de la page
+page_suppression:
+    pattern:  /suppression-page-{id_page}
+    defaults: { _controller: WebMetaCommonBundle:Page:suppression }
     
 ################ Warbot ################
 # Page d'accueil de Warbot    

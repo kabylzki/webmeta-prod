@@ -130,7 +130,7 @@ hr
     padding: 0px;
 }
 
-#page-compte-index .information-compte h3 {
+#page-compte-index .information-compte h3,  #page-compte-index .demandes-compte h3{
     margin: 0px;
 }
 

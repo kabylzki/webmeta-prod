@@ -1,0 +1,13 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Formulaire de modification d'une page {% endblock %}
+
+{% block content %} 
+<div id="page-modification-compte">
+    <h1>Formulaire de modification d'une page</h1>
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+
+    {{ form(form, {'action': path('page_modification_validation', {id:id_page}), 'method': 'POST'}) }}
+</div> 
+{% endblock %}

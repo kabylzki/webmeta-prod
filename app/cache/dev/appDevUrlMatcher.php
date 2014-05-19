@@ -227,11 +227,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // page_view
-        if (preg_match('#^/(?P<nom_categorie>[^/]++)/page/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::viewAction',));
-        }
-
         if (0 === strpos($pathinfo, '/creation-page')) {
             // page_creation
             if ($pathinfo === '/creation-page') {
@@ -243,6 +238,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::validationAction',  '_route' => 'page_creation_validation',);
             }
 
+        }
+
+        // page_view
+        if (preg_match('#^/(?P<nom_categorie>[^/]++)/page/(?P<id>[^/\\-]++)\\-(?P<url_alias>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::viewAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/modif')) {
+            // page_modification
+            if (0 === strpos($pathinfo, '/modification-page') && preg_match('#^/modification\\-page\\-(?P<id_page>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_modification')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::formModificationAction',));
+            }
+
+            // page_modification_validation
+            if ($pathinfo === '/modif-page') {
+                return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::modificationAction',  '_route' => 'page_modification_validation',);
+            }
+
+        }
+
+        // page_suppression
+        if (0 === strpos($pathinfo, '/suppression-page') && preg_match('#^/suppression\\-page\\-(?P<id_page>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'page_suppression')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\PageController::suppressionAction',));
         }
 
         if (0 === strpos($pathinfo, '/warbot')) {
