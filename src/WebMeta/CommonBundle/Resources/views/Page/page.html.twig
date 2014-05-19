@@ -3,10 +3,6 @@
 {% block title %} WebMeta - {{page.getTitre}} {% endblock %}
 
 {% block content %} 
-    
-    {# Suppression de la page #}
-    
-    
     <div id="page">
         {{page.getContenu | raw}}
         <p><a href="#" onclick="window.history.back();" title="">Retour</a></p>

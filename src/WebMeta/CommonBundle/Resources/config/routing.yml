@@ -206,3 +206,14 @@ ressource_view:
 ressource_compte_view:
     pattern:  /ressources/{id_compte}
     defaults: { _controller: WebMetaCommonBundle:Ressource:index }
+
+################ Messages ################   
+# Visualisation de la liste des messages
+message_liste:
+    pattern:  /liste-messages
+    defaults: { _controller: WebMetaCommonBundle:Message:liste }
+    
+# Visualisation d'un message
+message_view:
+    pattern:  /message/{id}
+    defaults: { _controller: WebMetaCommonBundle:Message:view }

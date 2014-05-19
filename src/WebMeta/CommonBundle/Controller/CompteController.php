@@ -16,6 +16,7 @@ class CompteController extends Controller {
         $compte = $session->get('compte');
         // gestion utilisateur connecté
         $user_connected = true;
+        $new_message = false;
 
 
         // Si la session n'est pas intialisée (utilisateur non connecté)
@@ -52,9 +53,14 @@ class CompteController extends Controller {
             $equipe_demande = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Equipe')->find($un_id_equipe['id_equipe']);
             array_push($liste_demande, $equipe_demande);
         }
-
+        
+        $message_non_lu = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Message')->findMessageNonLu($compte->getId());
+        if (!empty($message_non_lu)) {
+            $new_message = true;
+        }
+        
         // Appel du template avec tous les paramètres
-        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande));
+        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande, 'new_message' => $new_message));
     }
 
     // Formulaire de création d'un compte

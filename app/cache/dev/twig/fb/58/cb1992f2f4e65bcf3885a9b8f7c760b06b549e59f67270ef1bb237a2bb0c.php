@@ -41,7 +41,7 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     <h1>Compte : ";
         // line 7
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPseudo"), "html", null, true);
-        echo "</h1>
+        echo " </h1>
     
     ";
         // line 10
@@ -49,41 +49,72 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
         // line 11
         echo "    
+    ";
+        // line 12
+        if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
+            // line 13
+            echo "    <div class=\"message-compte col-md-12\">
+        <a href=\"";
+            // line 14
+            echo $this->env->getExtension('routing')->getPath("message_liste");
+            echo "\" title=\"Liste de vos messages\">
+            ";
+            // line 15
+            if ((isset($context["new_message"]) ? $context["new_message"] : $this->getContext($context, "new_message"))) {
+                // line 16
+                echo "                <img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/enveloppe-non-lu2.png"), "html", null, true);
+                echo "\" alt=\"enveloppe\" />
+            ";
+            } else {
+                // line 18
+                echo "                <img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/enveloppe-lu.png"), "html", null, true);
+                echo "\" alt=\"enveloppe\" />
+            ";
+            }
+            // line 20
+            echo "        </a>
+    </div>
+    ";
+        }
+        // line 23
+        echo "    
     <div class=\"avatar-compte col-md-2\">
         ";
-        // line 13
+        // line 25
         if ((null === $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getAvatar"))) {
-            // line 14
+            // line 26
             echo "            <div class=\"avatar-img col-md-12\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("avatar/default_avatar.png"), "html", null, true);
             echo "\" alt=\"Mon avatar\" /></div>
         ";
         } else {
-            // line 16
+            // line 28
             echo "            <div class=\"avatar-img col-md-12\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("avatar/"), "html", null, true);
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getAvatar"), "html", null, true);
             echo "\" alt=\"Mon avatar\" /></div>
         ";
         }
-        // line 18
+        // line 30
         echo "        ";
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 19
+            // line 31
             echo "            <p class=\"avatar-link\"><a href=\"";
             echo $this->env->getExtension('routing')->getPath("compte_modification_password");
             echo "\" title=\"Modifier mon avatar\">Modifier mon avatar</a></p>
         ";
         }
-        // line 21
+        // line 33
         echo "    </div>
     
     <div class=\"information-compte col-md-7\">
         <h3>Informations</h3>
         ";
-        // line 25
+        // line 37
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 26
+            // line 38
             echo "            <p><a href=\"";
             echo $this->env->getExtension('routing')->getPath("compte_modification");
             echo "\" title=\"Modifier mes information\">Modifier mes informations</a> - <a href=\"";
@@ -91,47 +122,47 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             echo "\" title=\"Modifier mot de passe\">Modifier mot de passe</a></p>
         ";
         }
-        // line 28
+        // line 40
         echo "        <ul>
             <li><strong>Email</strong> : ";
-        // line 29
+        // line 41
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getEmail"), "html", null, true);
         echo "</li>
             <li><strong>Nom</strong> : ";
-        // line 30
+        // line 42
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getNom"), "html", null, true);
         echo "</li>
             <li><strong>Prénom</strong> : ";
-        // line 31
+        // line 43
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPrenom"), "html", null, true);
         echo "</li>
             <li><strong>Date de naissance</strong> : ";
-        // line 32
+        // line 44
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDateNaissance"), "d-m-Y"), "html", null, true);
         echo "</li>
             <li><strong>Inscrit depuis le</strong> : ";
-        // line 33
+        // line 45
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDateInscription"), "d-m-Y"), "html", null, true);
         echo "</li>
             <li><strong>Ma description</strong> : <br/> ";
-        // line 34
+        // line 46
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDescription"), "html", null, true);
         echo "</li>
         </ul>
     </div>
     ";
-        // line 37
-        if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 38
+        // line 49
+        if (((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected")) && (twig_length_filter($this->env, (isset($context["liste_demande"]) ? $context["liste_demande"] : $this->getContext($context, "liste_demande"))) > 0))) {
+            // line 50
             echo "        <div class=\"demandes-compte col-md-3\">
             <h3>Demandes en attente</h3>
             <ul>
             ";
-            // line 41
+            // line 53
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["liste_demande"]) ? $context["liste_demande"] : $this->getContext($context, "liste_demande")));
             foreach ($context['_seq'] as $context["_key"] => $context["demande"]) {
-                // line 42
+                // line 54
                 echo "                <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["demande"]) ? $context["demande"] : $this->getContext($context, "demande")), "getId"))), "html", null, true);
                 echo "\" title=\"Voir l'équipe  ";
@@ -144,12 +175,12 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['demande'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 44
+            // line 56
             echo "            </ul>
         </div>
     ";
         }
-        // line 47
+        // line 59
         echo "    <div class=\"clear\"></div>
     
 
@@ -157,37 +188,37 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
  ";
     }
 
-    // line 54
+    // line 66
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
 <h1>Menu</h1>
 <ul>
     <li><a href=\"";
-        // line 57
+        // line 69
         echo $this->env->getExtension('routing')->getPath("equipe_liste");
         echo "\" title=\"Afficher la liste des équipes\" />Liste des équipes</a></li>
     ";
-        // line 58
+        // line 70
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 59
+            // line 71
             echo "        <li><a href=\"";
             echo $this->env->getExtension('routing')->getPath("equipe_creation");
             echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
     ";
         }
-        // line 61
+        // line 73
         echo "</ul>
 
 <h3>Equipes</h3>
 
 <ul>
 ";
-        // line 66
+        // line 78
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
-            // line 67
+            // line 79
             echo "    <li><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
             echo "\" title=\"Voir l'équipe  ";
@@ -200,32 +231,32 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipe'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 69
+        // line 81
         echo "</ul>
 
 
 <h3>Ressources</h3>
 
 ";
-        // line 74
+        // line 86
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 75
+            // line 87
             echo "    <ul>
         <li><a href=\"";
-            // line 76
+            // line 88
             echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "warbot"));
             echo "\" title=\"Ressources relatives à Warbot\">Ressources Warbot</a></li>
         <li><a href=\"";
-            // line 77
+            // line 89
             echo $this->env->getExtension('routing')->getPath("ressource_view", array("jeu" => "metaciv"));
             echo "\" title=\"Ressources relatives à Metaciv\">Ressources Metaciv</a></li>
     </ul>
 ";
         } else {
-            // line 80
+            // line 92
             echo "    <ul>
         <li><a href=\"";
-            // line 81
+            // line 93
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ressource_compte_view", array("id_compte" => $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getId"))), "html", null, true);
             echo "\" title=\"Voir les ressources de ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPseudo"), "html", null, true);
@@ -233,7 +264,7 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
     </ul>
 ";
         }
-        // line 84
+        // line 96
         echo "
 ";
     }
@@ -250,6 +281,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  237 => 84,  229 => 81,  226 => 80,  220 => 77,  216 => 76,  213 => 75,  211 => 74,  204 => 69,  191 => 67,  187 => 66,  180 => 61,  174 => 59,  172 => 58,  168 => 57,  161 => 54,  153 => 47,  148 => 44,  135 => 42,  131 => 41,  126 => 38,  124 => 37,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 29,  95 => 28,  87 => 26,  85 => 25,  79 => 21,  73 => 19,  70 => 18,  63 => 16,  57 => 14,  55 => 13,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
+        return array (  268 => 96,  260 => 93,  257 => 92,  251 => 89,  247 => 88,  244 => 87,  242 => 86,  235 => 81,  222 => 79,  218 => 78,  211 => 73,  205 => 71,  203 => 70,  199 => 69,  192 => 66,  184 => 59,  179 => 56,  166 => 54,  162 => 53,  157 => 50,  155 => 49,  149 => 46,  145 => 45,  141 => 44,  137 => 43,  133 => 42,  129 => 41,  126 => 40,  118 => 38,  116 => 37,  110 => 33,  104 => 31,  101 => 30,  94 => 28,  88 => 26,  86 => 25,  82 => 23,  77 => 20,  71 => 18,  65 => 16,  63 => 15,  59 => 14,  56 => 13,  54 => 12,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
     }
 }

@@ -383,6 +383,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // message_liste
+        if ($pathinfo === '/liste-messages') {
+            return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MessageController::listeAction',  '_route' => 'message_liste',);
+        }
+
+        // message_view
+        if (0 === strpos($pathinfo, '/message') && preg_match('#^/message/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MessageController::viewAction',));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

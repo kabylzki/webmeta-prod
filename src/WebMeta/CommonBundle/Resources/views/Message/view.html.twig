@@ -1,0 +1,18 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Message {% endblock %}
+
+{% block content %} 
+    <div id="page-view-message">
+        {{message.getContenu | raw}}
+        <p><a href="#" onclick="window.history.back();" title="">Retour</a></p>
+    </div>
+ {% endblock %}
+
+{# Sidebar vide #}
+{% block sidebar %} 
+    <h1>Menu</h1>
+    <ul>
+        <li><a href="{{ path('message_suppression', {id:message.getId}) }}" title="Supprimer le message" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">Supprimer le message</a></li>
+    </ul>
+{% endblock %}

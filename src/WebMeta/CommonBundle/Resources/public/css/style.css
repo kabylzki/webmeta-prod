@@ -134,7 +134,40 @@ hr
     margin: 0px;
 }
 
+.demandes-compte {
+    padding-right: 0px;
+}
+
 .demandes-compte ul li, .liste-equipe ul li {
     border: 1px solid lightgrey;
     margin-bottom: 3px;
+    
+}
+
+.message-compte {
+    text-align: right;
+    margin-bottom: 5px;
+    padding-right: 0px;
+}
+
+.liste-message table {
+    width: 100%;
+}
+
+.liste-message table tr.head {
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.liste-message table tr.lu {
+    background-color: #EDEDED;
+}
+
+.liste-message table tr.non-lu {
+    background-color: #ffecec;
+}
+
+.liste-message  table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }

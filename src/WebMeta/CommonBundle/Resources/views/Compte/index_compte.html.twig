@@ -4,10 +4,22 @@
 
 {% block content %} 
 <div id="page-compte-index">
-    <h1>Compte : {{compte.getPseudo}}</h1>
+    <h1>Compte : {{compte.getPseudo}} </h1>
     
     {# Messages - (Notice, Erreur) #}
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    {% if user_connected %}
+    <div class="message-compte col-md-12">
+        <a href="{{ path('message_liste') }}" title="Liste de vos messages">
+            {% if new_message %}
+                <img src="{{ asset('bundles/webmetacommon/images/enveloppe-non-lu2.png')}}" alt="enveloppe" />
+            {% else %}
+                <img src="{{ asset('bundles/webmetacommon/images/enveloppe-lu.png')}}" alt="enveloppe" />
+            {% endif %}
+        </a>
+    </div>
+    {% endif %}
     
     <div class="avatar-compte col-md-2">
         {% if compte.getAvatar is null %}
@@ -34,7 +46,7 @@
             <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
         </ul>
     </div>
-    {% if user_connected %}
+    {% if user_connected and liste_demande|length > 0 %}
         <div class="demandes-compte col-md-3">
             <h3>Demandes en attente</h3>
             <ul>

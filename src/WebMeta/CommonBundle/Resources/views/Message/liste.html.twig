@@ -1,0 +1,44 @@
+{% extends "WebMetaCommonBundle::layout.html.twig" %}
+
+{% block title %} WebMeta - Liste des messages {% endblock %}
+
+{% block content %} 
+<div id="page-message-liste">
+    <h1>Liste des messages</h1>
+    
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+    
+    <div class="liste-message col-md-12">
+        <ul>
+
+        </ul>
+        
+        <table>
+            <tr class='head'>
+                <td>Titre</td>
+                <td>Expéditeur</td>
+                <td>Date d'expédition</td>
+                <td>Statut</td>
+            </tr>
+            {% for message in liste_message %}
+            <tr class={{message.getStatut}}>
+                <td><a href="{{ path('message_view', {id:message.getId}) }}" title="Voir le détail du message"> {{ message.getTitre }}</a></td>
+                <td>{{message.getIdExpediteur}}</td>
+                <td>{{message.getDateExpedition|date('d-m-Y H:i:s')}}</td>
+                <td>{{message.getStatut}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>    
+ {% endblock %}
+
+{% block sidebar %} 
+<h1>Menu</h1>
+<ul>
+
+        
+</ul>
+{% endblock %}
