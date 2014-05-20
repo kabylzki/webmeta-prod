@@ -8,14 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use WebMeta\CommonBundle\Entity\Rencontre;
+use WebMeta\CommonBundle\Entity\Resultat;
 use WebMeta\CommonBundle\Form\ResultatType;
 
 
 class TypeTournoiController extends Controller
 {
-    public function coupeAction($id,Request $request,$phase){
+    public function coupeAction($id,Request $request,$phase,$admin){
 
-
+        //gagnant du tournoi
+        $gagnant="";
         $em = $this->getDoctrine()
                     ->getManager();
 
@@ -61,10 +63,23 @@ class TypeTournoiController extends Controller
                            ->getForm();
 
         $formPool->handleRequest($request);
-
-
         #validation du formulaire
         if($formPool->isValid()){
+            $liste_RS=$em->getRepository('WebMetaCommonBundle:Rencontre')
+                        ->findBy(array('idTournoi' => $id,'phase'=>"demiFinal"));
+            $liste_RF=$em->getRepository('WebMetaCommonBundle:Rencontre')
+                         ->findBy(array('idTournoi' => $id,'phase'=>"final"));
+
+            for($i=0; $i <count($liste_RS);$i++){
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($liste_RS[$i]);
+                $em->flush();
+            }
+            for($i=0; $i <count($liste_RF);$i++){
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($liste_RF[$i]);
+                $em->flush();
+            }
             $rencontre= new Rencontre();
             for($i=1;$i<count($liste_RencontrePool);$i=$i+2){
                 $n1=$formPool->get('match-'.$i)->getData();
@@ -85,7 +100,7 @@ class TypeTournoiController extends Controller
                 $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
 
             }
-            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'demiFinal')));
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'demiFinal','admin' => $admin)));
         }
 
         ################################phase de demi-final##############################################
@@ -120,7 +135,7 @@ class TypeTournoiController extends Controller
                 $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
 
             }
-            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'final')));
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'final','admin'=>$admin)));
         }
 
         ############################phase final###################################################################
@@ -131,22 +146,32 @@ class TypeTournoiController extends Controller
         }
         $formFinal=$formFinal->add('valider','submit')
                                      ->getForm();
-        /*
+
         $formFinal->handleRequest($request);
         if($formFinal->isValid()){
-            $rencontre= new Rencontre();
-                $n1=$formFinal->get('gagnant')->getData();
+            $tmp=$em->getRepository('WebMetaCommonBundle:Resultat')
+                         ->findBy(array('idTournoi' => $id));
 
+            for($i=0; $i <count($tmp);$i++){
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($tmp[$i]);
+                $em->flush();
+            }
+
+            $resultatTournoi= new Resultat();
+             $n1=$formFinal->get('gagnant')->getData();
+
+                $resultatTournoi->setIdGagnant($em->getRepository('WebMetaCommonBundle:Equipe')->findOneByNom($n1."")->getId())
+                                ->setIdTournoi($id);
                 //persistance des données en base
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($rencontre);
+                $em->persist($resultatTournoi);
                 $em->flush();
-                $em->clear();#pour pouvoir inserer des entités en base de donnée  dans une boucle
 
-            }
-            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'final')));
+
+            return $this->redirect($this->generateUrl('tournoi_coupe', array('id' => $id,'phase' => 'fini','admin'=>$admin)));
         }
-        */
+
 
 
         $form=null;
@@ -159,8 +184,13 @@ class TypeTournoiController extends Controller
         else if($phase=="final"){
             $form=$formFinal;
         }
+        else if($phase=='fini'){
+            $gId=$em->getRepository('WebMetaCommonBundle:Resultat')->findOneByIdTournoi($id)->getIdGagnant();
+            $gagnant=$em->getRepository('WebMetaCommonBundle:Equipe')->findOneById($gId)->getNom();
+            $form=$formFinal;
+        }
 
 
-        return $this->render('WebMetaCommonBundle:Tournoi/typeTournoi:championnat.html.twig', array('form' => $form->createView(),"liste_RencP" =>$liste_RencP,"liste_RencD" =>$liste_RencD,"liste_RencF" =>$liste_RencF));
+        return $this->render('WebMetaCommonBundle:Tournoi/typeTournoi:championnat.html.twig', array('admin'=> $admin ,'id' =>$id ,'phase'=> $phase,'form' => $form->createView(),"liste_RencP" =>$liste_RencP,"liste_RencD" =>$liste_RencD,"liste_RencF" =>$liste_RencF,"gagnant"=>$gagnant));
     }
 }

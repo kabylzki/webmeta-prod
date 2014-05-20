@@ -141,7 +141,7 @@ tournoi_gestion:
 
 #Coupe
 tournoi_coupe:
-    pattern: /tournoi-coupe/{id}/{phase}
+    pattern: /tournoi-coupe/{id}/{phase}/{admin}
     defaults: { _controller: WebMetaCommonBundle:TypeTournoi:coupe}
 
 ################ Metaciv ################   

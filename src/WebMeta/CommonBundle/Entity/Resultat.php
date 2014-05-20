@@ -35,20 +35,6 @@ class Resultat
      */
     private $idGagnant;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idPerdant", type="integer")
-     */
-    private $idPerdant;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idRencontre", type="integer")
-     */
-    private $idRencontre;
-
 
     /**
      * Get id
@@ -104,51 +90,5 @@ class Resultat
     public function getIdGagnant()
     {
         return $this->idGagnant;
-    }
-
-    /**
-     * Set idPerdant
-     *
-     * @param integer $idPerdant
-     * @return Resultat
-     */
-    public function setIdPerdant($idPerdant)
-    {
-        $this->idPerdant = $idPerdant;
-
-        return $this;
-    }
-
-    /**
-     * Get idPerdant
-     *
-     * @return integer 
-     */
-    public function getIdPerdant()
-    {
-        return $this->idPerdant;
-    }
-
-    /**
-     * Set idRencontre
-     *
-     * @param integer $idRencontre
-     * @return Resultat
-     */
-    public function setIdRencontre($idRencontre)
-    {
-        $this->idRencontre = $idRencontre;
-
-        return $this;
-    }
-
-    /**
-     * Get idRencontre
-     *
-     * @return integer 
-     */
-    public function getIdRencontre()
-    {
-        return $this->idRencontre;
     }
 }
