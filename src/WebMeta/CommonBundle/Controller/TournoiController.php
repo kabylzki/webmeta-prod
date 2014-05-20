@@ -106,6 +106,16 @@ class TournoiController extends Controller {
              //le tournoi est pret a etre lancé
              $tournoi->setStatut("pret");
 
+             /*on supprime les anciens rencontres de la phase de pool */
+             $em = $this->getDoctrine()->getManager();
+             $rencontresP = $em->getRepository('WebMetaCommonBundle:Rencontre')->findBy(array('idTournoi' =>$id ,'phase' =>'pool'));
+             for($i=0; $i <count($rencontresP);$i++){
+                 $em = $this->getDoctrine()->getManager();
+                 $em->remove($rencontresP[$i]);
+                 $em->flush();
+             }
+
+             /*on génère les differents rencontres de la phase de pool */
              // persistance en bdd
              $em = $this->getDoctrine()->getManager();
              $em->persist($tournoi);
@@ -135,13 +145,10 @@ class TournoiController extends Controller {
         for($i=0; $i <count($items);$i++){
            $liste_nom_equipe[$items[$i]->getNom()]=$items[$i]->getNom();
         }
-        //envoi d'invitation pour participer a un tournoi
-        $invitation = new Invitation();
-        $invitation->setIdTournoi($tournoi->getId());
 
         //formulaire d'envoie d'invitation à une équipe
-        $formInvitation = $this->createFormBuilder($invitation)
-                               ->add('idInvite','choice', array('choices' => $liste_nom_equipe,'required'  => true))
+        $formInvitation = $this->createFormBuilder()
+                               ->add('equipe','choice', array('choices' => $liste_nom_equipe,'required'  => true))
                                ->add('valider', 'submit')
                                ->getForm();
 
@@ -149,10 +156,10 @@ class TournoiController extends Controller {
         //validation formulaire d'envoi de l'invitation
         $formInvitation->handleRequest($request);
         if ($formInvitation->isValid()) {
-
+            $invitation = new Invitation();
             //on fait correspondre le nom de l'équipe a son id  pour pouvoir insérer la ligne en base
             $tmp= $t->getRepository('WebMetaCommonBundle:Equipe')
-                    ->findOneByNom($invitation->getIdInvite());
+                    ->findOneByNom($formInvitation->get('equipe')->getData());
             if($tmp){
                 $invitation->setIdInvite($tmp->getId());
 
@@ -170,7 +177,7 @@ class TournoiController extends Controller {
 
             }
             else{
-                $message = $invitation->getIdInvite();
+                $message = "une erreur est survenue";
             }
 
             //message de notification
@@ -215,6 +222,32 @@ class TournoiController extends Controller {
 
 
         return $this->redirect($this->generateUrl('tournoi_warbot'));
+    }
+
+    public function suppressionEquipeAction($idTournoi,$idTeam){
+
+        $em = $this->getDoctrine()->getManager();
+        $tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')->findOneById($idTournoi);
+
+
+        $team= $em->getRepository('WebMetaCommonBundle:Invitation')
+                  ->findBy(array('idTournoi' => $idTournoi, 'idInvite' => $idTeam));
+
+        for($i=0; $i <count($team);$i++){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($team[$i]);
+            $em->flush();
+        }
+
+        if($tournoi->getStatut()=="pret"){
+            $tournoi->setStatut("enAttente");
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tournoi);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $idTournoi)));
+
     }
 
 }
