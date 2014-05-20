@@ -13,5 +13,19 @@ use Doctrine\ORM\EntityRepository;
 class EquipeRepository extends EntityRepository
 {
     
+     /**
+     * Récupère un nom d'équipe par son ID
+     * @param int $id_equipe 
+     * @return array
+     */
+    public function findNomByIdEquipe($id_equipe) {
+        
+        return $this->getEntityManager()
+                        ->createQuery(
+            'SELECT e.nom
+            FROM WebMetaCommonBundle:Equipe e
+            WHERE e.id = :idEquipe')->setParameter('idEquipe', $id_equipe)->getResult();
+                 
+    }  
 
 }

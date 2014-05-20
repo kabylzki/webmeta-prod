@@ -46,9 +46,6 @@ class __TwigTemplate_f1179f61aba882b71a1f795e2b75c76897e897d157f2bc90693f3f72b66
         // line 11
         echo "    
     <div class=\"liste-message col-md-12\">
-        <ul>
-
-        </ul>
         
         <table>
             <tr class='head'>
@@ -56,49 +53,68 @@ class __TwigTemplate_f1179f61aba882b71a1f795e2b75c76897e897d157f2bc90693f3f72b66
                 <td>Expéditeur</td>
                 <td>Date d'expédition</td>
                 <td>Statut</td>
+                <td>Action</td>
             </tr>
+            
             ";
-        // line 24
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["liste_message"]) ? $context["liste_message"] : $this->getContext($context, "liste_message")));
-        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 25
-            echo "            <tr class=";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getStatut"), "html", null, true);
-            echo ">
-                <td><a href=\"";
-            // line 26
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("message_view", array("id" => $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getId"))), "html", null, true);
-            echo "\" title=\"Voir le détail du message\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getTitre"), "html", null, true);
-            echo "</a></td>
-                <td>";
-            // line 27
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getIdExpediteur"), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 28
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getDateExpedition"), "d-m-Y H:i:s"), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 29
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getStatut"), "html", null, true);
-            echo "</td>
-            </tr>
+        // line 23
+        if ((twig_length_filter($this->env, (isset($context["liste_message"]) ? $context["liste_message"] : $this->getContext($context, "liste_message"))) > 0)) {
+            // line 24
+            echo "                ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["liste_message"]) ? $context["liste_message"] : $this->getContext($context, "liste_message")));
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 25
+                echo "                <tr class=";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getStatut"), "html", null, true);
+                echo ">
+                    <td><a href=\"";
+                // line 26
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("message_view", array("id" => $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getId"))), "html", null, true);
+                echo "\" title=\"Voir le détail du message\"> ";
+                echo twig_escape_filter($this->env, twig_truncate_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getTitre"), 50), "html", null, true);
+                echo "</a></td>
+                    <td>";
+                // line 27
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getIdExpediteur"), "html", null, true);
+                echo "</td>
+                    <td>";
+                // line 28
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getDateExpedition"), "d-m-Y H:i:s"), "html", null, true);
+                echo "</td>
+                    <td>";
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getStatut"), "html", null, true);
+                echo "</td>
+                    <td><a href=\"";
+                // line 30
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("message_suppression", array("id" => $this->getAttribute((isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "getId"))), "html", null, true);
+                echo "\" title=\"Supprimer le message\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer le message ?');\"><img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/corbeille.png"), "html", null, true);
+                echo "\" alt=\"corbeille\" /></a></td>
+                </tr>
+                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 33
+            echo "            ";
+        } else {
+            echo "    
+                <tr><td colspan=\"5\"><i>Aucun message</i></td></tr>
             ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 32
-        echo "        </table>
+        // line 36
+        echo "            
+        </table>
     </div>
 
 </div>    
  ";
     }
 
-    // line 38
+    // line 43
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
@@ -122,6 +138,6 @@ class __TwigTemplate_f1179f61aba882b71a1f795e2b75c76897e897d157f2bc90693f3f72b66
 
     public function getDebugInfo()
     {
-        return array (  102 => 38,  94 => 32,  85 => 29,  81 => 28,  77 => 27,  71 => 26,  66 => 25,  62 => 24,  47 => 11,  44 => 10,  36 => 5,  30 => 3,);
+        return array (  118 => 43,  109 => 36,  102 => 33,  91 => 30,  87 => 29,  83 => 28,  79 => 27,  73 => 26,  68 => 25,  63 => 24,  61 => 23,  47 => 11,  44 => 10,  36 => 5,  30 => 3,);
     }
 }

@@ -395,6 +395,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MessageController::viewAction',));
         }
 
+        // message_suppression
+        if (0 === strpos($pathinfo, '/suppression-message') && preg_match('#^/suppression\\-message/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_suppression')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\MessageController::suppressionAction',));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WebMeta\CommonBundle\Entity\Equipe;
 use WebMeta\CommonBundle\Entity\InvitationEquipe;
 use WebMeta\CommonBundle\Entity\Membre;
+use WebMeta\CommonBundle\Entity\Message;
 use WebMeta\CommonBundle\Form\EquipeType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -217,6 +218,8 @@ class EquipeController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
 
+        $nom_equipe = $em->getRepository('WebMetaCommonBundle:Equipe')->findNomByIdEquipe($id_equipe);
+
         if ($accept == "allow") {
             // Save du Membre
             $membre = new Membre();
@@ -238,8 +241,19 @@ class EquipeController extends Controller {
             $this->get('session')->getFlashBag()->add(
                     'notice', "Membre recruté"
             );
-
-            // TODO Message info user
+            
+            // Message info user accepté
+            $message = new Message();
+            $em->getRepository('WebMetaCommonBundle:Message');
+            $message->setIdExpediteur(0);
+            $message->setIdReceveur($id_compte);
+            $message->setTitre("[Equipe] - ".$nom_equipe[0]['nom']." - Demande acceptée");
+            $message->setContenu("Votre demande pour l'équipe <a href='".$this->generateUrl('equipe_view', array("id" => $id_equipe))."'>".$nom_equipe[0]['nom']."</a> a été acceptée");
+            $message->setDateExpedition(new \DateTime());
+            $message->setStatut("non-lu");
+            $em->persist($message);
+            $em->flush();   
+            
         } else {
             // Supprime la demande d'invitation
             $invitation_equipe = $em->getRepository('WebMetaCommonBundle:InvitationEquipe')->findBy(array("id_compte" => $id_compte, "id_equipe" => $id_equipe));
@@ -251,12 +265,20 @@ class EquipeController extends Controller {
                     'notice', "Membre refusé"
             );
             
-            // TODO Message info user
+            // Message info user refusé
+            $message = new Message();
+            $em->getRepository('WebMetaCommonBundle:Message');
+            $message->setIdExpediteur(0);
+            $message->setIdReceveur($id_compte);
+            $message->setTitre("[Equipe] - ".$nom_equipe[0]['nom']." - Demande refusée");
+            $message->setContenu("Votre demande pour l'équipe <a href='".$this->generateUrl('equipe_view', array("id" => $id_equipe))."'>".$nom_equipe[0]['nom']."</a> a été refusée");
+            $message->setDateExpedition(new \DateTime());
+            $message->setStatut("non-lu");
+            $em->persist($message);
+            $em->flush();   
         }
 
-
-
-        return $this->redirect($this->generateUrl('compte_view', array("id" => $id_compte)));
+        return $this->redirect($this->generateUrl('equipe_view', array("id" => $id_equipe)));
     }
 
     // Passage des droits de leader

@@ -4,8 +4,10 @@
 
 {% block content %} 
     <div id="page-view-message">
-        {{message.getContenu | raw}}
-        <p><a href="#" onclick="window.history.back();" title="">Retour</a></p>
+        <h1>{{message.getTitre}}</h1>
+        <p>le : <em><b>{{message.getDateExpedition|date('d-m-Y H:i:s')}}</b></em> de : <b>{{message.getIdExpediteur}}</b></p>
+        <p class="content-message">{{message.getContenu | raw}}</p>
+        <p class="link-retour"><a href="{{ path('message_liste') }}"  title="Retour à la liste des messages">Retour à la liste des messages</a></p>
     </div>
  {% endblock %}
 

@@ -217,3 +217,8 @@ message_liste:
 message_view:
     pattern:  /message/{id}
     defaults: { _controller: WebMetaCommonBundle:Message:view }
+    
+# Visualisation d'un message
+message_suppression:
+    pattern:  /suppression-message/{id}
+    defaults: { _controller: WebMetaCommonBundle:Message:suppression }

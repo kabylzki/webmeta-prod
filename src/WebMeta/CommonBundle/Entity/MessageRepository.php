@@ -24,7 +24,7 @@ class MessageRepository extends EntityRepository
                         ->createQuery(
             'SELECT m.id
             FROM WebMetaCommonBundle:Message m
-            WHERE m.id = :idCompte
+            WHERE m.id_receveur = :idCompte
             AND m.statut = :statut' )->setParameter('idCompte', $id_compte)->setParameter('statut', "non-lu")->getResult();
                  
     }
@@ -44,4 +44,20 @@ class MessageRepository extends EntityRepository
             WHERE c.id = :idExpediteur')->setParameter('idExpediteur', $id_expediteur)->getResult();
                  
     }    
+    
+     /**
+     * Marque un message comme lu
+     * @param int $id_message 
+     * @return array
+     */
+    public function marqueMessageLu($id_message) {
+        
+        return $this->getEntityManager()
+                        ->createQuery(
+            'UPDATE WebMetaCommonBundle:Message m
+            SET m.statut = :statut
+            WHERE m.id = :idMessage')->setParameter('statut', "lu")->setParameter('idMessage', $id_message)->execute();
+                 
+    }    
+    
 }

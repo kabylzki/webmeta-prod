@@ -10,9 +10,6 @@
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
     
     <div class="liste-message col-md-12">
-        <ul>
-
-        </ul>
         
         <table>
             <tr class='head'>
@@ -20,15 +17,23 @@
                 <td>Expéditeur</td>
                 <td>Date d'expédition</td>
                 <td>Statut</td>
+                <td>Action</td>
             </tr>
-            {% for message in liste_message %}
-            <tr class={{message.getStatut}}>
-                <td><a href="{{ path('message_view', {id:message.getId}) }}" title="Voir le détail du message"> {{ message.getTitre }}</a></td>
-                <td>{{message.getIdExpediteur}}</td>
-                <td>{{message.getDateExpedition|date('d-m-Y H:i:s')}}</td>
-                <td>{{message.getStatut}}</td>
-            </tr>
-            {% endfor %}
+            
+            {% if liste_message|length > 0 %}
+                {% for message in liste_message %}
+                <tr class={{message.getStatut}}>
+                    <td><a href="{{ path('message_view', {id:message.getId}) }}" title="Voir le détail du message"> {{ message.getTitre|truncate(50) }}</a></td>
+                    <td>{{message.getIdExpediteur}}</td>
+                    <td>{{message.getDateExpedition|date('d-m-Y H:i:s')}}</td>
+                    <td>{{message.getStatut}}</td>
+                    <td><a href="{{ path('message_suppression', {id:message.getId}) }}" title="Supprimer le message" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');"><img src="{{ asset('bundles/webmetacommon/images/corbeille.png')}}" alt="corbeille" /></a></td>
+                </tr>
+                {% endfor %}
+            {% else %}    
+                <tr><td colspan="5"><i>Aucun message</i></td></tr>
+            {% endif %}
+            
         </table>
     </div>
 

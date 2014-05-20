@@ -150,8 +150,14 @@ hr
     padding-right: 0px;
 }
 
+.liste-message {
+    padding: 0px;
+}
+
 .liste-message table {
     width: 100%;
+    text-align: center;
+    margin: 0px;
 }
 
 .liste-message table tr.head {
@@ -160,14 +166,22 @@ hr
 }
 
 .liste-message table tr.lu {
-    background-color: #EDEDED;
 }
 
 .liste-message table tr.non-lu {
-    background-color: #ffecec;
+    background-color: #EDEDED;
+    font-weight: bold;
+}
+
+.liste-message table tr.non-lu:hover, .liste-message table tr.lu:hover {
+    background-color: #ddeaef;
 }
 
 .liste-message  table, tr, td {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+.content-message {
+    text-align: justify;
 }
