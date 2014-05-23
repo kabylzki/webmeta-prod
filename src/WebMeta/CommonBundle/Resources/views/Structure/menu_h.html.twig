@@ -1,13 +1,16 @@
 <section id="menu_h">
     <div class="col-md-8">
         <ul class="nav nav-pills">
-            <li class="{% if app.request.attributes.get('_route') == 'common_homepage' %}actif{% endif %}"><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
-            <li class="{% if app.request.attributes.get('_route') == 'common_documentation' %}actif{% endif %}"><a href="{{ path('common_documentation') }}" title="Documentation">Documentation</a></li>    
-            <li class="{% if app.request.attributes.get('_route') == 'common_tutoriels' %}actif{% endif %}"><a href="{{ path('common_tutoriels') }}" title="Tutoriels">Tutoriels</a></li>
-            <li class="{% if app.request.attributes.get('_route') == 'common_faq' %}actif{% endif %}"><a href="{{ path('common_faq') }}" title="Questions">FAQ</a></li>
-            <li class="{% if app.request.attributes.get('_route') == 'common_contact' %}actif{% endif %}"><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
-            <li class="{% if app.request.attributes.get('_route') == 'common_creation' %}actif{% endif %}"><a href="{{ path('page_creation') }}" title="Formulaire de création d'une page">Créer une page</a></li>
-        </ul>
+            <li><a href="{{ path('common_homepage') }}" title="Accueil du site">Accueil</a></li>
+            <li><a href="{{ path('common_documentation') }}" title="Documentation">Documentation</a></li>    
+            <li><a href="{{ path('common_tutoriels') }}" title="Tutoriels">Tutoriels</a></li>
+            <li><a href="{{ path('common_faq') }}" title="Questions">FAQ</a></li>
+            <li><a href="{{ path('common_contact') }}" title="Formulaire de contact">Contact</a></li>
+            
+            {% if app.session.get('compte') is not empty and app.session.get('compte').getIsAdmin == 1 %}
+                <li><a href="{{ path('page_creation') }}" title="Formulaire de création d'une page">Créer une page</a></li>
+            {% endif %}
+            </ul>
     </div>
     <div class="form-connexion col-md-4">
                 {# Inclusion du formulaire de login si user non connecté #}

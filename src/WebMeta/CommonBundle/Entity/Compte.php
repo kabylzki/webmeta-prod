@@ -83,6 +83,14 @@ class Compte
      * @ORM\Column(name="description", type="string", length=1000, nullable=true)
      */
     private $description;
+    
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_admin", type="boolean")
+     */
+    private $is_admin;
 
     /**
      * Get id
@@ -295,6 +303,28 @@ class Compte
      */
     public function getDescription() {
         return $this->description;
+    }
+    
+    
+        /**
+     * Set is_admin
+     *
+     * @param boolean $is_admin
+     * @return Compte
+     */
+    public function setIsAdmin($is_admin) {
+        $this->is_admin = $is_admin;
+
+        return $this;
+    }
+
+    /**
+     * Get is_admin
+     *
+     * @return boolean 
+     */
+    public function getIsAdmin() {
+        return $this->is_admin;
     }
     
 }

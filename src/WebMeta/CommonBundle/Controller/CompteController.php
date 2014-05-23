@@ -81,6 +81,7 @@ class CompteController extends Controller {
         $compte->setDateInscription(new \DateTime());
         // Encrypte le MDP en MD5
         $compte->setPassword(md5($form['password']->getData()));
+        $compte->setIsAdmin(false);
 
         // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
