@@ -20,13 +20,31 @@ use WebMeta\CommonBundle\Form\TournoiType;
 class TournoiController extends Controller {
 
     public function tournoiAction() {
+        #variables de session
         $session = $this->get('session');
         $compte = $session->get('compte');
+
         $em = $this->getDoctrine()->getManager();
-        $liste_tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')->findBy(array("id_compte" => $compte->getId()));
+
+        #listes des tournois publics et tournois du tournoi
+        $liste_tournoiUser=array();#contient les tournois crées par l'utilisateur il en est par defaut l'admin
+        $liste_tournoiPubliques=array();#contient les autres tournois présent sur le site, il n'a que le droit de lecture
 
 
-        return $this->render('WebMetaCommonBundle:Tournoi:tournoi.html.twig', array("liste_tournoi" => $liste_tournoi));
+        $liste_tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')->findAll();#on recupére tous les tounois
+
+        #on classe les tournois récupérés selon leur créateur
+        for($i=0; $i <count($liste_tournoi);$i++){
+            if($liste_tournoi[$i]->getIdCompte()==$compte->getId()){
+                array_push($liste_tournoiUser,$liste_tournoi[$i]);
+            }
+            else{
+                array_push($liste_tournoiPubliques,$liste_tournoi[$i]);
+            }
+        }
+
+
+        return $this->render('WebMetaCommonBundle:Tournoi:tournoi.html.twig', array("liste_tournoiUser" => $liste_tournoiUser,"liste_tournoiPubliques" => $liste_tournoiPubliques));
     }
 
     public function creationTournoiAction() {
@@ -37,7 +55,7 @@ class TournoiController extends Controller {
     }
 
     public function validationAction(Request $request) {
-        //récupération de la session
+        #varibales de sessions
         $session = $this->get('session');
         $compte = $session->get('compte');
 
@@ -45,9 +63,8 @@ class TournoiController extends Controller {
 
         $form = $this->createForm(new TournoiType(), $tournoi);
 
+        #validation du formulaire
         $form->handleRequest($request);
-
-        // Si le formulaire est valide alors on insert
         if ($form->isValid()) {
             //on attribue le tournoi au user et on affecte le statut en attente
             $tournoi->setIdCompte($compte->getId());
@@ -106,9 +123,9 @@ class TournoiController extends Controller {
              //le tournoi est pret a etre lancé
              $tournoi->setStatut("pret");
 
-             /*on supprime les anciens rencontres de la phase de pool */
+             /*on supprime les anciens rencontres du tournoi */
              $em = $this->getDoctrine()->getManager();
-             $rencontresP = $em->getRepository('WebMetaCommonBundle:Rencontre')->findBy(array('idTournoi' =>$id ,'phase' =>'pool'));
+             $rencontresP = $em->getRepository('WebMetaCommonBundle:Rencontre')->findBy(array('idTournoi' =>$id));
              for($i=0; $i <count($rencontresP);$i++){
                  $em = $this->getDoctrine()->getManager();
                  $em->remove($rencontresP[$i]);
@@ -180,7 +197,7 @@ class TournoiController extends Controller {
                 $message = "une erreur est survenue";
             }
 
-            //message de notification
+            #message de notification
             $this->get('session')->getFlashBag()->add('notice', $message);
 
         }
@@ -193,43 +210,63 @@ class TournoiController extends Controller {
 
     }
     public function suppressionAction($id){
-        //récupération du tournoi courant
+        #récupération du tournoi courant
         $t = $this->getDoctrine()
-            ->getManager();
+                  ->getManager();
+        $em = $this->getDoctrine()->getManager();
         $tournoi = $t->getRepository('WebMetaCommonBundle:Tournoi')
-            ->findOneById($id);
+                     ->findOneById($id);
 
+        #on supprime aussi les équipes du tournoi
         $liste_E= $t->getRepository('WebMetaCommonBundle:Invitation')
-                    ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
+            ->findBy(array('idTournoi' => $id, 'statut' => 'accepted'));
 
-        for($i=0; $i <count($liste_E);$i++){
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($liste_E[$i]);
-            $em->flush();
+        if($liste_E){
+            for($i=0; $i <count($liste_E);$i++){
+
+                $em->remove($liste_E[$i]);
+                $em->flush();
+            }
+        }
+        else{
+            $message="erreur lors de la suppression des equipes du tournoi";
         }
 
+
+        #on supprime les differentes rencontres du tournoi
         $liste_R=$em->getRepository('WebMetaCommonBundle:Rencontre')
                     ->findBy(array('idTournoi' => $id));
-        for($i=0; $i <count($liste_R);$i++){
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($liste_R[$i]);
-            $em->flush();
+
+        if($liste_R){
+            for($i=0; $i <count($liste_R);$i++){
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($liste_R[$i]);
+                $em->flush();
+            }
+        }
+        else{
+            $message="erreur lors de la suppression des rencontres";
         }
 
+        #on supprime le tournoi
         $em = $this->getDoctrine()->getManager();
         $em->remove($tournoi);
         $em->flush();
 
+        $message="tournoi supprimé";
+        #message de notification
+        $this->get('session')->getFlashBag()->add('notice', $message);
 
         return $this->redirect($this->generateUrl('tournoi_warbot'));
     }
 
     public function suppressionEquipeAction($idTournoi,$idTeam){
 
+        #recuperation du tournoi
         $em = $this->getDoctrine()->getManager();
         $tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')->findOneById($idTournoi);
 
-
+        #on récupère le lien de l'équipe au tournoi
         $team= $em->getRepository('WebMetaCommonBundle:Invitation')
                   ->findBy(array('idTournoi' => $idTournoi, 'idInvite' => $idTeam));
 
@@ -239,12 +276,17 @@ class TournoiController extends Controller {
             $em->flush();
         }
 
+        #on rétablit le statut de l'équipe a "enAttente" jusqu'a ce qu'il y ait assez d'equipes
         if($tournoi->getStatut()=="pret"){
             $tournoi->setStatut("enAttente");
             $em = $this->getDoctrine()->getManager();
             $em->persist($tournoi);
             $em->flush();
         }
+
+        $message="supression de l'équipe effectué";
+        #message de notification
+        $this->get('session')->getFlashBag()->add('notice', $message);
 
         return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $idTournoi)));
 

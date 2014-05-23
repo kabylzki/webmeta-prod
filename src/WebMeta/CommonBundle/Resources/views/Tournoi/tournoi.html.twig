@@ -9,10 +9,20 @@
 {% block content %}
 <div id="page-warbot-tournoi">
     <h1>Liste des tournois Warbot</h1>
-    
-    <h3>Publiques</h3>
+
+    {# Messages - (Notice, Erreur) #}
+    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+
+    <h3>tournois crées</h3>
     <ul>
-        {% for tournoi in liste_tournoi %}
+        {% for tournoi in liste_tournoiUser %}
+            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>  <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a></li>
+        {% endfor %}
+    </ul>
+
+    <h3>tournois publiques</h3>
+    <ul>
+        {% for tournoi in liste_tournoiPubliques %}
             <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>  <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a></li>
         {% endfor %}
     </ul>

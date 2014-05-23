@@ -1,20 +1,24 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% form_theme form "WebMetaCommonBundle:Tournoi:form.html.twig" %}
+
 {% block stylesheet_extend %}
     <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
-{% endblock %}   
+{% endblock %}
+
+{% block title %}tableaux des rencontres{% endblock %}
 
 {% block content %}
 
-
+    <center><h1>tableaux des rencontres</h1></center>
     {% if  gagnant==""%}
         {% for i in 0..liste_RencP|length-1 %}
             <div class="row">
                 <div class="row">
-                    <div class="col-md-2 struct">{{ liste_RencP[i][0] }}</div>
+                    <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][0] }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 struct">{{ liste_RencP[i][1] }}</div>
+                    <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][1] }}</div>
                 </div>
             </div>
             {% if  i%2 == 0 %}
@@ -52,13 +56,13 @@
             {% if loop.index == (liste_RencP|length / 2) %}
                 {% if  liste_RencF|length==0%}
                     <div class="row">
-                        <div class="col-md-2 col-md-offset-6 struct">?</div>
-                        <div class="col-md-2 col-md-offset-6 struct">?</div>
+                        <div class="col-md-2 col-md-offset-5 struct">?</div>
+                        <div class="col-md-2 col-md-offset-5 struct">?</div>
                     </div>
                 {% else %}
                     <div class="row">
-                        <div class="col-md-2 col-md-offset-6 struct">{{ liste_RencF[0][0] }}</div>
-                        <div class="col-md-2 col-md-offset-6 struct">{{ liste_RencF[0][1] }}</div>
+                        <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][0] }}</div>
+                        <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][1] }}</div>
                     </div>
                 {% endif %}
             {% endif %}
