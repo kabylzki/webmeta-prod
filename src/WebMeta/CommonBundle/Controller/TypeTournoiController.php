@@ -20,6 +20,13 @@ class TypeTournoiController extends Controller
         $gagnant="";
         $em = $this->getDoctrine()
                     ->getManager();
+        #recupération du gagnant du tournoi si il existe
+        $resTournoi=$em->getRepository('WebMetaCommonBundle:Resultat')->findOneByIdTournoi($id);
+        if($resTournoi){
+            $gagnant=$em->getRepository('WebMetaCommonBundle:Equipe')->findOneById($resTournoi->getIdGagnant())->getNom();
+        }
+
+
 
         #####################tableau des rencontres######################################
         $liste_tmp=$em->getRepository('WebMetaCommonBundle:Rencontre')

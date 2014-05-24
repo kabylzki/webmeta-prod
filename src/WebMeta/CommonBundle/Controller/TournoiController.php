@@ -88,7 +88,7 @@ class TournoiController extends Controller {
         return $this->redirect($this->generateUrl('tournoi_warbot'));
     }
 
-    public function gestionTournoiAction($id, Request $request) {
+    public function gestionTournoiAction($id,$admin, Request $request) {
         //session
         $session = $this->get('session');
         $compte = $session->get('compte');
@@ -160,7 +160,10 @@ class TournoiController extends Controller {
         $liste_nom_equipe = array();
         $items=$inv->getRepository('WebMetaCommonBundle:Equipe')->findAll();
         for($i=0; $i <count($items);$i++){
-           $liste_nom_equipe[$items[$i]->getNom()]=$items[$i]->getNom();
+           if(!(in_array($items[$i],$liste_team))){
+               $liste_nom_equipe[$items[$i]->getNom()]=$items[$i]->getNom();
+           }
+
         }
 
         //formulaire d'envoie d'invitation à une équipe
@@ -190,7 +193,7 @@ class TournoiController extends Controller {
                 $em->persist($invitation);
                 $em->flush();
                 $message = "invitation envoyée";
-                return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $id)));
+                return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $id, 'admin' =>'true')));
 
             }
             else{
@@ -203,7 +206,7 @@ class TournoiController extends Controller {
         }
 
 
-         return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('liste_team' => $liste_team,'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
+         return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('admin' => $admin ,'liste_team' => $liste_team,'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
 
 
 
@@ -262,6 +265,7 @@ class TournoiController extends Controller {
 
     public function suppressionEquipeAction($idTournoi,$idTeam){
 
+
         #recuperation du tournoi
         $em = $this->getDoctrine()->getManager();
         $tournoi = $em->getRepository('WebMetaCommonBundle:Tournoi')->findOneById($idTournoi);
@@ -287,8 +291,9 @@ class TournoiController extends Controller {
         $message="supression de l'équipe effectué";
         #message de notification
         $this->get('session')->getFlashBag()->add('notice', $message);
+        return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $idTournoi ,'admin' => 'true')));
 
-        return $this->redirect($this->generateUrl('tournoi_gestion', array('id' => $idTournoi)));
+
 
     }
 

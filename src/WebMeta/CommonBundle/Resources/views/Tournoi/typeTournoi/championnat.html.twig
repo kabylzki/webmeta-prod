@@ -4,6 +4,7 @@
 
 {% block stylesheet_extend %}
     <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/styleTest.css') }}" />
 {% endblock %}
 
 {% block title %}tableaux des rencontres{% endblock %}
@@ -11,71 +12,80 @@
 {% block content %}
 
     <center><h1>tableaux des rencontres</h1></center>
-    {% if  gagnant==""%}
-        {% for i in 0..liste_RencP|length-1 %}
-            <div class="row">
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][0] }}</div>
+        <div class="row">
+                <div class="col-md-8">
+                    {% for i in 0..liste_RencP|length-1 %}
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][0] }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][1] }}</div>
+                            </div>
+                        </div>
+                        {% if  i%2 == 0 %}
+                            {% if  liste_RencD|length==0%}
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-2 col-md-offset-3 struct">?</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 col-md-offset-3 struct">?</div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                {% if  i >= liste_RencD|length - 1 %}
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][0] }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][1] }}</div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][0] }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][1] }}</div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                        {% if loop.index == (liste_RencP|length / 2) %}
+                            {% if  liste_RencF|length==0%}
+                                <div class="row">
+                                    <div class="col-md-2 col-md-offset-5 struct">?</div>
+                                    <div class="col-md-2 col-md-offset-5 struct">?</div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][0] }}</div>
+                                    <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][1] }}</div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-1 struct">{{ liste_RencP[i][1] }}</div>
+                <div class="col-md-4">
+                    {% if  gagnant !=""%}
+                    <div class="row">
+                        <div class="col-md-* "><center>LE GAGNANT EST <uppercase>{{ gagnant }}</uppercase></center></div>
+                        <div class="col-md-* "><center><img src="{{ asset('bundles/webmetacommon/images/coupe.jpg') }}" width="200px" height="200px"/></center></div>
+                    </div>
+                     {% endif %}
                 </div>
-            </div>
-            {% if  i%2 == 0 %}
-                {% if  liste_RencD|length==0%}
-                    <div class="row">
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-3 struct">?</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-3 struct">?</div>
-                        </div>
-                    </div>
-                {% else %}
-                    {% if  i >= liste_RencD|length - 1 %}
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][0] }}</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[liste_RencD|length - 1][1] }}</div>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][0] }}</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2 col-md-offset-3 struct">{{ liste_RencD[i][1] }}</div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            {% if loop.index == (liste_RencP|length / 2) %}
-                {% if  liste_RencF|length==0%}
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5 struct">?</div>
-                        <div class="col-md-2 col-md-offset-5 struct">?</div>
-                    </div>
-                {% else %}
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][0] }}</div>
-                        <div class="col-md-2 col-md-offset-5 struct">{{ liste_RencF[0][1] }}</div>
-                    </div>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        <center><a href="{{ path('tournoi_coupe', {'id': id,'phase': phase , 'admin':'true'}) }}" title="tournoi">gestion du tournoi</a></center>
+        </div>
+
+
         {% if admin=='true' %}
+            <h3>gestion du tournoi</h3>
             {# Messages - (Notice, Erreur) #}
             {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
             {{ form(form) }}
         {% endif %}
-
-    {% else %}
-        <center>LE GAGNANT EST {{ gagnant }}</center>
-    {% endif %}
 
 {% endblock %}

@@ -1,5 +1,7 @@
 {% extends "WebMetaCommonBundle::layout.html.twig" %}
 
+{% form_theme formInvitation "WebMetaCommonBundle:Tournoi:form.html.twig" %}
+
 {% block stylesheet_extend %}
     <link rel="stylesheet" href="{{ asset('bundles/webmetacommon/css/warbot.css') }}" />
 {% endblock %}   
@@ -12,24 +14,44 @@
         <h1>rencontres</h1>
         {% block rencontres %}
         {% if tournoi.getStatut == "pret" %}
-                <a href="{{ path('tournoi_coupe', {'id': tournoi.getId,'phase':'pool','admin':'false'}) }}" title="tournoi">tableau des rencontres</a>
-            {% elseif tournoi.getStatut == "enAttente" %}
+                {% if admin=='true' %}
+                    <a href="{{ path('tournoi_coupe', {'id': tournoi.getId,'phase':'pool','admin':'true'}) }}" title="tournoi">tableau des rencontres</a>
+                {% else %}
+                    <a href="{{ path('tournoi_coupe', {'id': tournoi.getId,'phase':'pool','admin':'false'}) }}" title="tournoi">tableau des rencontres</a>
+                {% endif %}
+        {% elseif tournoi.getStatut == "enAttente" %}
                 <p>grille non disponible, il n'y a pas assez d'équipes</p>
-            {% else %}
+        {% else %}
         {% endif %}
         {% endblock %}
 
         <h1>liste des participants</h1>
-               <ul>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4 struct">
+               <table width="70%" height="70%">
+                <tr>
+                <th>nom<th>description
+                </tr>
                 {% for team in liste_team %}
-                    <li>{{ team.getNom()}} <a href="{{ path('tournoi_supression_equipe', {'idTournoi':tournoi.getId,'idTeam':team.getId}) }}" title="tournoi">supprimer</a></li>
+                    <tr><td>{{ team.getNom()}}</td><td>{{ team.getPresentation()}}</td>
+                        <td>
+                        {% if admin=="true" %}
+                            <a href="{{ path('tournoi_supression_equipe', {'idTournoi':tournoi.getId,'idTeam':team.getId}) }}" title="tournoi">supprimer</a>
+                        {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
-               </ul>
-        {% if liste_team|length <8 %}
-            {# Messages - (Notice, Erreur) #}
-            {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+               </table>
+             </div>
+            </div>
+
+
+        {% if liste_team|length <8 and admin=="true"%}
+        <h3>ajouter des équipes</h3>
             {{ form(formInvitation) }}
         {% endif %}
+        {# Messages - (Notice, Erreur) #}
+        {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
 
 
     </div>

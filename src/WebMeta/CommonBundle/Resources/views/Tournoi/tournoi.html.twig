@@ -13,17 +13,19 @@
     {# Messages - (Notice, Erreur) #}
     {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
 
-    <h3>tournois crées</h3>
+    <h3>mes tournois</h3>
     <ul>
         {% for tournoi in liste_tournoiUser %}
-            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>  <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a></li>
+            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId , 'admin':'true'}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>
+                <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a>
+            </li>
         {% endfor %}
     </ul>
 
     <h3>tournois publiques</h3>
     <ul>
         {% for tournoi in liste_tournoiPubliques %}
-            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a>  <a href="{{ path('tournoi_suppression', {'id': tournoi.getId}) }}">supprimer</a></li>
+            <li><a href="{{ path('tournoi_gestion', {'id': tournoi.getId,'admin':'false'}) }}" title="{{tournoi.getNom}}"/>{{tournoi.getNom}} {{ tournoi.getDate.format('d/M/Y') }}</a></li>
         {% endfor %}
     </ul>
 </div>

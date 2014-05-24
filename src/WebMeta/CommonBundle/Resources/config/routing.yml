@@ -134,11 +134,12 @@ tournoi_creation_validation:
 
 # Page de gestion d'un  tournoi
 tournoi_gestion:
-    pattern: /tournoi-gestion/{id}
+    pattern: /tournoi-gestion/{id}/{admin}
     defaults: {_controller: WebMetaCommonBundle:Tournoi:gestionTournoi}
+
 #suppression equipe d'un tournoi
 tournoi_supression_equipe:
-    pattern: /tournoi-gestion/{idTournoi}/{idTeam}
+    pattern: /tournoi-supression/{idTournoi}/{idTeam}
     defaults: {_controller: WebMetaCommonBundle:Tournoi:suppressionEquipe}
 
 ################ TypedeTournoi##################
