@@ -118,7 +118,9 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
                 // line 36
                 echo "                                - <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_devenir_leader", array("id_equipe" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"), "id" => $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getId"))), "html", null, true);
-                echo "\" title=\"Faire de ce membre un leader\"> Donner les droits de leader </a>   
+                echo "\" onclick=\"return confirm('Accorder les droits de leader à ";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["membre"]) ? $context["membre"] : $this->getContext($context, "membre")), "getPseudo"), "html", null, true);
+                echo " ?');\" title=\"Faire de ce membre un leader\"> Donner les droits de leader </a>   
                             ";
             }
             // line 37
@@ -252,6 +254,6 @@ class __TwigTemplate_35d9547f6d7ebd53b10cb43d0361d1dcb8edfa0593c78d2d1955d155d6c
 
     public function getDebugInfo()
     {
-        return array (  238 => 78,  228 => 76,  225 => 75,  215 => 73,  207 => 71,  204 => 70,  202 => 69,  195 => 66,  189 => 62,  185 => 60,  181 => 58,  177 => 56,  168 => 53,  164 => 52,  155 => 51,  151 => 50,  148 => 49,  146 => 48,  142 => 46,  139 => 45,  133 => 40,  125 => 37,  119 => 36,  117 => 35,  114 => 34,  106 => 33,  103 => 32,  99 => 31,  94 => 28,  89 => 25,  74 => 23,  70 => 22,  64 => 18,  57 => 14,  52 => 11,  49 => 10,  44 => 7,  38 => 5,  30 => 3,);
+        return array (  240 => 78,  230 => 76,  227 => 75,  217 => 73,  209 => 71,  206 => 70,  204 => 69,  197 => 66,  191 => 62,  187 => 60,  183 => 58,  179 => 56,  170 => 53,  166 => 52,  157 => 51,  153 => 50,  150 => 49,  148 => 48,  144 => 46,  141 => 45,  135 => 40,  127 => 37,  119 => 36,  117 => 35,  114 => 34,  106 => 33,  103 => 32,  99 => 31,  94 => 28,  89 => 25,  74 => 23,  70 => 22,  64 => 18,  57 => 14,  52 => 11,  49 => 10,  44 => 7,  38 => 5,  30 => 3,);
     }
 }

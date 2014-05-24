@@ -4,6 +4,7 @@ namespace WebMeta\CommonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WebMeta\CommonBundle\Entity\Page;
+use WebMeta\CommonBundle\Entity\Compte;
 use WebMeta\CommonBundle\Form\PageType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +21,18 @@ class PageController extends Controller {
     public function creationAction() {
         $page = new Page();
         $form = $this->createForm(new PageType(), $page);
+        $session = $this->get('session');
+        $compte_session = $session->get('compte');
+
+        // Verifie si l'utilisateur est admin
+        if (!$compte_session->getIsAdmin()) {
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'error', "Accès refusé"
+            );
+
+            return $this->redirect($this->generateUrl('common_homepage'));
+        }
 
         return $this->render('WebMetaCommonBundle:Page:creation.html.twig', array('form' => $form->createView()));
     }
@@ -59,6 +72,17 @@ class PageController extends Controller {
     public function formModificationAction($id_page) {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
+        
+        // Verifie si l'utilisateur est admin
+        if (!$compte_session->getIsAdmin()) {
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'error', "Accès refusé"
+            );
+
+            return $this->redirect($this->generateUrl('common_homepage'));
+        }
+
 
         $page = $this->getDoctrine()->getManager()->getRepository('WebMetaCommonBundle:Page')->find($id_page);
 
@@ -100,6 +124,16 @@ class PageController extends Controller {
         $session = $this->get('session');
         $compte_session = $session->get('compte');
 
+        // Verifie si l'utilisateur est admin
+        if (!$compte_session->getIsAdmin()) {
+            // Message de confirmation pour l'utilisateur
+            $this->get('session')->getFlashBag()->add(
+                    'error', "Accès refusé"
+            );
+
+            return $this->redirect($this->generateUrl('common_homepage'));
+        }
+        
         $em = $this->getDoctrine()->getManager();
 
         // Suppression du membre de l'équipe

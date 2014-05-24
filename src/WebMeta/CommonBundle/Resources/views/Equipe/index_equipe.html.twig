@@ -33,7 +33,7 @@
                             - <a href="{{ path('compte_view', {id:membre.getId})}}" title="Voir la page de {{membre.getPseudo}}">{{membre.getPseudo}}</a>
                             {# Passage des droits (devenir leader) #}    
                             {% if is_leader %}
-                                - <a href="{{ path('equipe_devenir_leader', {id_equipe:equipe.getId, id:membre.getId})}}" title="Faire de ce membre un leader"> Donner les droits de leader </a>   
+                                - <a href="{{ path('equipe_devenir_leader', {id_equipe:equipe.getId, id:membre.getId})}}" onclick="return confirm('Accorder les droits de leader à {{membre.getPseudo}} ?');" title="Faire de ce membre un leader"> Donner les droits de leader </a>   
                             {% endif %}    
                         </li>
                     {% endfor %}

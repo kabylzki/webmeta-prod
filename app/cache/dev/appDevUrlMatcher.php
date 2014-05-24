@@ -300,13 +300,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/tournoi-')) {
-            // tournoi_gestion
-            if (0 === strpos($pathinfo, '/tournoi-gestion') && preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
+            if (0 === strpos($pathinfo, '/tournoi-gestion')) {
+                // tournoi_gestion
+                if (preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
+                }
+
+                // tournoi_supression_equipe
+                if (preg_match('#^/tournoi\\-gestion/(?P<idTournoi>[^/]++)/(?P<idTeam>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_supression_equipe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::suppressionEquipeAction',));
+                }
+
             }
 
             // tournoi_coupe
-            if (0 === strpos($pathinfo, '/tournoi-coupe') && preg_match('#^/tournoi\\-coupe/(?P<id>[^/]++)/(?P<phase>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/tournoi-coupe') && preg_match('#^/tournoi\\-coupe/(?P<id>[^/]++)/(?P<phase>[^/]++)/(?P<admin>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_coupe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TypeTournoiController::coupeAction',));
             }
 

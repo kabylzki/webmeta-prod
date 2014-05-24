@@ -69,7 +69,9 @@ class __TwigTemplate_15b387f606de1c3882b98a53c6a6b9b0fb115e1570777dd86934d3bd48c
             // line 25
             echo "                    <li>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["team"]) ? $context["team"] : $this->getContext($context, "team")), "getNom", array(), "method"), "html", null, true);
-            echo "</li>
+            echo " <a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_supression_equipe", array("idTournoi" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "idTeam" => $this->getAttribute((isset($context["team"]) ? $context["team"] : $this->getContext($context, "team")), "getId"))), "html", null, true);
+            echo "\" title=\"tournoi\">supprimer</a></li>
                 ";
         }
         $_parent = $context['_parent'];
@@ -107,8 +109,8 @@ class __TwigTemplate_15b387f606de1c3882b98a53c6a6b9b0fb115e1570777dd86934d3bd48c
         if (($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getStatut") == "pret")) {
             // line 15
             echo "                <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_coupe", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "phase" => "pool")), "html", null, true);
-            echo "\" title=\"tournoi\"/>tableau des rencontres</a>
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_coupe", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "phase" => "pool", "admin" => "false")), "html", null, true);
+            echo "\" title=\"tournoi\">tableau des rencontres</a>
             ";
         } elseif (($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getStatut") == "enAttente")) {
             // line 17
@@ -142,6 +144,6 @@ class __TwigTemplate_15b387f606de1c3882b98a53c6a6b9b0fb115e1570777dd86934d3bd48c
 
     public function getDebugInfo()
     {
-        return array (  129 => 40,  126 => 39,  122 => 20,  119 => 19,  115 => 17,  109 => 15,  106 => 14,  103 => 13,  95 => 33,  89 => 31,  86 => 30,  84 => 29,  82 => 28,  79 => 27,  70 => 25,  66 => 24,  61 => 21,  59 => 13,  54 => 11,  51 => 10,  48 => 9,  42 => 7,  35 => 4,  32 => 3,);
+        return array (  131 => 40,  128 => 39,  124 => 20,  121 => 19,  117 => 17,  111 => 15,  108 => 14,  105 => 13,  97 => 33,  91 => 31,  88 => 30,  86 => 29,  84 => 28,  81 => 27,  70 => 25,  66 => 24,  61 => 21,  59 => 13,  54 => 11,  51 => 10,  48 => 9,  42 => 7,  35 => 4,  32 => 3,);
     }
 }
