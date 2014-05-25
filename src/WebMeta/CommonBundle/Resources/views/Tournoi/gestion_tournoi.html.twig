@@ -28,12 +28,19 @@
         <h1>liste des participants</h1>
         <div class="row">
             <div class="col-md-6 col-md-offset-4 struct">
-               <table width="70%" height="70%">
+               <table width="80%" height="100%">
                 <tr>
-                <th>nom<th>description
+                <th>nom<th>description<th>membres de l'équipe
                 </tr>
                 {% for team in liste_team %}
                     <tr><td>{{ team.getNom()}}</td><td>{{ team.getPresentation()}}</td>
+                        <td>
+                            {% if loop.index <liste_team |length%}
+                                {% for membre in membreEquipe[loop.index] %}
+                                    {{membre.getPseudo()}}<br/>
+                                {% endfor %}
+                            {% endif %}
+                        </td>
                         <td>
                         {% if admin=="true" %}
                             <a href="{{ path('tournoi_supression_equipe', {'idTournoi':tournoi.getId,'idTeam':team.getId}) }}" title="tournoi">supprimer</a>

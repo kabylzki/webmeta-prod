@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use WebMeta\CommonBundle\Entity\Tournoi;
 use WebMeta\CommonBundle\Entity\Invitation;
 use WebMeta\CommonBundle\Entity\Rencontre;
+use WebMeta\CommonBundle\Entity\Message;
 
 
 use WebMeta\CommonBundle\Form\TournoiType;
@@ -115,8 +116,43 @@ class TournoiController extends Controller {
                                            ->findOneById($liste_teamId[$i]->getIdInvite()));
          }
 
+        #membre d'une equipe donnée
+        $membreEquipe = array();
+        for($i=0; $i <count($liste_teamId);$i++){
+            #on récupére les membres de l'equipe
+            $membre = $inv->getRepository('WebMetaCommonBundle:Membre')
+                          ->findBy(array('id_equipe' => $liste_teamId[$i]->getIdInvite()));
 
-        ##############################rencontre########################################
+            $compteMembre=array();
+
+            #on envoie les messages d'invitation a chacun des membres
+            for($j=0; $j <count($membre);$j++){
+                array_push($compteMembre,$inv->getRepository('WebMetaCommonBundle:Compte')->findOneById($membre[$j]->getId()));
+
+                #on insère dans la base que si le message n'existe pas
+                if(!$inv->getRepository('WebMetaCommonBundle:Message')->findBy(array('id_expediteur' => $tournoi->getIdCompte(),'id_receveur' => $membre[$j]->getId() ,'contenu' =>"Vous etes invités a rejoindre le tournoi ".$tournoi->getNom()))){
+                    // Message info user accepté
+                    $message = new Message();
+                    $inv->getRepository('WebMetaCommonBundle:Message');
+                    $message->setIdExpediteur($tournoi->getIdCompte());
+                    $message->setIdReceveur($membre[$j]->getId());
+                    $message->setTitre("invitation au  tournoi".$tournoi->getNom());
+                    $message->setContenu("Vous etes invités a rejoindre le tournoi ".$tournoi->getNom());
+                    $message->setDateExpedition(new \DateTime());
+                    $message->setStatut("non-lu");
+                    $inv->persist($message);
+                    $inv->flush();
+                }
+
+            }
+
+            array_push($membreEquipe,$compteMembre);
+        }
+
+
+
+
+            ##############################rencontre########################################
         //génération des rencontres pour le mode coupe
          $rencontre=new Rencontre();
          if(count($liste_team)==8 and $tournoi->getStatut()=="enAttente"){
@@ -206,7 +242,8 @@ class TournoiController extends Controller {
         }
 
 
-         return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('admin' => $admin ,'liste_team' => $liste_team,'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
+
+         return $this->render('WebMetaCommonBundle:Tournoi:gestion_tournoi.html.twig', array('membreEquipe'=> $membreEquipe ,'admin' => $admin ,'liste_team' => $liste_team,'tournoi' => $tournoi, 'formInvitation' => $formInvitation->createView()));
 
 
 
@@ -251,6 +288,16 @@ class TournoiController extends Controller {
             $message="erreur lors de la suppression des rencontres";
         }
 
+        #on supprime le gagnant du tournoi
+        $tmp=$em->getRepository('WebMetaCommonBundle:Resultat')
+                ->findBy(array('idTournoi' => $id));
+
+        for($i=0; $i <count($tmp);$i++){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tmp[$i]);
+            $em->flush();
+        }
+
         #on supprime le tournoi
         $em = $this->getDoctrine()->getManager();
         $em->remove($tournoi);
@@ -285,6 +332,16 @@ class TournoiController extends Controller {
             $tournoi->setStatut("enAttente");
             $em = $this->getDoctrine()->getManager();
             $em->persist($tournoi);
+            $em->flush();
+        }
+
+        #on supprime le gagnant du tournoi
+        $tmp=$em->getRepository('WebMetaCommonBundle:Resultat')
+                ->findBy(array('idTournoi' => $idTournoi));
+
+        for($i=0; $i <count($tmp);$i++){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tmp[$i]);
             $em->flush();
         }
 
