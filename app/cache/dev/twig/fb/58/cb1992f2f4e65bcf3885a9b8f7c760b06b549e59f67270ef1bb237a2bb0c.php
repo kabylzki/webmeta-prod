@@ -301,12 +301,12 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "date_publication"), "d-m-Y H:i:s"), "html", null, true);
                         echo "</td>
                                     <td>
-                                        <a href=\"/uploads/ressources/";
+                                        <a href=\"../../uploads/ressources/";
                         // line 110
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                         echo "/";
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "path"), "html", null, true);
-                        echo "\" download=\"\" title=\"Télécharger la ressource\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer le message ?');\">
+                        echo "\" download=\"\" title=\"Télécharger la ressource\">
                                             <img src=\"";
                         // line 111
                         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/download.png"), "html", null, true);

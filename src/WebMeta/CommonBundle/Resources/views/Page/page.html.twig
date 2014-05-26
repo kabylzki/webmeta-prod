@@ -13,7 +13,9 @@
 {% block sidebar %} 
     <h1>Menu</h1>
     <ul>
-        <li><a href="{{ path('page_modification', {id_page:page.getId}) }}" title="Modifier la page">Modifier la page</a></li>
-        <li><a href="{{ path('page_suppression', {id_page:page.getId}) }}" title="Supprimer la page" onclick="return confirm('Etes-vous sur de vouloir supprimer la page ?');">Supprimer la page</a></li>
+        {% if app.session.get('compte').getIsAdmin == 1 %}
+            <li><a href="{{ path('page_modification', {id_page:page.getId}) }}" title="Modifier la page">Modifier la page</a></li>
+            <li><a href="{{ path('page_suppression', {id_page:page.getId}) }}" title="Supprimer la page" onclick="return confirm('Etes-vous sur de vouloir supprimer la page ?');">Supprimer la page</a></li>
+        {% endif %}
     </ul>
 {% endblock %}

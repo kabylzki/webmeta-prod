@@ -54,15 +54,21 @@ class __TwigTemplate_72b4cf8d829b1f54c3b95b2f702f822a8828c936d477e4e2bd44fb9a842
         echo " 
     <h1>Menu</h1>
     <ul>
-        <li><a href=\"";
+        ";
         // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_modification", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
-        echo "\" title=\"Modifier la page\">Modifier la page</a></li>
+        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "get", array(0 => "compte"), "method"), "getIsAdmin") == 1)) {
+            // line 17
+            echo "        <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_modification", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
+            echo "\" title=\"Modifier la page\">Modifier la page</a></li>
         <li><a href=\"";
-        // line 17
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_suppression", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
-        echo "\" title=\"Supprimer la page\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer la page ?');\">Supprimer la page</a></li>
-    </ul>
+            // line 18
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("page_suppression", array("id_page" => $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getId"))), "html", null, true);
+            echo "\" title=\"Supprimer la page\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer la page ?');\">Supprimer la page</a></li>
+        ";
+        }
+        // line 20
+        echo "    </ul>
 ";
     }
 
@@ -78,6 +84,6 @@ class __TwigTemplate_72b4cf8d829b1f54c3b95b2f702f822a8828c936d477e4e2bd44fb9a842
 
     public function getDebugInfo()
     {
-        return array (  63 => 17,  59 => 16,  52 => 13,  44 => 7,  38 => 5,  30 => 3,);
+        return array (  71 => 20,  66 => 18,  61 => 17,  59 => 16,  52 => 13,  44 => 7,  38 => 5,  30 => 3,);
     }
 }
