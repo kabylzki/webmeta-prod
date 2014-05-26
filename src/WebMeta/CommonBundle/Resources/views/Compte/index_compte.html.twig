@@ -92,6 +92,9 @@
                                 </td>
                                 <td>{{ressource.date_publication|date('d-m-Y H:i:s')}}</td>
                                 <td>
+                                    <a href="../../uploads/ressources/{{ressource.type}}/{{ressource.path}}" download="" title="Télécharger la ressource">
+                                        <img src="{{ asset('bundles/webmetacommon/images/download.png')}}" alt="download" />
+                                    </a>
                                     <a href="{{ path('ressource_suppression', {id:ressource.id}) }}" title="Supprimer la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
                                         <img src="{{ asset('bundles/webmetacommon/images/corbeille.png')}}" alt="corbeille" />
                                     </a>
@@ -107,6 +110,9 @@
                                     <td>Oui</td>
                                     <td>{{ressource.date_publication|date('d-m-Y H:i:s')}}</td>
                                     <td>
+                                        <a href="/uploads/ressources/{{ressource.type}}/{{ressource.path}}" download="" title="Télécharger la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
+                                            <img src="{{ asset('bundles/webmetacommon/images/download.png')}}" alt="download" />
+                                        </a>
                                         {% if user_connected %}
                                             <a href="{{ path('ressource_suppression', {id:ressource.id}) }}" title="Supprimer la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
                                                 <img src="{{ asset('bundles/webmetacommon/images/corbeille.png')}}" alt="corbeille" />
