@@ -8,12 +8,12 @@
 
 {% block content %} 
     <div id="page-metaciv-home">
-        <h2>TODO : </h2>
-        <ul>
-            <li>- Page d'accueil Metaciv</li>
-            <li>- Vidéo de démo</li>
-            <li>- Texte de présentation</li>
-        </ul>
+        <h1>Metaciv</h1>
+        <p>
+            MetaCiv est framework de modélisation de sociétés humaines (ou virtuelles) utilisant la technique des SMA dans lesquelles l’espace, la culture et la structure sociale jouent un rôle important... 
+        </p>
+        <img src="{{ asset('bundles/webmetacommon/images/metaciv.jpg') }}" alt="Metaciv bg " class="col-md-6"/>
+        <img src="{{ asset('bundles/webmetacommon/images/metaciv.png') }}" alt="Metaciv screen" class="col-md-6"/>
     </div>
 {% endblock %}
 
@@ -22,8 +22,7 @@
     <ul>
         {% for page in liste_page %}
             <li> <a href="{{ path('page_view', {'id': page.getId, 'url_alias': page.getUrlAlias, 'nom_categorie': page.getNomCategorie|lower|replace({ (' '): '' })}) }}" title="{{page.getNomLien}}"/>{{page.getNomLien}}</a></li>
-        {% endfor %}
-
+            {% endfor %}
     </ul>
 
     <h3>Documentation </h3>

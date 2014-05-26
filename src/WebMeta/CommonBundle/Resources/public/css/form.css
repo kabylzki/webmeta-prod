@@ -30,3 +30,7 @@ form div label {
     float: left;
 }
 
+
+#page-ressource-upload form label {
+    width: 250px;
+}

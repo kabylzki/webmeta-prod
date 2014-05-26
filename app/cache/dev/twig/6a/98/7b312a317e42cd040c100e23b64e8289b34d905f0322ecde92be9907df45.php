@@ -48,12 +48,18 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
     {
         echo " 
     <div id=\"page-metaciv-home\">
-        <h2>TODO : </h2>
-        <ul>
-            <li>- Page d'accueil Metaciv</li>
-            <li>- Vidéo de démo</li>
-            <li>- Texte de présentation</li>
-        </ul>
+        <h1>Metaciv</h1>
+        <p>
+            MetaCiv est framework de modélisation de sociétés humaines (ou virtuelles) utilisant la technique des SMA dans lesquelles l’espace, la culture et la structure sociale jouent un rôle important... 
+        </p>
+        <img src=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/metaciv.jpg"), "html", null, true);
+        echo "\" alt=\"Metaciv bg \" class=\"col-md-6\"/>
+        <img src=\"";
+        // line 16
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/metaciv.png"), "html", null, true);
+        echo "\" alt=\"Metaciv screen\" class=\"col-md-6\"/>
     </div>
 ";
     }
@@ -77,19 +83,18 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
             echo "\"/>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "getNomLien"), "html", null, true);
             echo "</a></li>
-        ";
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 26
-        echo "
-    </ul>
+        echo "    </ul>
 
     <h3>Documentation </h3>
     <ul>
         <li> <a href=\"";
-        // line 31
+        // line 30
         echo $this->env->getExtension('routing')->getPath("metaciv_documentation");
         echo "\" title=\"Documentation de Metaciv\"/>Documentation - Metaciv</a></li>
     </ul>
@@ -108,6 +113,6 @@ class __TwigTemplate_6a987b312a317e42cd040c100e23b64e8289b34d905f0322ecde92be990
 
     public function getDebugInfo()
     {
-        return array (  93 => 31,  86 => 26,  73 => 24,  69 => 23,  62 => 20,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
+        return array (  98 => 30,  92 => 26,  79 => 24,  75 => 23,  68 => 20,  61 => 16,  57 => 15,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

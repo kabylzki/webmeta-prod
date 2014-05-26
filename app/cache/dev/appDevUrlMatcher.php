@@ -300,17 +300,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/tournoi-')) {
-            if (0 === strpos($pathinfo, '/tournoi-gestion')) {
-                // tournoi_gestion
-                if (preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
-                }
+            // tournoi_gestion
+            if (0 === strpos($pathinfo, '/tournoi-gestion') && preg_match('#^/tournoi\\-gestion/(?P<id>[^/]++)/(?P<admin>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_gestion')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::gestionTournoiAction',));
+            }
 
-                // tournoi_supression_equipe
-                if (preg_match('#^/tournoi\\-gestion/(?P<idTournoi>[^/]++)/(?P<idTeam>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_supression_equipe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::suppressionEquipeAction',));
-                }
-
+            // tournoi_supression_equipe
+            if (0 === strpos($pathinfo, '/tournoi-supression') && preg_match('#^/tournoi\\-supression/(?P<idTournoi>[^/]++)/(?P<idTeam>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tournoi_supression_equipe')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\TournoiController::suppressionEquipeAction',));
             }
 
             // tournoi_coupe
@@ -377,6 +374,23 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/ressources')) {
+            if (0 === strpos($pathinfo, '/ressources-')) {
+                // ressource_upload
+                if (rtrim($pathinfo, '/') === '/ressources-upload') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'ressource_upload');
+                    }
+
+                    return array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::uploadAction',  '_route' => 'ressource_upload',);
+                }
+
+                // ressource_suppression
+                if (0 === strpos($pathinfo, '/ressources-suppression') && preg_match('#^/ressources\\-suppression\\-(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'ressource_suppression')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::suppressionAction',));
+                }
+
+            }
+
             // ressource_view
             if (preg_match('#^/ressources\\-(?P<jeu>[^/]++)/?$#s', $pathinfo, $matches)) {
                 if (substr($pathinfo, -1) !== '/') {
@@ -389,6 +403,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // ressource_compte_view
             if (preg_match('#^/ressources/(?P<id_compte>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'ressource_compte_view')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::indexAction',));
+            }
+
+            // ressource_changer_public
+            if (0 === strpos($pathinfo, '/ressources-changer-public') && preg_match('#^/ressources\\-changer\\-public\\-(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ressource_changer_public')), array (  '_controller' => 'WebMeta\\CommonBundle\\Controller\\RessourceController::indexAction',));
             }
 
         }

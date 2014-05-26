@@ -1,0 +1,13 @@
+le projet porte sur la modelisation d'un musée en xml 
+
+fichier analyse_xml.xsl => generation du formulaire 
+
+plan.xsl => évaluation de l'expression générée et sauvegarde des oeuvres qui correspond dans un fichier json 
+
+oeuvres.json => fichier json contenant les oeuvres recherchés
+
+script.js => rendu html5 et svg (plan 2d du musée + marqueurs )
+
+murs.json et marqueurs.json => sauvegarde murs et marqueurs pour les oeuvres pour la partie 3d (non fonctionnelle)
+
+

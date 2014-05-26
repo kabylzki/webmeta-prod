@@ -4,8 +4,10 @@
     background-position: top left;
     background-size: 100%;*/
    background-color:#4b4b4b;
+   
 }
 
 #content_page #content {
     color:white;
+    padding-bottom: 10px;
 }

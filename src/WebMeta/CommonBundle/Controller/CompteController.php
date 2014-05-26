@@ -54,13 +54,17 @@ class CompteController extends Controller {
             array_push($liste_demande, $equipe_demande);
         }
         
+        // Récupère la liste des messages
         $message_non_lu = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Message')->findMessageNonLu($compte->getId());
         if (!empty($message_non_lu)) {
             $new_message = true;
         }
         
+        // Récupère la liste des équipes dont le membre fait partie
+        $liste_ressource = $this->getDoctrine()->getRepository('WebMetaCommonBundle:Ressource')->findBy(array("id_compte" => $id), array('type' => 'ASC'));
+
         // Appel du template avec tous les paramètres
-        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande, 'new_message' => $new_message));
+        return $this->render('WebMetaCommonBundle:Compte:index_compte.html.twig', array('compte' => $compte, 'user_connected' => $user_connected, 'liste_equipe' => $liste_equipe, 'liste_demande' => $liste_demande,'liste_ressource' => $liste_ressource, 'new_message' => $new_message));
     }
 
     // Formulaire de création d'un compte

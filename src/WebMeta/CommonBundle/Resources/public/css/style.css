@@ -95,13 +95,14 @@ hr
     background: transparent;
 }
 
-#page-compte-index {
-    
-}
-
 #content div h1:first-child  {
     margin: 10px 0px 10px ;
     border-bottom: 1px solid black;
+}
+
+/* Compte */
+#page-compte-index {
+    
 }
 
 #page-compte-index .avatar-compte {
@@ -134,6 +135,7 @@ hr
     margin: 0px;
 }
 
+/* Demande */
 .demandes-compte {
     padding-right: 0px;
 }
@@ -144,6 +146,7 @@ hr
     
 }
 
+/* Message */
 .message-compte {
     text-align: right;
     margin-bottom: 5px;
@@ -184,4 +187,27 @@ hr
 
 .content-message {
     text-align: justify;
+}
+
+/* Table ressource */
+.table-ressource tr.head {
+    background-color: lightgray;
+    font-weight: bold;
+}
+
+.table-ressource tr.ia {
+    background-color: #EDEDED;
+}
+
+.table-ressource tr.modele {
+    background-color: lightyellow;
+}
+
+.table-ressource tr.doc {
+    background-color: lightpink;
+}
+
+
+.table-ressource tr td {
+    text-align: center;
 }

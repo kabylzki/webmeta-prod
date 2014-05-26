@@ -56,7 +56,7 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
         $this->env->loadTemplate("WebMetaCommonBundle:Default:message.html.twig")->display($context);
         // line 15
         echo "
-    <h3>tournois crées</h3>
+    <h3>mes tournois</h3>
     <ul>
         ";
         // line 18
@@ -65,62 +65,63 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
         foreach ($context['_seq'] as $context["_key"] => $context["tournoi"]) {
             // line 19
             echo "            <li><a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_gestion", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_gestion", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "admin" => "true")), "html", null, true);
             echo "\" title=\"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
             echo "\"/>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getDate"), "format", array(0 => "d/M/Y"), "method"), "html", null, true);
-            echo "</a>  <a href=\"";
+            echo "</a>
+                <a href=\"";
+            // line 20
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_suppression", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
-            echo "\">supprimer</a></li>
+            echo "\">supprimer</a>
+            </li>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tournoi'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
+        // line 23
         echo "    </ul>
 
     <h3>tournois publiques</h3>
     <ul>
         ";
-        // line 25
+        // line 27
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["liste_tournoiPubliques"]) ? $context["liste_tournoiPubliques"] : $this->getContext($context, "liste_tournoiPubliques")));
         foreach ($context['_seq'] as $context["_key"] => $context["tournoi"]) {
-            // line 26
+            // line 28
             echo "            <li><a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_gestion", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_gestion", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"), "admin" => "false")), "html", null, true);
             echo "\" title=\"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
             echo "\"/>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getNom"), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getDate"), "format", array(0 => "d/M/Y"), "method"), "html", null, true);
-            echo "</a>  <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("tournoi_suppression", array("id" => $this->getAttribute((isset($context["tournoi"]) ? $context["tournoi"] : $this->getContext($context, "tournoi")), "getId"))), "html", null, true);
-            echo "\">supprimer</a></li>
+            echo "</a></li>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tournoi'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 30
         echo "    </ul>
 </div>
 ";
     }
 
-    // line 33
+    // line 35
     public function block_sidebar($context, array $blocks = array())
     {
-        // line 34
+        // line 36
         echo "    <h1>Menu</h1>
     <ul>
         <a href=\"";
-        // line 36
+        // line 38
         echo $this->env->getExtension('routing')->getPath("tournoi_creation");
         echo "\" title=\"Créer un tournoi Warbot\">Créer un tournoi</a>
     </ul>
@@ -140,6 +141,6 @@ class __TwigTemplate_1becd8f13a2bc9fd3dd6a03f5e8a532919b8013b1f84f91ae56200ed89f
 
     public function getDebugInfo()
     {
-        return array (  124 => 36,  120 => 34,  117 => 33,  111 => 28,  94 => 26,  90 => 25,  84 => 21,  67 => 19,  63 => 18,  58 => 15,  55 => 14,  50 => 10,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
+        return array (  125 => 38,  121 => 36,  118 => 35,  112 => 30,  97 => 28,  93 => 27,  87 => 23,  78 => 20,  67 => 19,  63 => 18,  58 => 15,  55 => 14,  50 => 10,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

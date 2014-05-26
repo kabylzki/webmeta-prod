@@ -55,7 +55,15 @@ class __TwigTemplate_db3038ad4edf4765b12e81611cd9d51c7dc0eb13936e2603569cf524c11
     // line 16
     public function block_sidebar($context, array $blocks = array())
     {
-        echo " ";
+        // line 17
+        echo "    <h1>Menu</h1>
+    <ul>
+        <li><a href=\"";
+        // line 19
+        echo $this->env->getExtension('routing')->getPath("equipe_liste");
+        echo "\" title=\"Afficher la liste des équipes\" />Liste des équipes</a></li>
+    </ul>
+";
     }
 
     public function getTemplateName()
@@ -70,6 +78,6 @@ class __TwigTemplate_db3038ad4edf4765b12e81611cd9d51c7dc0eb13936e2603569cf524c11
 
     public function getDebugInfo()
     {
-        return array (  56 => 16,  49 => 11,  46 => 10,  43 => 9,  36 => 5,  30 => 3,);
+        return array (  63 => 19,  59 => 17,  56 => 16,  49 => 11,  46 => 10,  43 => 9,  36 => 5,  30 => 3,);
     }
 }

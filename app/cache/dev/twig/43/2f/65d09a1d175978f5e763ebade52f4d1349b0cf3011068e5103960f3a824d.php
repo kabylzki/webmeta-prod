@@ -48,12 +48,18 @@ class __TwigTemplate_432f65d09a1d175978f5e763ebade52f4d1349b0cf3011068e5103960f3
     {
         echo " 
     <div id=\"page-warbot-home\">
-        <h2>TODO : </h2>
-        <ul>
-            <li>- Page d'accueil Warbot</li>
-            <li>- Vidéo de démo</li>
-            <li>- Texte de présentation</li>
-        </ul>
+        <h1>Warbot</h1>
+        <p>
+            Warbot est à la fois un jeu et une plate-forme d'évaluation et d'analyse de techniques de coordination entre agents, dans une situation de compétition où deux équipes de \"robots\" s'affrontent pour tuer la base de l'adversaire. Dans ce projet, les joueurs sont en fait les développeurs des agents... 
+        </p>
+        <img src=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/warbot.jpg"), "html", null, true);
+        echo "\" alt=\"warbot bg\" class=\"col-md-6\"/>
+        <img src=\"";
+        // line 16
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/warbot.png"), "html", null, true);
+        echo "\" alt=\"warbot screen\" class=\"col-md-6\"/>
     </div>
 ";
     }
@@ -118,6 +124,6 @@ class __TwigTemplate_432f65d09a1d175978f5e763ebade52f4d1349b0cf3011068e5103960f3
 
     public function getDebugInfo()
     {
-        return array (  105 => 35,  99 => 33,  97 => 32,  91 => 28,  78 => 26,  74 => 25,  70 => 24,  62 => 20,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
+        return array (  111 => 35,  105 => 33,  103 => 32,  97 => 28,  84 => 26,  80 => 25,  76 => 24,  68 => 20,  61 => 16,  57 => 15,  47 => 9,  41 => 7,  34 => 4,  31 => 3,);
     }
 }

@@ -13,4 +13,9 @@
  {% endblock %}
 
 {# Sidebar vide #}
-{% block sidebar %} {% endblock %}
+{% block sidebar %}
+    <h1>Menu</h1>
+    <ul>
+        <li><a href="{{ path('equipe_liste') }}" title="Afficher la liste des équipes" />Liste des équipes</a></li>
+    </ul>
+{% endblock %}

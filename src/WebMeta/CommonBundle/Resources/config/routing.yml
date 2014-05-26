@@ -202,6 +202,17 @@ equipe_devenir_leader:
     defaults: { _controller: WebMetaCommonBundle:Equipe:devenirLeader }
     
 ################ Ressources ################   
+# Upload d'une ressource (formulaire) 
+ressource_upload:
+    pattern:  /ressources-upload/
+    defaults: { _controller: WebMetaCommonBundle:Ressource:upload }
+    
+    
+# Suppression d'une ressource
+ressource_suppression:
+    pattern:  /ressources-suppression-{id}
+    defaults: { _controller: WebMetaCommonBundle:Ressource:suppression }
+    
 # Visualisation des ressources
 ressource_view:
     pattern:  /ressources-{jeu}/
@@ -211,7 +222,13 @@ ressource_view:
 ressource_compte_view:
     pattern:  /ressources/{id_compte}
     defaults: { _controller: WebMetaCommonBundle:Ressource:index }
-
+    
+    
+# Visualisation des ressources d'un utilisateur
+ressource_changer_public:
+    pattern:  /ressources-changer-public-{id}
+    defaults: { _controller: WebMetaCommonBundle:Ressource:index }
+    
 ################ Messages ################   
 # Visualisation de la liste des messages
 message_liste:

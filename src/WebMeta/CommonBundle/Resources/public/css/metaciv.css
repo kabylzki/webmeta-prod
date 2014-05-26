@@ -4,4 +4,9 @@
     background-position: top left;
     background-size: 100%;*/
     background-color: lightyellow;
+    
+}
+
+#content_page #content {
+    padding-bottom: 10px;
 }

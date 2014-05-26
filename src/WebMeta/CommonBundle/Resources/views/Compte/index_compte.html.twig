@@ -3,95 +3,155 @@
 {% block title %} WebMeta - Compte de {{compte.getPseudo}}{% endblock %}
 
 {% block content %} 
-<div id="page-compte-index">
-    <h1>Compte : {{compte.getPseudo}} </h1>
-    
-    {# Messages - (Notice, Erreur) #}
-    {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
-    
-    {% if user_connected %}
-    <div class="message-compte col-md-12">
-        <a href="{{ path('message_liste') }}" title="Liste de vos messages">
-            {% if new_message %}
-                <img src="{{ asset('bundles/webmetacommon/images/enveloppe-non-lu2.png')}}" alt="enveloppe" />
-            {% else %}
-                <img src="{{ asset('bundles/webmetacommon/images/enveloppe-lu.png')}}" alt="enveloppe" />
+    <div id="page-compte-index">
+        <h1>Compte : {{compte.getPseudo}} </h1>
+
+        {# Messages - (Notice, Erreur) #}
+        {% include 'WebMetaCommonBundle:Default:message.html.twig' %}
+
+        {% if user_connected %}
+            <div class="message-compte col-md-12">
+                <a href="{{ path('message_liste') }}" title="Liste de vos messages">
+                    {% if new_message %}
+                        <img src="{{ asset('bundles/webmetacommon/images/enveloppe-non-lu2.png')}}" alt="enveloppe" />
+                    {% else %}
+                        <img src="{{ asset('bundles/webmetacommon/images/enveloppe-lu.png')}}" alt="enveloppe" />
+                    {% endif %}
+                </a>
+            </div>
+        {% endif %}
+
+        {# Avatar #}
+        <div class="avatar-compte col-md-2">
+            {% if compte.getAvatar is null %}
+                <div class="avatar-img col-md-12"><img src="{{ asset('avatar/default_avatar.png')}}" alt="Mon avatar" /></div>
+                {% else %}
+                <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
+                {% endif %}
+                {% if user_connected %}
+                <p class="avatar-link"><a href="{{ path('compte_modification_password') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
             {% endif %}
-        </a>
-    </div>
-    {% endif %}
-    
-    <div class="avatar-compte col-md-2">
-        {% if compte.getAvatar is null %}
-            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/default_avatar.png')}}" alt="Mon avatar" /></div>
-        {% else %}
-            <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
-        {% endif %}
-        {% if user_connected %}
-            <p class="avatar-link"><a href="{{ path('compte_modification_password') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
-        {% endif %}
-    </div>
-    
-    <div class="information-compte col-md-7">
-        <h3>Informations</h3>
-        {% if user_connected %}
-            <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier mes informations</a> - <a href="{{ path('compte_modification_password') }}" title="Modifier mot de passe">Modifier mot de passe</a></p>
-        {% endif %}
-        <ul>
-            <li><strong>Email</strong> : {{compte.getEmail}}</li>
-            <li><strong>Nom</strong> : {{compte.getNom}}</li>
-            <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
-            <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
-            <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
-            <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
-        </ul>
-    </div>
-    {% if user_connected and liste_demande|length > 0 %}
-        <div class="demandes-compte col-md-3">
-            <h3>Demandes en attente</h3>
+        </div>
+
+        {# Information du compte #}
+        <div class="information-compte col-md-7">
+            <h3>Informations</h3>
+            {% if user_connected %}
+                <p><a href="{{ path('compte_modification') }}" title="Modifier mes information">Modifier mes informations</a> - <a href="{{ path('compte_modification_password') }}" title="Modifier mot de passe">Modifier mot de passe</a></p>
+            {% endif %}
             <ul>
-            {% for demande in liste_demande %}
-                <li><a href="{{ path('equipe_view', {id:demande.getId}) }}" title="Voir l'équipe  {{ demande.getNom }}"> {{ demande.getNom }}</a> - <i>En attente </i></li>
-            {% endfor %}
+                <li><strong>Email</strong> : {{compte.getEmail}}</li>
+                <li><strong>Nom</strong> : {{compte.getNom}}</li>
+                <li><strong>Prénom</strong> : {{compte.getPrenom}}</li>
+                <li><strong>Date de naissance</strong> : {{compte.getDateNaissance|date('d-m-Y')}}</li>
+                <li><strong>Inscrit depuis le</strong> : {{compte.getDateInscription|date('d-m-Y')}}</li>
+                <li><strong>Ma description</strong> : <br/> {{compte.getDescription}}</li>
             </ul>
         </div>
-    {% endif %}
-    <div class="clear"></div>
-    
 
-</div>    
- {% endblock %}
+        {# Demande en attente (rejoindre une équipe) #}
+        {% if user_connected and liste_demande|length > 0 %}
+            <div class="demandes-compte col-md-3">
+                <h3>Demandes en attente</h3>
+                <ul>
+                    {% for demande in liste_demande %}
+                        <li><a href="{{ path('equipe_view', {id:demande.getId}) }}" title="Voir l'équipe  {{ demande.getNom }}"> {{ demande.getNom }}</a> - <i>En attente </i></li>
+                        {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <div class="clear"></div>
 
+        {# Liste des ressources #}
+        <div class="ressources-compte col-md-12">
+            <h3>Liste des ressources</h3>
+            <table class="table-ressource col-md-12">
+                <tr class="head">
+                    <td>Nom</td>
+                    <td>Type</td>
+                    <td>lien</td>
+                    <td>Publique ?</td>
+                    <td>Date publication</td>
+                    <td>Action</td>
+                </tr>
+
+                {% if liste_ressource|length > 0 %}
+                    {% for ressource in liste_ressource %}
+                        {# Liste des ressources pour l'utilisateur connecté #}
+                        {% if user_connected %}
+                            <tr class="{{ressource.type}}">
+                                <td>{{ressource.name}}</td>
+                                <td>{{ressource.type}}</td>
+                                <td><a href="{{ressource.lien}}" title="{{ressource.lien}}" target="_blank">{{ressource.lien}}</a></td>
+                                <td>
+                                    {% if ressource.is_public %}
+                                        Oui
+                                    {% else %}
+                                        Non
+                                    {% endif %}
+                                </td>
+                                <td>{{ressource.date_publication|date('d-m-Y H:i:s')}}</td>
+                                <td>
+                                    <a href="{{ path('ressource_suppression', {id:ressource.id}) }}" title="Supprimer la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
+                                        <img src="{{ asset('bundles/webmetacommon/images/corbeille.png')}}" alt="corbeille" />
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            {# Liste des ressources pour l'utilisateur non connecté public #}
+                            {% if ressource.is_public %}
+                                <tr class="{{ressource.type}}">
+                                    <td>{{ressource.name}}</td>
+                                    <td>{{ressource.type}}</td>
+                                    <td><a href="{{ressource.lien}}" title="{{ressource.lien}}" target="_blank">{{ressource.lien}}</a></td>
+                                    <td>Oui</td>
+                                    <td>{{ressource.date_publication|date('d-m-Y H:i:s')}}</td>
+                                    <td>
+                                        {% if user_connected %}
+                                            <a href="{{ path('ressource_suppression', {id:ressource.id}) }}" title="Supprimer la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
+                                                <img src="{{ asset('bundles/webmetacommon/images/corbeille.png')}}" alt="corbeille" />
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan="6"><i>Aucune ressource</i></td></tr>
+                {% endif %}
+            </table> 
+        </div>
+
+        <div class="clear"></div>
+
+    </div>    
+{% endblock %}
 
 {% block sidebar %} 
-<h1>Menu</h1>
-<ul>
-    <li><a href="{{ path('equipe_liste') }}" title="Afficher la liste des équipes" />Liste des équipes</a></li>
+    <h1>Menu</h1>
+    <ul>
+        <li><a href="{{ path('equipe_liste') }}" title="Afficher la liste des équipes" />Liste des équipes</a></li>
+            {% if user_connected %}
+            <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+            {% endif %}
+    </ul>
+
     {% if user_connected %}
-        <li><a href="{{ path('equipe_creation') }}" title="Créer une équipe" />Créer une équipe</a></li>
+        <h3>Equipes</h3>
+
+        <ul>
+            {% for equipe in liste_equipe %}
+                <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
+                {% endfor %}
+        </ul>
     {% endif %}
-</ul>
 
-<h3>Equipes</h3>
-
-<ul>
-{% for equipe in liste_equipe %}
-    <li><a href="{{ path('equipe_view', {id:equipe.getId}) }}" title="Voir l'équipe  {{ equipe.getNom }}"> {{ equipe.getNom }}</a></li>
-{% endfor %}
-</ul>
-
-
-<h3>Ressources</h3>
-
-{% if user_connected %}
-    <ul>
-        <li><a href="{{ path('ressource_view', {jeu:"warbot"}) }}" title="Ressources relatives à Warbot">Ressources Warbot</a></li>
-        <li><a href="{{ path('ressource_view', {jeu:"metaciv"}) }}" title="Ressources relatives à Metaciv">Ressources Metaciv</a></li>
-    </ul>
-{% else %}
-    <ul>
-        <li><a href="{{ path('ressource_compte_view', {id_compte:compte.getId}) }}" title="Voir les ressources de {{compte.getPseudo}}">Voir les ressources</a></li>
-    </ul>
-{% endif %}
+    {% if user_connected %}
+        <h3>Ressources</h3>
+        <ul>
+            <li><a href="{{ path('ressource_upload') }}" title="Envoyer une ressource">Envoyer une ressource</a></li>
+        </ul>
+    {% endif %}
 
 {% endblock %}
