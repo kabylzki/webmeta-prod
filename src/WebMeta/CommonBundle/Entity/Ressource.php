@@ -38,14 +38,12 @@ class Ressource {
     /**
      *
      * @ORM\Column(type="string")
-
      */
     public $type;
     
     /**
      *
-     * @ORM\Column(type="string")
-
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $lien;
     
@@ -57,7 +55,6 @@ class Ressource {
     
     /**
      * @ORM\Column(type="boolean")
-
      */
     public $is_public;
     

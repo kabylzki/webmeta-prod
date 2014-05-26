@@ -28,9 +28,6 @@
                 {% else %}
                 <div class="avatar-img col-md-12"><img src="{{ asset('avatar/')}}{{compte.getAvatar}}" alt="Mon avatar" /></div>
                 {% endif %}
-                {% if user_connected %}
-                <p class="avatar-link"><a href="{{ path('compte_modification_password') }}" title="Modifier mon avatar">Modifier mon avatar</a></p>
-            {% endif %}
         </div>
 
         {# Information du compte #}
@@ -110,7 +107,7 @@
                                     <td>Oui</td>
                                     <td>{{ressource.date_publication|date('d-m-Y H:i:s')}}</td>
                                     <td>
-                                        <a href="/uploads/ressources/{{ressource.type}}/{{ressource.path}}" download="" title="Télécharger la ressource" onclick="return confirm('Etes-vous sur de vouloir supprimer le message ?');">
+                                        <a href="../../uploads/ressources/{{ressource.type}}/{{ressource.path}}" download="" title="Télécharger la ressource">
                                             <img src="{{ asset('bundles/webmetacommon/images/download.png')}}" alt="download" />
                                         </a>
                                         {% if user_connected %}

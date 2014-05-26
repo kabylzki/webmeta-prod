@@ -100,25 +100,16 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                 ";
         }
         // line 31
-        echo "                ";
-        if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 32
-            echo "                <p class=\"avatar-link\"><a href=\"";
-            echo $this->env->getExtension('routing')->getPath("compte_modification_password");
-            echo "\" title=\"Modifier mon avatar\">Modifier mon avatar</a></p>
-            ";
-        }
-        // line 34
         echo "        </div>
 
         ";
-        // line 37
+        // line 34
         echo "        <div class=\"information-compte col-md-7\">
             <h3>Informations</h3>
             ";
-        // line 39
+        // line 36
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 40
+            // line 37
             echo "                <p><a href=\"";
             echo $this->env->getExtension('routing')->getPath("compte_modification");
             echo "\" title=\"Modifier mes information\">Modifier mes informations</a> - <a href=\"";
@@ -126,49 +117,49 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             echo "\" title=\"Modifier mot de passe\">Modifier mot de passe</a></p>
             ";
         }
-        // line 42
+        // line 39
         echo "            <ul>
                 <li><strong>Email</strong> : ";
-        // line 43
+        // line 40
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getEmail"), "html", null, true);
         echo "</li>
                 <li><strong>Nom</strong> : ";
-        // line 44
+        // line 41
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getNom"), "html", null, true);
         echo "</li>
                 <li><strong>Prénom</strong> : ";
-        // line 45
+        // line 42
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getPrenom"), "html", null, true);
         echo "</li>
                 <li><strong>Date de naissance</strong> : ";
-        // line 46
+        // line 43
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDateNaissance"), "d-m-Y"), "html", null, true);
         echo "</li>
                 <li><strong>Inscrit depuis le</strong> : ";
-        // line 47
+        // line 44
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDateInscription"), "d-m-Y"), "html", null, true);
         echo "</li>
                 <li><strong>Ma description</strong> : <br/> ";
-        // line 48
+        // line 45
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["compte"]) ? $context["compte"] : $this->getContext($context, "compte")), "getDescription"), "html", null, true);
         echo "</li>
             </ul>
         </div>
 
         ";
-        // line 53
+        // line 50
         echo "        ";
         if (((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected")) && (twig_length_filter($this->env, (isset($context["liste_demande"]) ? $context["liste_demande"] : $this->getContext($context, "liste_demande"))) > 0))) {
-            // line 54
+            // line 51
             echo "            <div class=\"demandes-compte col-md-3\">
                 <h3>Demandes en attente</h3>
                 <ul>
                     ";
-            // line 57
+            // line 54
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["liste_demande"]) ? $context["liste_demande"] : $this->getContext($context, "liste_demande")));
             foreach ($context['_seq'] as $context["_key"] => $context["demande"]) {
-                // line 58
+                // line 55
                 echo "                        <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["demande"]) ? $context["demande"] : $this->getContext($context, "demande")), "getId"))), "html", null, true);
                 echo "\" title=\"Voir l'équipe  ";
@@ -181,16 +172,16 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['demande'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 60
+            // line 57
             echo "                </ul>
             </div>
         ";
         }
-        // line 63
+        // line 60
         echo "        <div class=\"clear\"></div>
 
         ";
-        // line 66
+        // line 63
         echo "        <div class=\"ressources-compte col-md-12\">
             <h3>Liste des ressources</h3>
             <table class=\"table-ressource col-md-12\">
@@ -204,32 +195,32 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                 </tr>
 
                 ";
-        // line 78
+        // line 75
         if ((twig_length_filter($this->env, (isset($context["liste_ressource"]) ? $context["liste_ressource"] : $this->getContext($context, "liste_ressource"))) > 0)) {
-            // line 79
+            // line 76
             echo "                    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["liste_ressource"]) ? $context["liste_ressource"] : $this->getContext($context, "liste_ressource")));
             foreach ($context['_seq'] as $context["_key"] => $context["ressource"]) {
-                // line 80
+                // line 77
                 echo "                        ";
-                // line 81
+                // line 78
                 echo "                        ";
                 if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-                    // line 82
+                    // line 79
                     echo "                            <tr class=\"";
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                     echo "\">
                                 <td>";
-                    // line 83
+                    // line 80
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "name"), "html", null, true);
                     echo "</td>
                                 <td>";
-                    // line 84
+                    // line 81
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                     echo "</td>
                                 <td><a href=\"";
-                    // line 85
+                    // line 82
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "lien"), "html", null, true);
                     echo "\" title=\"";
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "lien"), "html", null, true);
@@ -238,40 +229,40 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                     echo "</a></td>
                                 <td>
                                     ";
-                    // line 87
+                    // line 84
                     if ($this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "is_public")) {
-                        // line 88
+                        // line 85
                         echo "                                        Oui
                                     ";
                     } else {
-                        // line 90
+                        // line 87
                         echo "                                        Non
                                     ";
                     }
-                    // line 92
+                    // line 89
                     echo "                                </td>
                                 <td>";
-                    // line 93
+                    // line 90
                     echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "date_publication"), "d-m-Y H:i:s"), "html", null, true);
                     echo "</td>
                                 <td>
                                     <a href=\"../../uploads/ressources/";
-                    // line 95
+                    // line 92
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                     echo "/";
                     echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "path"), "html", null, true);
                     echo "\" download=\"\" title=\"Télécharger la ressource\">
                                         <img src=\"";
-                    // line 96
+                    // line 93
                     echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/download.png"), "html", null, true);
                     echo "\" alt=\"download\" />
                                     </a>
                                     <a href=\"";
-                    // line 98
+                    // line 95
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ressource_suppression", array("id" => $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "id"))), "html", null, true);
                     echo "\" title=\"Supprimer la ressource\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer le message ?');\">
                                         <img src=\"";
-                    // line 99
+                    // line 96
                     echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/corbeille.png"), "html", null, true);
                     echo "\" alt=\"corbeille\" />
                                     </a>
@@ -279,25 +270,25 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                             </tr>
                         ";
                 } else {
-                    // line 104
+                    // line 101
                     echo "                            ";
-                    // line 105
+                    // line 102
                     echo "                            ";
                     if ($this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "is_public")) {
-                        // line 106
+                        // line 103
                         echo "                                <tr class=\"";
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                         echo "\">
                                     <td>";
-                        // line 107
+                        // line 104
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "name"), "html", null, true);
                         echo "</td>
                                     <td>";
-                        // line 108
+                        // line 105
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                         echo "</td>
                                     <td><a href=\"";
-                        // line 109
+                        // line 106
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "lien"), "html", null, true);
                         echo "\" title=\"";
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "lien"), "html", null, true);
@@ -306,57 +297,57 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
                         echo "</a></td>
                                     <td>Oui</td>
                                     <td>";
-                        // line 111
+                        // line 108
                         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "date_publication"), "d-m-Y H:i:s"), "html", null, true);
                         echo "</td>
                                     <td>
                                         <a href=\"/uploads/ressources/";
-                        // line 113
+                        // line 110
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "type"), "html", null, true);
                         echo "/";
                         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "path"), "html", null, true);
                         echo "\" download=\"\" title=\"Télécharger la ressource\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer le message ?');\">
                                             <img src=\"";
-                        // line 114
+                        // line 111
                         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/download.png"), "html", null, true);
                         echo "\" alt=\"download\" />
                                         </a>
                                         ";
-                        // line 116
+                        // line 113
                         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-                            // line 117
+                            // line 114
                             echo "                                            <a href=\"";
                             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ressource_suppression", array("id" => $this->getAttribute((isset($context["ressource"]) ? $context["ressource"] : $this->getContext($context, "ressource")), "id"))), "html", null, true);
                             echo "\" title=\"Supprimer la ressource\" onclick=\"return confirm('Etes-vous sur de vouloir supprimer le message ?');\">
                                                 <img src=\"";
-                            // line 118
+                            // line 115
                             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/webmetacommon/images/corbeille.png"), "html", null, true);
                             echo "\" alt=\"corbeille\" />
                                             </a>
                                         ";
                         }
-                        // line 121
+                        // line 118
                         echo "                                    </td>
                                 </tr>
                             ";
                     }
-                    // line 124
+                    // line 121
                     echo "                        ";
                 }
-                // line 125
+                // line 122
                 echo "                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ressource'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 126
+            // line 123
             echo "                ";
         } else {
-            // line 127
+            // line 124
             echo "                    <tr><td colspan=\"6\"><i>Aucune ressource</i></td></tr>
                 ";
         }
-        // line 129
+        // line 126
         echo "            </table> 
         </div>
 
@@ -366,41 +357,41 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 ";
     }
 
-    // line 137
+    // line 134
     public function block_sidebar($context, array $blocks = array())
     {
         echo " 
     <h1>Menu</h1>
     <ul>
         <li><a href=\"";
-        // line 140
+        // line 137
         echo $this->env->getExtension('routing')->getPath("equipe_liste");
         echo "\" title=\"Afficher la liste des équipes\" />Liste des équipes</a></li>
             ";
-        // line 141
+        // line 138
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 142
+            // line 139
             echo "            <li><a href=\"";
             echo $this->env->getExtension('routing')->getPath("equipe_creation");
             echo "\" title=\"Créer une équipe\" />Créer une équipe</a></li>
             ";
         }
-        // line 144
+        // line 141
         echo "    </ul>
 
     ";
-        // line 146
+        // line 143
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 147
+            // line 144
             echo "        <h3>Equipes</h3>
 
         <ul>
             ";
-            // line 150
+            // line 147
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["liste_equipe"]) ? $context["liste_equipe"] : $this->getContext($context, "liste_equipe")));
             foreach ($context['_seq'] as $context["_key"] => $context["equipe"]) {
-                // line 151
+                // line 148
                 echo "                <li><a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("equipe_view", array("id" => $this->getAttribute((isset($context["equipe"]) ? $context["equipe"] : $this->getContext($context, "equipe")), "getId"))), "html", null, true);
                 echo "\" title=\"Voir l'équipe  ";
@@ -413,26 +404,26 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipe'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 153
+            // line 150
             echo "        </ul>
     ";
         }
-        // line 155
+        // line 152
         echo "
     ";
-        // line 156
+        // line 153
         if ((isset($context["user_connected"]) ? $context["user_connected"] : $this->getContext($context, "user_connected"))) {
-            // line 157
+            // line 154
             echo "        <h3>Ressources</h3>
         <ul>
             <li><a href=\"";
-            // line 159
+            // line 156
             echo $this->env->getExtension('routing')->getPath("ressource_upload");
             echo "\" title=\"Envoyer une ressource\">Envoyer une ressource</a></li>
         </ul>
     ";
         }
-        // line 162
+        // line 159
         echo "
 ";
     }
@@ -449,6 +440,6 @@ class __TwigTemplate_fb58cb1992f2f4e65bcf3885a9b8f7c760b06b549e59f67270ef1bb237a
 
     public function getDebugInfo()
     {
-        return array (  436 => 162,  430 => 159,  426 => 157,  424 => 156,  421 => 155,  417 => 153,  404 => 151,  400 => 150,  395 => 147,  393 => 146,  389 => 144,  383 => 142,  381 => 141,  377 => 140,  370 => 137,  360 => 129,  356 => 127,  353 => 126,  347 => 125,  344 => 124,  339 => 121,  333 => 118,  328 => 117,  326 => 116,  321 => 114,  315 => 113,  310 => 111,  301 => 109,  297 => 108,  293 => 107,  288 => 106,  285 => 105,  283 => 104,  275 => 99,  271 => 98,  266 => 96,  260 => 95,  255 => 93,  252 => 92,  248 => 90,  244 => 88,  242 => 87,  233 => 85,  229 => 84,  225 => 83,  220 => 82,  217 => 81,  215 => 80,  210 => 79,  208 => 78,  194 => 66,  190 => 63,  185 => 60,  172 => 58,  168 => 57,  163 => 54,  160 => 53,  153 => 48,  149 => 47,  145 => 46,  141 => 45,  137 => 44,  133 => 43,  130 => 42,  122 => 40,  120 => 39,  116 => 37,  112 => 34,  106 => 32,  103 => 31,  96 => 29,  90 => 27,  88 => 26,  85 => 25,  82 => 23,  77 => 20,  71 => 18,  65 => 16,  63 => 15,  59 => 14,  56 => 13,  54 => 12,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
+        return array (  427 => 159,  421 => 156,  417 => 154,  415 => 153,  412 => 152,  408 => 150,  395 => 148,  391 => 147,  386 => 144,  384 => 143,  380 => 141,  374 => 139,  372 => 138,  368 => 137,  361 => 134,  351 => 126,  347 => 124,  344 => 123,  338 => 122,  335 => 121,  330 => 118,  324 => 115,  319 => 114,  317 => 113,  312 => 111,  306 => 110,  301 => 108,  292 => 106,  288 => 105,  284 => 104,  279 => 103,  276 => 102,  274 => 101,  266 => 96,  262 => 95,  257 => 93,  251 => 92,  246 => 90,  243 => 89,  239 => 87,  235 => 85,  233 => 84,  224 => 82,  220 => 81,  216 => 80,  211 => 79,  208 => 78,  206 => 77,  201 => 76,  199 => 75,  185 => 63,  181 => 60,  176 => 57,  163 => 55,  159 => 54,  154 => 51,  151 => 50,  144 => 45,  140 => 44,  136 => 43,  132 => 42,  128 => 41,  124 => 40,  121 => 39,  113 => 37,  111 => 36,  107 => 34,  103 => 31,  96 => 29,  90 => 27,  88 => 26,  85 => 25,  82 => 23,  77 => 20,  71 => 18,  65 => 16,  63 => 15,  59 => 14,  56 => 13,  54 => 12,  51 => 11,  48 => 10,  43 => 7,  37 => 5,  30 => 3,);
     }
 }
